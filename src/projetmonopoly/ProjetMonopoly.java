@@ -18,6 +18,12 @@ public class ProjetMonopoly {
         // TODO code application logic here
         
        yaminoutai wtf 
+               reetye
+                       re
+                       reg
+                               g
+                               e
+                                       tema sa gueule
     }
     
 }
