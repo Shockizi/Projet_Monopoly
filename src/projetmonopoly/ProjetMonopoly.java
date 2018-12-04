@@ -17,7 +17,7 @@ public class ProjetMonopoly {
     public static void main(String[] args) {
         // TODO code application logic here
         
-       saucisson
+       saucisson.exe où est yamine 
     }
     
 }
