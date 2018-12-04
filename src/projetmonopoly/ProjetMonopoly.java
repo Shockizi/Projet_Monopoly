@@ -21,8 +21,7 @@ public class ProjetMonopoly {
                reetye
                        re
                        reg
-                               g
-                               e
+                               
                                        tema sa gueule
     }
     
