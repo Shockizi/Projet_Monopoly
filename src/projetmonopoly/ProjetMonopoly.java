@@ -17,7 +17,7 @@ public class ProjetMonopoly {
     public static void main(String[] args) {
         // TODO code application logic here
         
-       test c simon cc
+       test c simon loro cc
     }
     
 }
