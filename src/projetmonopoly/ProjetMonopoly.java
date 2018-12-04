@@ -17,12 +17,7 @@ public class ProjetMonopoly {
     public static void main(String[] args) {
         // TODO code application logic here
         
-       yaminoutai wtf 
-               reetye
-                       re
-                       reg
-                               matthieu vient au bk sinon petit zizi 
-                                       tema sa gueule
+       test
     }
     
 }
