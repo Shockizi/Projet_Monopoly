@@ -28,7 +28,17 @@ public abstract class Propriete extends Case {
         this.loyer = loyer;
     }
 
-    
+    public int getPrixDAchat() {
+        return prixDAchat;
+    }
+
+    public Joueur getProprietaire() {
+        return proprietaire;
+    }
+
+    public void addProprietaire(Joueur p){
+        this.proprietaire = p;
+    }
     
     
 }
