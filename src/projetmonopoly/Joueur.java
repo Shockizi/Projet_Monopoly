@@ -13,14 +13,13 @@ import java.util.ArrayList;
  */
 public class Joueur {
     private String nom;
-    private int cagnotte;
+    private int cagnotte = 1500;
     private Case position;
     private ArrayList<Propriete> proprietes;
     
 
     public Joueur(String nom, int cagnotte) {
         this.nom = nom;
-        this.cagnotte = cagnotte;
     }
 
     public String getNom() {
@@ -74,4 +73,15 @@ public class Joueur {
             this.proprietes.remove(p);
         }
     }
+    
+    public int getNbCompagnie(){
+        int nb = 0;
+        for(Propriete p : proprietes){
+            if (p instanceof Compagnie){
+                nb = nb +1;
+            }            
+        }
+        return nb;
+    }
+    
 }
