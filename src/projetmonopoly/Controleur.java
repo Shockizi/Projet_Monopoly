@@ -33,12 +33,17 @@ public class Controleur {
     }
     
     public void joueurSuivant(){
+        boolean jctrouve = false;
+        Joueur jSuivant = null;
         for(Joueur jc : joueurs){
-            if(jc = this.joueurCourant){
-                
+            if(jctrouve){
+                jSuivant = jc;
+            }
+            if(jc == this.joueurCourant){
+                jctrouve = true;
             }
         }
-        this.joueurCourant = 
+        this.joueurCourant = jSuivant;
     }
     
 }
