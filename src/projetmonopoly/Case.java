@@ -9,10 +9,10 @@ package projetmonopoly;
  *
  * @author elmiry
  */
-public class Case {
+public abstract class Case {
     private int numCase;
     private Joueur joueur;
-
+    private Case type;
     public Case(int numCase) {
         this.numCase = numCase;
     }
@@ -32,6 +32,8 @@ public class Case {
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
+    
+    public abstract int getPrixDAchat();
     
     
     
