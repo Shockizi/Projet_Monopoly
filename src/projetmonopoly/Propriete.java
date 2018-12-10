@@ -39,6 +39,23 @@ public abstract class Propriete extends Case {
     public void addProprietaire(Joueur p){
         this.proprietaire = p;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public int getLoyer() {
+        return loyer;
+    }
+
+    public void setLoyer(int loyer) {
+        this.loyer = loyer;
+    }
+    
     
     
 }
