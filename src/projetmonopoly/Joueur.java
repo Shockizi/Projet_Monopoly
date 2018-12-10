@@ -16,11 +16,62 @@ public class Joueur {
     private int cagnotte;
     private Case position;
     private ArrayList<Propriete> proprietes;
+    
 
     public Joueur(String nom, int cagnotte) {
         this.nom = nom;
         this.cagnotte = cagnotte;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public int getCagnotte() {
+        return cagnotte;
+    }
+
+    public void setCagnotte(int cagnotte) {
+        this.cagnotte = cagnotte;
+    }
     
+    public Case getPosition() {
+        return position;
+    }
+
+    public void setPosition(int d1, int d2) {
+        this.getPosition().setNumCase(this.getPosition().getNumCase()+d2+d1);
+    }
+
+    public ArrayList<Propriete> getProprietes() {
+        return proprietes;
+    }
+
+    public void setProprietes(ArrayList<Propriete> proprietes) {
+        this.proprietes = proprietes;
+    }
     
+    public int getNbGare(){
+        int nb = 0;
+        for(Propriete p : proprietes){
+            if (p instanceof Gare){
+                nb = nb +1;
+            }            
+        }
+        return nb;
+    }
+
+    public void achat(int pA) {
+        cagnotte = cagnotte - pA;
+    }
+    
+    public void retirePropriete(){
+        for(Propriete p : proprietes){
+            this.proprietes.remove(p);
+        }
+    }
 }
