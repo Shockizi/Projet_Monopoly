@@ -89,7 +89,7 @@ public class Joueur {
     public void acheter() {
         if (this.getPosition().getPrixDAchat() < this.getCagnotte()) {
             achat(this.getPosition().getPrixDAchat());
-            proprietes.add((Propriete) this.getPosition());
+            proprietes.add();
         }
     }
 }
