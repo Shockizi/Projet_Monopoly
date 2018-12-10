@@ -7,8 +7,14 @@ package projetmonopoly;
 
 /**
  *
- * @author milliezm
+ * @author elmiry
  */
-public class Compagnie {
+public class Compagnie extends Propriete{
+
+    public Compagnie(String nom, int prixDAchat, int numCase) {
+        super(nom, prixDAchat, numCase);
+    }
+
+    
     
 }

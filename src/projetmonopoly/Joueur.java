@@ -5,10 +5,22 @@
  */
 package projetmonopoly;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author milliezm
+ * @author elmiry
  */
 public class Joueur {
+    private String nom;
+    private int cagnotte;
+    private Case position;
+    private ArrayList<Propriete> proprietes;
+
+    public Joueur(String nom, int cagnotte) {
+        this.nom = nom;
+        this.cagnotte = cagnotte;
+    }
+    
     
 }

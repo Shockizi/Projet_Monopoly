@@ -7,8 +7,28 @@ package projetmonopoly;
 
 /**
  *
- * @author milliezm
+ * @author elmiry
  */
-public class Propriete {
+public abstract class Propriete extends Case {
+    private String nom;
+    private int prixDAchat;
+    private int loyer;
+    private Joueur proprietaire;
+
+    public Propriete(String nom, int prixDAchat, int numCase) {
+        super(numCase);
+        this.nom = nom;
+        this.prixDAchat = prixDAchat;
+    }
+
+    public Propriete(String nom, int prixDAchat, int loyer, int numCase) {
+        super(numCase);
+        this.nom = nom;
+        this.prixDAchat = prixDAchat;
+        this.loyer = loyer;
+    }
+
+    
+    
     
 }

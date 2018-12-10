@@ -5,10 +5,20 @@
  */
 package projetmonopoly;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author milliezm
+ * @author elmiry
  */
 public class Controleur {
+    private ArrayList<Case> cases;
+    private ArrayList<Joueur> joueurs;
+
+    public Controleur(ArrayList<Case> cases, ArrayList<Joueur> joueurs) {
+        this.cases = cases;
+        this.joueurs = joueurs;
+    }
+    
     
 }
