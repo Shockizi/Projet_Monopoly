@@ -16,6 +16,7 @@ public class Joueur {
     private int cagnotte;
     private Case position;
     private ArrayList<Propriete> proprietes;
+    
 
     public Joueur(String nom, int cagnotte) {
         this.nom = nom;
@@ -54,6 +55,14 @@ public class Joueur {
         this.proprietes = proprietes;
     }
     
-    
+    public int getNbGare(){
+        int nb = 0;
+        for(Propriete p : proprietes){
+            if (p instanceof Gare){
+                nb = nb +1;
+            }            
+        }
+        return nb;
+    }
     
 }
