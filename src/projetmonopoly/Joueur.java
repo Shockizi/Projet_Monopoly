@@ -64,6 +64,8 @@ public class Joueur {
         }
         return nb;
     }
+    
+    
 
     public void achat(int pA) {
         cagnotte = cagnotte - pA;
