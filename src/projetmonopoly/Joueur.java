@@ -38,13 +38,13 @@ public class Joueur {
     public void setCagnotte(int cagnotte) {
         this.cagnotte = cagnotte;
     }
-
+    
     public Case getPosition() {
         return position;
     }
 
-    public void setPosition(Case position) {
-        this.position = position;
+    public void setPosition(int d1, int d2) {
+        this.getPosition().setNumCase(this.getPosition().getNumCase()+d2+d1);
     }
 
     public ArrayList<Propriete> getProprietes() {
@@ -64,5 +64,16 @@ public class Joueur {
         }
         return nb;
     }
+
+    public void achat(int pA) {
+        cagnotte = cagnotte - pA;
+    }
     
+    public void retirePropriete(){
+        for(Propriete p : proprietes){
+            this.proprietes.remove(p);
+        }
+    }
+    
+    public 
 }
