@@ -74,6 +74,4 @@ public class Joueur {
             this.proprietes.remove(p);
         }
     }
-    
-    public 
 }
