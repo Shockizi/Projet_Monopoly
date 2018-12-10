@@ -16,6 +16,13 @@ public class ProjetMonopoly {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Joueur mathieuLopez = new Joueur("MLopez",1500);
+        System.out.println(mathieuLopez.getCagnotte());
+        mathieuLopez.setCagnotte(400);
+        System.out.println(mathieuLopez.getCagnotte());
+        System.out.println(mathieuLopez.getNbGare());
+        Gare wc = new Gare("WC",100,0);
+
     }
     
 }

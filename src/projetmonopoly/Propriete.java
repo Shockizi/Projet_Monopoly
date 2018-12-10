@@ -28,6 +28,14 @@ public abstract class Propriete extends Case {
         this.loyer = loyer;
     }
 
+    public Propriete(String nom, int prixDAchat, int loyer, Joueur proprietaire, int numCase) {
+        super(numCase);
+        this.nom = nom;
+        this.prixDAchat = prixDAchat;
+        this.loyer = loyer;
+        this.proprietaire = proprietaire;
+    }
+
     public int getPrixDAchat() {
         return prixDAchat;
     }
