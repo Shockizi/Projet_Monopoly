@@ -16,5 +16,21 @@ public class Case {
     public Case(int numCase) {
         this.numCase = numCase;
     }
+
+    public int getNumCase() {
+        return numCase;
+    }
+
+    public void setNumCase(int numCase) {
+        this.numCase = numCase;
+    }
+
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
+    }
     
 }
