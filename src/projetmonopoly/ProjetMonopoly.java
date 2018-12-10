@@ -7,7 +7,7 @@ package projetmonopoly;
 
 /**
  *
- * @author martin56
+ * @author elmiry
  */
 public class ProjetMonopoly {
 
@@ -16,8 +16,6 @@ public class ProjetMonopoly {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-            gg mathieu t'as un 20
     }
     
 }
