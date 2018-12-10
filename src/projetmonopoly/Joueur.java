@@ -21,6 +21,39 @@ public class Joueur {
         this.nom = nom;
         this.cagnotte = cagnotte;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public int getCagnotte() {
+        return cagnotte;
+    }
+
+    public void setCagnotte(int cagnotte) {
+        this.cagnotte = cagnotte;
+    }
+
+    public Case getPosition() {
+        return position;
+    }
+
+    public void setPosition(Case position) {
+        this.position = position;
+    }
+
+    public ArrayList<Propriete> getProprietes() {
+        return proprietes;
+    }
+
+    public void setProprietes(ArrayList<Propriete> proprietes) {
+        this.proprietes = proprietes;
+    }
+    
     
     
 }
