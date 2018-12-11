@@ -22,7 +22,9 @@ public class ProjetMonopoly {
         System.out.println(mathieuLopez.getCagnotte());
         System.out.println(mathieuLopez.getNbGare());
         Gare wc = new Gare("WC", 100, 0);
+        System.out.println(mathieuLopez.getPosition());
 
+        
     }
 
 }
