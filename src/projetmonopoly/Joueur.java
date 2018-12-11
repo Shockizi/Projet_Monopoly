@@ -15,7 +15,7 @@ public class Joueur {
 
     private String nom;
     private int cagnotte = 1500;
-    private Case position;
+    private CasePlateau position;
     private ArrayList<Propriete> proprietes;
 
     public Joueur(String nom, int cagnotte) {
@@ -38,7 +38,7 @@ public class Joueur {
         this.cagnotte = cagnotte;
     }
 
-    public Case getPosition() {
+    public CasePlateau getPosition() {
         return position;
     }
 
@@ -63,8 +63,6 @@ public class Joueur {
         }
         return nb;
     }
-    
-    
 
     public void achat(int pA) {
         cagnotte = cagnotte - pA;
@@ -87,9 +85,11 @@ public class Joueur {
     }
 
     public void acheter() {
-        if (this.getPosition().getPrixDAchat() < this.getCagnotte()) {
-            achat(this.getPosition().getPrixDAchat());
-            proprietes.add();
+        if (this.getPosition() instanceof Propriete) {
+            if (this.getPosition().getPrixDAchat() < this.getCagnotte()) {
+                achat(this.getPosition().getPrixDAchat());
+                proprietes.add((Propriete) this.getPosition());
+            }
         }
     }
 }

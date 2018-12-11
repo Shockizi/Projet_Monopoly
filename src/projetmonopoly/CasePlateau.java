@@ -9,11 +9,11 @@ package projetmonopoly;
  *
  * @author elmiry
  */
-public abstract class Case {
+public abstract class CasePlateau {
     private int numCase;
     private Joueur joueur;
-    private Case type;
-    public Case(int numCase) {
+    private CasePlateau type;
+    public CasePlateau(int numCase) {
         this.numCase = numCase;
     }
 

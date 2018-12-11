@@ -9,7 +9,7 @@ package projetmonopoly;
  *
  * @author elmiry
  */
-public abstract class Propriete extends Case {
+public abstract class Propriete extends CasePlateau {
     private String nom;
     private int prixDAchat;
     private int loyer;

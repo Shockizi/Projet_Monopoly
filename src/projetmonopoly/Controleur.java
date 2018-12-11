@@ -13,13 +13,14 @@ import java.util.Random;
  * @author elmiry
  */
 public class Controleur {
-    private ArrayList<Case> cases;
+    private ArrayList<CasePlateau> cases;
     private ArrayList<Joueur> joueurs;
     private Joueur joueurCourant;
 
-    public Controleur(ArrayList<Case> cases, ArrayList<Joueur> joueurs) {
+    public Controleur(ArrayList<CasePlateau> cases, ArrayList<Joueur> joueurs) {
         this.cases = cases;
         this.joueurs = joueurs;
+        this.joueurCourant = joueurs.get(0);
     }
     
     public int lancerDe(){
