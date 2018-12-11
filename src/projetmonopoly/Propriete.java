@@ -12,7 +12,6 @@ package projetmonopoly;
 public abstract class Propriete extends CasePlateau {
     private String nom;
     private int prixDAchat;
-    private int loyer;
     private Joueur proprietaire;
 
     public Propriete(String nom, int prixDAchat, int numCase) {
@@ -21,18 +20,11 @@ public abstract class Propriete extends CasePlateau {
         this.prixDAchat = prixDAchat;
     }
 
-    public Propriete(String nom, int prixDAchat, int loyer, int numCase) {
+   
+    public Propriete(String nom, int prixDAchat, Joueur proprietaire, int numCase) {
         super(numCase);
         this.nom = nom;
         this.prixDAchat = prixDAchat;
-        this.loyer = loyer;
-    }
-
-    public Propriete(String nom, int prixDAchat, int loyer, Joueur proprietaire, int numCase) {
-        super(numCase);
-        this.nom = nom;
-        this.prixDAchat = prixDAchat;
-        this.loyer = loyer;
         this.proprietaire = proprietaire;
     }  
     
@@ -56,13 +48,7 @@ public abstract class Propriete extends CasePlateau {
         this.nom = nom;
     }
 
-    public int getLoyer() {
-        return loyer;
-    }
-
-    public void setLoyer(int loyer) {
-        this.loyer = loyer;
-    }
+    
     
     
     

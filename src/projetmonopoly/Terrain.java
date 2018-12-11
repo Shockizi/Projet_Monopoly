@@ -11,10 +11,12 @@ package projetmonopoly;
  */
 public class Terrain extends Propriete{
     private Couleur couleur;
+    private int loyer;
 
-    public Terrain(Couleur couleur, String nom, int prixDAchat, int numCase) {
+    public Terrain(Couleur couleur, int loyer, String nom, int prixDAchat, int numCase) {
         super(nom, prixDAchat, numCase);
         this.couleur = couleur;
+        this.loyer = loyer;
     }
 
     

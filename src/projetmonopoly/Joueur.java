@@ -18,7 +18,7 @@ public class Joueur {
     private CasePlateau position;
     private ArrayList<Propriete> proprietes;
 
-    public Joueur(String nom, int cagnotte) {
+    public Joueur(String nom) {
         this.nom = nom;
     }
 
