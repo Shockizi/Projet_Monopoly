@@ -48,7 +48,9 @@ public abstract class Propriete extends CasePlateau {
         this.nom = nom;
     }
 
-    
+    public void lancerAction(){
+        
+    }
     
     
     
