@@ -51,6 +51,8 @@ public class Terrain extends Propriete {
             loyer = this.loyerDeBase * 2;
         } else if (this.getCouleur() == Couleur.ROUGE && nbCouleur == 3) {
             loyer = this.loyerDeBase * 2;
+        } else {
+            loyer = loyerDeBase;
         }
         return loyer;
     }
