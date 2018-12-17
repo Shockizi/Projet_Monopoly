@@ -10,6 +10,7 @@ package projetmonopoly;
  * @author elmiry
  */
 public abstract class Propriete extends CasePlateau {
+
     private String nom;
     private int prixDAchat;
     private Joueur proprietaire;
@@ -20,14 +21,14 @@ public abstract class Propriete extends CasePlateau {
         this.prixDAchat = prixDAchat;
     }
 
-   
     public Propriete(String nom, int prixDAchat, Joueur proprietaire, int numCase) {
         super(numCase);
         this.nom = nom;
         this.prixDAchat = prixDAchat;
         this.proprietaire = proprietaire;
-    }  
-    
+    }
+
+    @Override
     public int getPrixDAchat() {
         return prixDAchat;
     }
@@ -36,7 +37,7 @@ public abstract class Propriete extends CasePlateau {
         return proprietaire;
     }
 
-    public void addProprietaire(Joueur p){
+    public void addProprietaire(Joueur p) {
         this.proprietaire = p;
     }
 
@@ -48,10 +49,17 @@ public abstract class Propriete extends CasePlateau {
         this.nom = nom;
     }
 
-    public void lancerAction(){
-        
+    public abstract int getLoyer();
+
+    @Override
+    public void lancerAction(Action action) {
+        if (action == Action.DEPLACER) {
+            super.getJoueur().lancerDes();
+            super.getJoueur().setPosition(super.getJoueur().getDe1(), super.getJoueur().getDe2());
+
+        } else if (action == Action.PAYER && super.getJoueur() != proprietaire) {
+
+        }
     }
-    
-    
-    
+
 }

@@ -35,6 +35,11 @@ public abstract class CasePlateau {
     
     public abstract int getPrixDAchat();
     
-    
+    public void lancerAction(Action action){
+        if (action == Action.DEPLACER){
+            joueur.lancerDes();
+            joueur.setPosition(joueur.getDe1(), joueur.getDe2());
+        }
+    }
     
 }

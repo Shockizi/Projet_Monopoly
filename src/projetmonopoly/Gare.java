@@ -16,11 +16,12 @@ public class Gare extends Propriete {
     }
 
     public Gare(String nom, int prixDAchat, Joueur proprietaire, int numCase) {
-        super(nom, prixDAchat,  proprietaire, numCase);
+        super(nom, prixDAchat, proprietaire, numCase);
     }
 
+    @Override
     public int getLoyer() {
-        return super.getProprietaire().getNbGare()*25;
+        return super.getProprietaire().getNbGare() * 25;
     }
 
 }

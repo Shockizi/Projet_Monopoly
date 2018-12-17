@@ -6,6 +6,7 @@
 package projetmonopoly;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Joueur {
     private int cagnotte = 1500;
     private CasePlateau position;
     private ArrayList<Propriete> proprietes;
+    private int de1, de2;
 
     public Joueur(String nom) {
         this.nom = nom;
@@ -44,6 +46,22 @@ public class Joueur {
 
     public void setPosition(int d1, int d2) {
         this.getPosition().setNumCase(this.getPosition().getNumCase() + d2 + d1);
+    }
+
+    public void lancerDes() {
+        Random r = new Random();
+        int de1 = 1 + r.nextInt(6 - 1);
+        this.de1 = de1;
+        int de2 = 1 + r.nextInt(6 - 1);
+        this.de2 = de2;
+    }
+
+    public int getDe1() {
+        return de1;
+    }
+
+    public int getDe2() {
+        return de2;
     }
 
     public ArrayList<Propriete> getProprietes() {

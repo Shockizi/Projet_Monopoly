@@ -23,11 +23,7 @@ public class Controleur {
         this.joueurCourant = joueurs.get(0);
     }
     
-    public int lancerDe(){
-        Random r = new Random();
-        int de = 1 + r.nextInt(6 - 1);
-        return de;
-    }
+    
     
     public Joueur getJoueurCourant(){
         return this.joueurCourant;
