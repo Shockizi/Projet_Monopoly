@@ -13,34 +13,30 @@ import java.util.Random;
  * @author elmiry
  */
 public class Controleur {
-    private ArrayList<CasePlateau> cases;
+
+    private ArrayList<CasePlateau> plateau;
     private ArrayList<Joueur> joueurs;
     private Joueur joueurCourant;
 
     public Controleur(ArrayList<CasePlateau> cases, ArrayList<Joueur> joueurs) {
-        this.cases = cases;
+        this.plateau = cases;
         this.joueurs = joueurs;
         this.joueurCourant = joueurs.get(0);
     }
-    
-    
-    
-    public Joueur getJoueurCourant(){
+
+    public Joueur getJoueurCourant() {
         return this.joueurCourant;
     }
-    
-    public void joueurSuivant(){
-        boolean jctrouve = false;
-        Joueur jSuivant = null;
-        for(Joueur jc : joueurs){
-            if(jctrouve){
-                jSuivant = jc;
-            }
-            if(jc == this.joueurCourant){
-                jctrouve = true;
+
+    public void joueurSuivant() {
+        int i = 0;
+        for (Joueur j : joueurs) {
+            i += 1;
+            if (joueurCourant == j && joueurs.size() == (i + 1)) {
+                joueurCourant = joueurs.get(0);
+            } else if (joueurCourant == j) {
+                joueurCourant = joueurs.get(i);
             }
         }
-        this.joueurCourant = jSuivant;
     }
-    
 }

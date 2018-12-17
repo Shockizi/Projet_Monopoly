@@ -12,7 +12,7 @@ package projetmonopoly;
 public abstract class CasePlateau {
     private int numCase;
     private Joueur joueur;
-    private CasePlateau type;
+    
     public CasePlateau(int numCase) {
         this.numCase = numCase;
     }
