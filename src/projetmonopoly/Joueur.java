@@ -15,7 +15,7 @@ import java.util.Random;
 public class Joueur {
 
     private String nom;
-    private int cagnotte = 1500;
+    private int cagnotte;
     private CasePlateau position;
     private ArrayList<Propriete> proprietes;
     private int de1, de2;
@@ -44,7 +44,11 @@ public class Joueur {
         return position;
     }
 
-    public void setPosition(int d1, int d2) {
+    public void setPosition(CasePlateau position) {
+        this.position = position;
+    }
+
+    public void avancer(int d1, int d2) {
         this.getPosition().setNumCase(this.getPosition().getNumCase() + d2 + d1);
     }
 
@@ -71,8 +75,8 @@ public class Joueur {
     public void setProprietes(ArrayList<Propriete> proprietes) {
         this.proprietes = proprietes;
     }
-    
-    public void addProriete(Propriete p){
+
+    public void addProriete(Propriete p) {
         proprietes.add(p);
     }
 

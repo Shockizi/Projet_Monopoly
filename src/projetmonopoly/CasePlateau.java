@@ -5,6 +5,8 @@
  */
 package projetmonopoly;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author elmiry
@@ -38,8 +40,14 @@ public abstract class CasePlateau {
     public void lancerAction(Action action){
         if (action == Action.DEPLACER){
             joueur.lancerDes();
-            joueur.setPosition(joueur.getDe1(), joueur.getDe2());
+            joueur.avancer(joueur.getDe1(), joueur.getDe2());
         }
+    }
+    
+    public ArrayList<Action> getActionPossible(){
+        ArrayList<Action> actionsPossibes = new ArrayList<>();
+        actionsPossibes.add(Action.DEPLACER);
+        return actionsPossibes;
     }
     
 }

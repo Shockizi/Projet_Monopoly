@@ -7,6 +7,7 @@ package projetmonopoly;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -18,8 +19,8 @@ public class Controleur {
     private ArrayList<Joueur> joueurs;
     private Joueur joueurCourant;
 
-    public Controleur(ArrayList<CasePlateau> cases, ArrayList<Joueur> joueurs) {
-        this.plateau = cases;
+    public Controleur(ArrayList<Joueur> joueurs) {
+        initPlateau();
         this.joueurs = joueurs;
         this.joueurCourant = joueurs.get(0);
     }
@@ -39,8 +40,8 @@ public class Controleur {
             }
         }
     }
-    
-    public void initPlateau(){
+
+    public void initPlateau() {
         plateau.add(new CaseNeutre(1));
         plateau.add(new Terrain(Couleur.MAUVE, 2, "Boulevard de Belleville", 60, 2));
         plateau.add(new CaseNeutre(3));
@@ -80,6 +81,68 @@ public class Controleur {
         plateau.add(new CaseNeutre(37));
         plateau.add(new Terrain(Couleur.BLEU_FONCE, 35, "Avenue des Champs-Elysées", 350, 38));
         plateau.add(new CaseNeutre(39));
-        plateau.add(new Terrain(Couleur.BLEU_FONCE, 50, "Avenue des Champs-Elysées", 400, 40));
+        plateau.add(new Terrain(Couleur.BLEU_FONCE, 50, "Rue de la Paix", 400, 40));
+    }
+
+    public void tourDeJeu() {
+        for (Joueur j : joueurs) {
+            j.setCagnotte(1500);
+            j.setPosition(plateau.get(0));
+        }
+
+        boolean gagnant = false;
+        while (gagnant = false) {
+            System.out.println(joueurCourant.getNom() + " à vous de jouer");
+            System.out.println("Saisissez le numéro d'action que vous souhaitez effectuer : ");
+            boolean achatPossible = false;
+            for (Action a : joueurCourant.getPosition().getActionPossible()) {
+                if (a == Action.DEPLACER) {
+                    joueurCourant.getPosition().lancerAction(Action.DEPLACER);
+                    System.out.println("    1. FIN DU TOUR");
+                    System.out.println("    2. CONSULTER PROPRIETES");
+                    System.out.println("    3. CONSULTER CAGNOTTE");
+                } else if (a == Action.ACHETER) {
+                    System.out.println("    4. ACHETER");
+                    achatPossible = true;
+                } else if (a == Action.PAYER) {
+                    joueurCourant.getPosition().lancerAction(Action.PAYER);
+                }
+            }
+            int numAct = 0;
+            while (numAct != 1) {
+                Scanner sc = new Scanner(System.in);
+                numAct = sc.nextInt();
+                if (numAct == 1) {
+                    joueurSuivant();
+                } else if (numAct == 2) {
+                    System.out.println("Voici les propriétés en votre possession : ");
+                    for (Propriete p : joueurCourant.getProprietes()) {
+                        System.out.println("    - " + p.getNom());
+                    }
+                    System.out.println("    1. FIN DU TOUR");
+                    System.out.println("    2. CONSULTER PROPRIETES");
+                    System.out.println("    3. CONSULTER CAGNOTTE");
+                } else if (numAct == 3) {
+                    System.out.println("Il reste " + joueurCourant.getCagnotte() + "€ sur votre cagnotte");
+                    for (Propriete p : joueurCourant.getProprietes()) {
+                        System.out.println("    - " + p.getNom());
+                    }
+                    System.out.println("    1. FIN DU TOUR");
+                    System.out.println("    2. CONSULTER PROPRIETES");
+                    System.out.println("    3. CONSULTER CAGNOTTE");
+                } else if (numAct == 4 && achatPossible) {
+                    joueurCourant.getPosition().lancerAction(Action.ACHETER);
+                    System.out.println(joueurCourant.getNom() + ", vous possédez désormais " + joueurCourant.getPosition());
+                    System.out.println("Il reste " + joueurCourant.getCagnotte() + "€ sur votre cagnotte");
+                    System.out.println("Saisissez le numéro d'action que vous souhaitez effectuer : ");
+                    System.out.println("    1. FIN DU TOUR");
+                    System.out.println("    2. CONSULTER PROPRIETES");
+                    System.out.println("    3. CONSULTER CAGNOTTE");
+                } else {
+                    System.out.println("Veuillez re-saisir le numéro d'action souhaité : ");
+                }
+            }
+        }
+
     }
 }

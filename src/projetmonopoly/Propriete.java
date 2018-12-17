@@ -5,6 +5,8 @@
  */
 package projetmonopoly;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author elmiry
@@ -56,7 +58,7 @@ public abstract class Propriete extends CasePlateau {
     public void lancerAction(Action action) {
         if (action == Action.DEPLACER) {
             super.getJoueur().lancerDes();
-            super.getJoueur().setPosition(super.getJoueur().getDe1(), super.getJoueur().getDe2());
+            super.getJoueur().avancer(super.getJoueur().getDe1(), super.getJoueur().getDe2());
 
         } else if (action == Action.PAYER && proprietaire != null && super.getJoueur() != proprietaire) {
             if (super.getJoueur().getCagnotte() < getLoyer()) {
@@ -65,11 +67,23 @@ public abstract class Propriete extends CasePlateau {
                 proprietaire.setCagnotte(proprietaire.getCagnotte() + getLoyer());
             }
             super.getJoueur().setCagnotte(super.getJoueur().getCagnotte() - getLoyer());
-            
+
         } else if (action == Action.ACHETER && proprietaire == null && super.getJoueur().getCagnotte() > this.getPrixDAchat()) {
             super.getJoueur().setCagnotte(super.getJoueur().getCagnotte() - this.getPrixDAchat());
-            this.addProprietaire(super.getJoueur());  
+            this.addProprietaire(super.getJoueur());
         }
+    }
+
+    @Override
+    public ArrayList<Action> getActionPossible() {
+        ArrayList<Action> actionsPossibes = new ArrayList<>();
+        actionsPossibes.add(Action.DEPLACER);
+        if (proprietaire != null && super.getJoueur() != proprietaire) {
+            actionsPossibes.add(Action.PAYER);
+        } else if (proprietaire == null && super.getJoueur().getCagnotte() > this.getPrixDAchat()) {
+            actionsPossibes.add(Action.ACHETER);
+        }
+        return actionsPossibes;
     }
 
 }
