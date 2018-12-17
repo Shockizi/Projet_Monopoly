@@ -71,6 +71,10 @@ public class Joueur {
     public void setProprietes(ArrayList<Propriete> proprietes) {
         this.proprietes = proprietes;
     }
+    
+    public void addProriete(Propriete p){
+        proprietes.add(p);
+    }
 
     public int getNbGare() {
         int nb = 0;

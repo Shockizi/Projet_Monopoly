@@ -39,6 +39,7 @@ public abstract class Propriete extends CasePlateau {
 
     public void addProprietaire(Joueur p) {
         this.proprietaire = p;
+        p.addProriete(this);
     }
 
     public String getNom() {
@@ -57,8 +58,17 @@ public abstract class Propriete extends CasePlateau {
             super.getJoueur().lancerDes();
             super.getJoueur().setPosition(super.getJoueur().getDe1(), super.getJoueur().getDe2());
 
-        } else if (action == Action.PAYER && super.getJoueur() != proprietaire) {
-
+        } else if (action == Action.PAYER && proprietaire != null && super.getJoueur() != proprietaire) {
+            if (super.getJoueur().getCagnotte() < getLoyer()) {
+                proprietaire.setCagnotte(proprietaire.getCagnotte() + super.getJoueur().getCagnotte());
+            } else {
+                proprietaire.setCagnotte(proprietaire.getCagnotte() + getLoyer());
+            }
+            super.getJoueur().setCagnotte(super.getJoueur().getCagnotte() - getLoyer());
+            
+        } else if (action == Action.ACHETER && proprietaire == null && super.getJoueur().getCagnotte() > this.getPrixDAchat()) {
+            super.getJoueur().setCagnotte(super.getJoueur().getCagnotte() - this.getPrixDAchat());
+            this.addProprietaire(super.getJoueur());  
         }
     }
 
