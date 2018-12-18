@@ -21,7 +21,6 @@ public class ProjetMonopoly {
         ArrayList<Joueur> joueurs = new ArrayList<>();
         joueurs.add(new Joueur("Henni"));
         joueurs.add(new Joueur("Jamy"));
-        joueurs.add(new Joueur("Fred"));
 
         Controleur c = new Controleur(joueurs);
         c.partieDemo();
