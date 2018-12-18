@@ -15,8 +15,8 @@ import java.util.Scanner;
  */
 public class Controleur {
 
-    private ArrayList<CasePlateau> plateau;
-    private ArrayList<Joueur> joueurs;
+    private ArrayList<CasePlateau> plateau = new ArrayList<>();
+    private ArrayList<Joueur> joueurs = new ArrayList<>();
     private Joueur joueurCourant;
 
     public Controleur(ArrayList<Joueur> joueurs) {
@@ -31,12 +31,15 @@ public class Controleur {
 
     public void joueurSuivant() {
         int i = 0;
+        boolean trouve = false;
         for (Joueur j : joueurs) {
             i += 1;
-            if (joueurCourant == j && joueurs.size() == (i + 1)) {
+            if (joueurCourant == j && joueurs.size() == (i + 1) && trouve == false) {
                 joueurCourant = joueurs.get(0);
-            } else if (joueurCourant == j) {
+                trouve = true;
+            } else if (joueurCourant == j && trouve == false) {
                 joueurCourant = joueurs.get(i);
+                trouve = true;
             }
         }
     }
@@ -84,28 +87,33 @@ public class Controleur {
         plateau.add(new Terrain(Couleur.BLEU_FONCE, 50, "Rue de la Paix", 400, 40));
     }
 
-    public void tourDeJeu() {
+    public void partieDemo() {
         for (Joueur j : joueurs) {
             j.setCagnotte(1500);
+            j.setPlateau(plateau);
             j.setPosition(plateau.get(0));
         }
 
         boolean gagnant = false;
-        while (gagnant = false) {
-            System.out.println(joueurCourant.getNom() + " à vous de jouer");
+        while (gagnant == false) {
+            System.out.println(joueurCourant.getNom() + " à vous de jouer ... ");
+            joueurCourant.getPosition().lancerAction(Action.DEPLACER, joueurCourant);
+            System.out.println("Vous ête maintenant sur " + joueurCourant.getPosition().getNom()); 
             System.out.println("Saisissez le numéro d'action que vous souhaitez effectuer : ");
             boolean achatPossible = false;
-            for (Action a : joueurCourant.getPosition().getActionPossible()) {
+            
+            for (Action a : joueurCourant.getPosition().getActionPossible(joueurCourant)) {
                 if (a == Action.DEPLACER) {
-                    joueurCourant.getPosition().lancerAction(Action.DEPLACER);
-                    System.out.println("    1. FIN DU TOUR");
+                    System.out.println(joueurCourant.getPosition().getNom());
+                    System.out.println("    1. FIN DU TOUR 1");
                     System.out.println("    2. CONSULTER PROPRIETES");
                     System.out.println("    3. CONSULTER CAGNOTTE");
+                } else if (a == Action.PAYER) {
+                    joueurCourant.getPosition().lancerAction(Action.PAYER, joueurCourant);
+                    System.out.println(joueurCourant.getNom() + ", vous êtes sur " + joueurCourant.getPosition().getNom() + ", propriété de " + joueurCourant.getPosition().getProprietaire().getNom());
                 } else if (a == Action.ACHETER) {
                     System.out.println("    4. ACHETER");
                     achatPossible = true;
-                } else if (a == Action.PAYER) {
-                    joueurCourant.getPosition().lancerAction(Action.PAYER);
                 }
             }
             int numAct = 0;
@@ -131,8 +139,8 @@ public class Controleur {
                     System.out.println("    2. CONSULTER PROPRIETES");
                     System.out.println("    3. CONSULTER CAGNOTTE");
                 } else if (numAct == 4 && achatPossible) {
-                    joueurCourant.getPosition().lancerAction(Action.ACHETER);
-                    System.out.println(joueurCourant.getNom() + ", vous possédez désormais " + joueurCourant.getPosition());
+                    joueurCourant.getPosition().lancerAction(Action.ACHETER, joueurCourant);
+                    System.out.println(joueurCourant.getNom() + ", vous possédez désormais " + joueurCourant.getPosition().getNom());
                     System.out.println("Il reste " + joueurCourant.getCagnotte() + "€ sur votre cagnotte");
                     System.out.println("Saisissez le numéro d'action que vous souhaitez effectuer : ");
                     System.out.println("    1. FIN DU TOUR");

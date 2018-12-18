@@ -17,7 +17,8 @@ public class Joueur {
     private String nom;
     private int cagnotte;
     private CasePlateau position;
-    private ArrayList<Propriete> proprietes;
+    private ArrayList<Propriete> proprietes = new ArrayList<>();
+    private ArrayList<CasePlateau> plateau = new ArrayList<>();
     private int de1, de2;
 
     public Joueur(String nom) {
@@ -48,16 +49,28 @@ public class Joueur {
         this.position = position;
     }
 
-    public void avancer(int d1, int d2) {
-        this.getPosition().setNumCase(this.getPosition().getNumCase() + d2 + d1);
+    public void avancer() {
+        int dep = de1 + de2;
+        boolean trouve = false;
+        for (CasePlateau cp : plateau) {
+            if ((this.getPosition().getNumCase() + dep) > plateau.size() && trouve == false) {
+                if (cp.getNumCase() == (dep - (plateau.size() - this.getPosition().getNumCase()))) {
+                    this.setPosition(cp);
+                    trouve = true;
+                }
+            } else if (cp.getNumCase() == (this.getPosition().getNumCase() + dep)&& trouve == false) {
+                this.setPosition(cp);
+                trouve = true;
+            }
+        }
     }
 
     public void lancerDes() {
-        Random r = new Random();
-        int de1 = 1 + r.nextInt(6 - 1);
-        this.de1 = de1;
-        int de2 = 1 + r.nextInt(6 - 1);
-        this.de2 = de2;
+//        Random r = new Random();
+//        int d1 = 1 + r.nextInt(4);
+//        int d2 = 1 + r.nextInt(4);
+        this.de1 = 2;
+        this.de2 = 3;
     }
 
     public int getDe1() {
@@ -80,6 +93,10 @@ public class Joueur {
         proprietes.add(p);
     }
 
+    public void setPlateau(ArrayList<CasePlateau> plateau) {
+        this.plateau = plateau;
+    }
+
     public int getNbGare() {
         int nb = 0;
         for (Propriete p : proprietes) {
@@ -88,10 +105,6 @@ public class Joueur {
             }
         }
         return nb;
-    }
-
-    public void achat(int pA) {
-        cagnotte = cagnotte - pA;
     }
 
     public void retirePropriete() {
@@ -108,14 +121,5 @@ public class Joueur {
             }
         }
         return nb;
-    }
-
-    public void acheter() {
-        if (this.getPosition() instanceof Propriete) {
-            if (this.getPosition().getPrixDAchat() < this.getCagnotte()) {
-                achat(this.getPosition().getPrixDAchat());
-                proprietes.add((Propriete) this.getPosition());
-            }
-        }
     }
 }

@@ -24,7 +24,7 @@ public class ProjetMonopoly {
         joueurs.add(new Joueur("Fred"));
         
         Controleur c = new Controleur(joueurs);
-        c.tourDeJeu();
+        c.partieDemo();
         
     }
 

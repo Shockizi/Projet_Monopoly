@@ -24,4 +24,9 @@ public class Gare extends Propriete {
         return super.getProprietaire().getNbGare() * 25;
     }
 
+    @Override
+    public int getLoyer(Joueur j) {
+        return getLoyer();
+    }
+
 }

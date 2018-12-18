@@ -57,4 +57,9 @@ public class Terrain extends Propriete {
         return loyer;
     }
 
+    @Override
+    public int getLoyer(Joueur j) {
+        return getLoyer();
+    }
+
 }

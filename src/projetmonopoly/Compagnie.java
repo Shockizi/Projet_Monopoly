@@ -26,14 +26,19 @@ public class Compagnie extends Propriete {
     }
 
     @Override
-    public int getLoyer() {
+    public int getLoyer(Joueur j) {
         int loyer = 0;
-        if (super.getJoueur().getNbCompagnie() == 1) {
-            loyer = 4 * (super.getJoueur().getDe1() + super.getJoueur().getDe2());
-        } else if (super.getJoueur().getNbCompagnie() == 2) {
-            loyer = 10 * (super.getJoueur().getDe1() + super.getJoueur().getDe2());
+        if (super.getProprietaire().getNbCompagnie() == 1) {
+            loyer = 4 * (j.getDe1() + j.getDe2());
+        } else if (super.getProprietaire().getNbCompagnie() == 2) {
+            loyer = 10 * (j.getDe1() + j.getDe2());
         }
         return loyer;
+    }
+
+    @Override
+    public int getLoyer() {
+        return 0;
     }
 
 }
