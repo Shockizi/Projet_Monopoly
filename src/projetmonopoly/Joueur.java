@@ -66,11 +66,13 @@ public class Joueur {
     }
 
     public void lancerDes() {
-//        Random r = new Random();
-//        int d1 = 1 + r.nextInt(4);
-//        int d2 = 1 + r.nextInt(4);
-        this.de1 = 2;
-        this.de2 = 3;
+        Random r = new Random();
+        int d1 = 1 + r.nextInt(6);
+        int d2 = 1 + r.nextInt(6);
+        this.de1 = d1;
+        this.de2 = d2;
+//        this.de1 = 0;
+//        this.de2 = 1;
     }
 
     public int getDe1() {
@@ -107,9 +109,10 @@ public class Joueur {
         return nb;
     }
 
-    public void retirePropriete() {
+    public void retirerProprietes() {
         for (Propriete p : proprietes) {
             this.proprietes.remove(p);
+            p.removeProprietaire(this);
         }
     }
 

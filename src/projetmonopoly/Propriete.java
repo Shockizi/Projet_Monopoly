@@ -45,6 +45,10 @@ public abstract class Propriete extends CasePlateau {
         p.addProriete(this);
     }
 
+    public void removeProprietaire(Joueur p) {
+        this.proprietaire = null;
+    }
+
     @Override
     public String getNom() {
         return nom;
@@ -54,7 +58,10 @@ public abstract class Propriete extends CasePlateau {
         this.nom = nom;
     }
 
+    @Override
     public abstract int getLoyer();
+
+    @Override
     public abstract int getLoyer(Joueur j);
 
     @Override
@@ -81,13 +88,10 @@ public abstract class Propriete extends CasePlateau {
     public ArrayList<Action> getActionPossible(Joueur j) {
         ArrayList<Action> actionsPossibes = new ArrayList<>();
         actionsPossibes.add(Action.DEPLACER);
-        System.out.println("Dep");
         if (proprietaire != null && j != proprietaire) {
             actionsPossibes.add(Action.PAYER);
-            System.out.println("pay");
         } else if (proprietaire == null && j.getCagnotte() > this.getPrixDAchat()) {
             actionsPossibes.add(Action.ACHETER);
-            System.out.println("Ach");
         }
         return actionsPossibes;
     }

@@ -12,8 +12,9 @@ import java.util.ArrayList;
  * @author elmiry
  */
 public abstract class CasePlateau {
+
     private int numCase;
-    
+
     public CasePlateau(int numCase) {
         this.numCase = numCase;
     }
@@ -21,30 +22,30 @@ public abstract class CasePlateau {
     public int getNumCase() {
         return numCase;
     }
-    
-    public String getNom(){
+
+    public String getNom() {
         return "Case" + numCase;
     }
 
     public void setNumCase(int numCase) {
         this.numCase = numCase;
     }
-    
+
     public abstract int getPrixDAchat();
-    
-    public void lancerAction(Action action, Joueur j ){
-        if (action == Action.DEPLACER){
+
+    public void lancerAction(Action action, Joueur j) {
+        if (action == Action.DEPLACER) {
             j.lancerDes();
             j.avancer();
         }
     }
-    
+
     public abstract Joueur getProprietaire();
-    
+
     public abstract ArrayList<Action> getActionPossible(Joueur j);
-    
+
     public abstract int getLoyer();
-    
+
     public abstract int getLoyer(Joueur j);
-    
+
 }

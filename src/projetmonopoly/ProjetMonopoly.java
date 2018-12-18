@@ -17,15 +17,15 @@ public class ProjetMonopoly {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        ArrayList<Joueur> joueurs = new ArrayList<>(); 
+
+        ArrayList<Joueur> joueurs = new ArrayList<>();
         joueurs.add(new Joueur("Henni"));
         joueurs.add(new Joueur("Jamy"));
         joueurs.add(new Joueur("Fred"));
-        
+
         Controleur c = new Controleur(joueurs);
         c.partieDemo();
-        
+
     }
 
 }

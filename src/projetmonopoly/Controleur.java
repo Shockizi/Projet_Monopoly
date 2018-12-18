@@ -87,70 +87,126 @@ public class Controleur {
         plateau.add(new Terrain(Couleur.BLEU_FONCE, 50, "Rue de la Paix", 400, 40));
     }
 
+    public Joueur getGagnant() {
+        if (joueurs.size() == 1) {
+            System.out.println("Félicitations " + joueurs.get(0).getNom() + ", vous êtes le grand vainceur de cette partie !!!");
+            return joueurs.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    public void verifCagnotte() {
+        if (joueurCourant.getCagnotte() < 1) {
+            System.out.println(joueurCourant.getNom() + ", vous avez fait faillite! Vous êtes éliminé ! ");
+            joueurCourant.retirerProprietes();
+            joueurs.remove(joueurCourant);
+            joueurSuivant();
+        }
+    }
+
     public void partieDemo() {
         for (Joueur j : joueurs) {
-            j.setCagnotte(1500);
+            j.setCagnotte(20);
             j.setPlateau(plateau);
             j.setPosition(plateau.get(0));
         }
-
-        boolean gagnant = false;
-        while (gagnant == false) {
+        
+        while (getGagnant() == null) {
             System.out.println(joueurCourant.getNom() + " à vous de jouer ... ");
             joueurCourant.getPosition().lancerAction(Action.DEPLACER, joueurCourant);
-            System.out.println("Vous ête maintenant sur " + joueurCourant.getPosition().getNom()); 
-            System.out.println("Saisissez le numéro d'action que vous souhaitez effectuer : ");
+            int x = joueurCourant.getDe1() + joueurCourant.getDe2();
+            System.out.println("Vous vous êtes déplacé de " + x + " cases");
+            System.out.print("Vous êtes maintenant sur " + joueurCourant.getPosition().getNom());
+            boolean relancer = false;
+            if (joueurCourant.getDe1() == joueurCourant.getDe2()) {
+                System.out.print("\nVous avez effectuer un double, il faudra relancer les dés");
+                relancer = true;
+            }
+
             boolean achatPossible = false;
-            
+
             for (Action a : joueurCourant.getPosition().getActionPossible(joueurCourant)) {
-                if (a == Action.DEPLACER) {
-                    System.out.println(joueurCourant.getPosition().getNom());
-                    System.out.println("    1. FIN DU TOUR 1");
-                    System.out.println("    2. CONSULTER PROPRIETES");
-                    System.out.println("    3. CONSULTER CAGNOTTE");
-                } else if (a == Action.PAYER) {
+                if (a == Action.PAYER) {
                     joueurCourant.getPosition().lancerAction(Action.PAYER, joueurCourant);
-                    System.out.println(joueurCourant.getNom() + ", vous êtes sur " + joueurCourant.getPosition().getNom() + ", propriété de " + joueurCourant.getPosition().getProprietaire().getNom());
+                    System.out.print(", propriété de " + joueurCourant.getPosition().getProprietaire().getNom() + " !");
+                    System.out.println(joueurCourant.getPosition().getLoyer(joueurCourant) + "€ ont été retirés de votre cagnotte !  Il vous reste " + joueurCourant.getCagnotte() + "€");
+                    verifCagnotte();
                 } else if (a == Action.ACHETER) {
-                    System.out.println("    4. ACHETER");
                     achatPossible = true;
                 }
+            }
+
+            System.out.println("\nSaisissez le numéro d'action que vous souhaitez effectuer : ");
+            if (relancer) {
+                System.out.println("    1. RELANCER");
+            } else {
+                System.out.println("    1. FIN DU TOUR");
+            }
+            System.out.println("    2. CONSULTER PROPRIETES");
+            System.out.println("    3. CONSULTER CAGNOTTE");
+            if (achatPossible) {
+                System.out.println("    4. ACHETER");
             }
             int numAct = 0;
             while (numAct != 1) {
                 Scanner sc = new Scanner(System.in);
                 numAct = sc.nextInt();
-                if (numAct == 1) {
+                if (numAct == 1 && !relancer) {
                     joueurSuivant();
+                } else if (numAct == 1 && relancer) {
+
                 } else if (numAct == 2) {
+                    System.out.println("--------------------------------------------------------");
                     System.out.println("Voici les propriétés en votre possession : ");
                     for (Propriete p : joueurCourant.getProprietes()) {
                         System.out.println("    - " + p.getNom());
                     }
-                    System.out.println("    1. FIN DU TOUR");
-                    System.out.println("    2. CONSULTER PROPRIETES");
-                    System.out.println("    3. CONSULTER CAGNOTTE");
-                } else if (numAct == 3) {
-                    System.out.println("Il reste " + joueurCourant.getCagnotte() + "€ sur votre cagnotte");
-                    for (Propriete p : joueurCourant.getProprietes()) {
-                        System.out.println("    - " + p.getNom());
+                    System.out.println("--------------------------------------------------------");
+                    if (relancer) {
+                        System.out.println("    1. RELANCER");
+                    } else {
+                        System.out.println("    1. FIN DU TOUR");
                     }
-                    System.out.println("    1. FIN DU TOUR");
                     System.out.println("    2. CONSULTER PROPRIETES");
                     System.out.println("    3. CONSULTER CAGNOTTE");
+                    if (achatPossible) {
+                        System.out.println("    4. ACHETER");
+                    }
+                } else if (numAct == 3) {
+                    System.out.println("--------------------------------------------------------");
+                    System.out.println("Il reste " + joueurCourant.getCagnotte() + "€ sur votre cagnotte");
+                    System.out.println("--------------------------------------------------------");
+                    if (relancer) {
+                        System.out.println("    1. RELANCER");
+                    } else {
+                        System.out.println("    1. FIN DU TOUR");
+                    }
+                    System.out.println("    2. CONSULTER PROPRIETES");
+                    System.out.println("    3. CONSULTER CAGNOTTE");
+                    if (achatPossible) {
+                        System.out.println("    4. ACHETER");
+                    }
                 } else if (numAct == 4 && achatPossible) {
                     joueurCourant.getPosition().lancerAction(Action.ACHETER, joueurCourant);
                     System.out.println(joueurCourant.getNom() + ", vous possédez désormais " + joueurCourant.getPosition().getNom());
                     System.out.println("Il reste " + joueurCourant.getCagnotte() + "€ sur votre cagnotte");
                     System.out.println("Saisissez le numéro d'action que vous souhaitez effectuer : ");
-                    System.out.println("    1. FIN DU TOUR");
+                    if (relancer) {
+                        System.out.println("    1. RELANCER");
+                    } else {
+                        System.out.println("    1. FIN DU TOUR");
+                    }
                     System.out.println("    2. CONSULTER PROPRIETES");
                     System.out.println("    3. CONSULTER CAGNOTTE");
+                    achatPossible = false;
                 } else {
                     System.out.println("Veuillez re-saisir le numéro d'action souhaité : ");
                 }
             }
+            System.out.println("=============================================================");
+            System.out.println("=============================================================");
         }
-
+        getGagnant();
     }
 }
