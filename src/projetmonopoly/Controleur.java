@@ -34,7 +34,7 @@ public class Controleur {
         boolean trouve = false;
         for (Joueur j : joueurs) {
             i += 1;
-            if (joueurCourant == j && joueurs.size() == (i + 1) && trouve == false) {
+            if (joueurCourant == j && joueurs.size() == (i) && trouve == false) {
                 joueurCourant = joueurs.get(0);
                 trouve = true;
             } else if (joueurCourant == j && trouve == false) {
@@ -107,7 +107,7 @@ public class Controleur {
 
     public void partieDemo() {
         for (Joueur j : joueurs) {
-            j.setCagnotte(20);
+            j.setCagnotte(1500);
             j.setPlateau(plateau);
             j.setPosition(plateau.get(0));
         }
@@ -204,8 +204,8 @@ public class Controleur {
                     System.out.println("Veuillez re-saisir le numéro d'action souhaité : ");
                 }
             }
-            System.out.println("=============================================================");
-            System.out.println("=============================================================");
+            System.out.println("\n=============================================================");
+            System.out.println("=============================================================\n");
         }
         getGagnant();
     }
