@@ -115,7 +115,10 @@ public class Controleur {
         while (getGagnant() == null) {
             System.out.println(joueurCourant.getNom() + " à vous de jouer ... ");
             joueurCourant.getPosition().lancerAction(Action.DEPLACER, joueurCourant);
-            int x = joueurCourant.getDe1() + joueurCourant.getDe2();
+            int de1 = joueurCourant.getDe1();
+            int de2 = joueurCourant.getDe2();
+            int x = de1 + de2;
+            System.out.println("1er Dé : " + de1 + "  |  2e Dé : " + de2);
             System.out.println("Vous vous êtes déplacé de " + x + " cases");
             System.out.print("Vous êtes maintenant sur " + joueurCourant.getPosition().getNom());
             boolean relancer = false;
