@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetmonopoly;
+package main;
 
+import Modèle.Controleur;
+import Modèle.Joueur;
 import java.util.ArrayList;
 
 /**
@@ -18,11 +20,9 @@ public class ProjetMonopoly {
      */
     public static void main(String[] args) {
 
-        ArrayList<Joueur> joueurs = new ArrayList<>();
-        joueurs.add(new Joueur("Henni"));
-        joueurs.add(new Joueur("Jamy"));
-
-        Controleur c = new Controleur(joueurs);
+        Controleur c = new Controleur();
+        c.inscrireJoueur(new Joueur("Henni"));
+        c.inscrireJoueur(new Joueur("Jamy"));
         c.partieDemo();
 
     }

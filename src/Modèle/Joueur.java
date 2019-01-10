@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetmonopoly;
+package Modèle;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -58,7 +58,7 @@ public class Joueur {
                     this.setPosition(cp);
                     trouve = true;
                 }
-            } else if (cp.getNumCase() == (this.getPosition().getNumCase() + dep)&& trouve == false) {
+            } else if (cp.getNumCase() == (this.getPosition().getNumCase() + dep) && trouve == false) {
                 this.setPosition(cp);
                 trouve = true;
             }
@@ -66,13 +66,15 @@ public class Joueur {
     }
 
     public void lancerDes() {
-//        Random r = new Random();
-//        int d1 = 1 + r.nextInt(6);
-//        int d2 = 1 + r.nextInt(6);
-//        this.de1 = d1;
-//        this.de2 = d2;
-        this.de1 = 0;
-        this.de2 = 1;
+        Random r = new Random();
+        int d1 = 1 + r.nextInt(6);
+        int d2 = 1 + r.nextInt(6);
+        this.de1 = d1;
+        this.de2 = d2;
+    }
+    
+    public boolean verifDouble(){
+        return (this.de1 == this.de2);
     }
 
     public int getDe1() {
@@ -110,10 +112,16 @@ public class Joueur {
     }
 
     public void retirerProprietes() {
-        for (Propriete p : proprietes) {
-            this.proprietes.remove(p);
-            p.removeProprietaire(this);
+        for (int i = 0; i < proprietes.size(); i++) {
+            proprietes.get(0).removeProprietaire(this);
+            proprietes.remove(proprietes.get(0));
         }
+//        for (Propriete p : proprietes) {
+//            if (proprietes.size() > 0) {
+//                proprietes.get(0).removeProprietaire(this);
+//                this.proprietes.remove(proprietes.get(0));
+//            }
+//        }
     }
 
     public int getNbCompagnie() {

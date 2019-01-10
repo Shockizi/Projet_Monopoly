@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetmonopoly;
+package IHM;
 
 /**
  *
- * @author elmiry
+ * @author martin56
  */
-public enum Couleur {
-    BLEU_FONCE,
-    ORANGE,
-    MAUVE,
-    VIOLET,
-    BLEU_CIEL,
-    JAUNE,
-    VERT,
-    ROUGE    
+public class VueJoueur {
+    
 }

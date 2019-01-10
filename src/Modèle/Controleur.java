@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetmonopoly;
+package Modèle;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,10 +19,12 @@ public class Controleur {
     private ArrayList<Joueur> joueurs = new ArrayList<>();
     private Joueur joueurCourant;
 
-    public Controleur(ArrayList<Joueur> joueurs) {
-        initPlateau();
-        this.joueurs = joueurs;
-        this.joueurCourant = joueurs.get(0);
+    public Controleur() {
+
+    }
+
+    public void inscrireJoueur(Joueur j) {
+        joueurs.add(j);
     }
 
     public Joueur getJoueurCourant() {
@@ -44,7 +46,8 @@ public class Controleur {
         }
     }
 
-    public void initPlateau() {
+    public void initPartie() {
+
         plateau.add(new CaseNeutre(1));
         plateau.add(new Terrain(Couleur.MAUVE, 2, "Boulevard de Belleville", 60, 2));
         plateau.add(new CaseNeutre(3));
@@ -85,11 +88,19 @@ public class Controleur {
         plateau.add(new Terrain(Couleur.BLEU_FONCE, 35, "Avenue des Champs-Elysées", 350, 38));
         plateau.add(new CaseNeutre(39));
         plateau.add(new Terrain(Couleur.BLEU_FONCE, 50, "Rue de la Paix", 400, 40));
+
+        for (Joueur j : joueurs) {
+            j.setCagnotte(1500);
+            j.setPlateau(plateau);
+            j.setPosition(plateau.get(0));
+        }
+
+        this.joueurCourant = joueurs.get(0);
     }
 
     public Joueur getGagnant() {
         if (joueurs.size() == 1) {
-            System.out.println("Félicitations " + joueurs.get(0).getNom() + ", vous êtes le grand vainceur de cette partie !!!");
+            //System.out.println("Félicitations " + joueurs.get(0).getNom() + ", vous êtes le grand vainqueur de cette partie !!!");
             return joueurs.get(0);
         } else {
             return null;
@@ -98,20 +109,38 @@ public class Controleur {
 
     public void verifCagnotte() {
         if (joueurCourant.getCagnotte() < 1) {
-            System.out.println(joueurCourant.getNom() + ", vous avez fait faillite! Vous êtes éliminé ! ");
+            //System.out.println(joueurCourant.getNom() + ", vous avez fait faillite ! Vous êtes éliminé ! ");
             joueurCourant.retirerProprietes();
             joueurs.remove(joueurCourant);
             joueurSuivant();
         }
     }
 
-    public void partieDemo() {
-        for (Joueur j : joueurs) {
-            j.setCagnotte(1500);
-            j.setPlateau(plateau);
-            j.setPosition(plateau.get(0));
+    public boolean achatPossible() {
+        boolean achatPossible = false;
+        for (Action a : joueurCourant.getPosition().getActionPossible(joueurCourant)) {
+            if (a == Action.PAYER) {
+                joueurCourant.getPosition().lancerAction(Action.PAYER, joueurCourant);
+                verifCagnotte();
+            } else if (a == Action.ACHETER) {
+                achatPossible = true;
+            }
         }
-        
+        return achatPossible;
+    }
+
+    public void demarrerPartie() {
+        while (getGagnant() == null) {
+            joueurCourant.getPosition().lancerAction(Action.DEPLACER, joueurCourant);
+            achatPossible();
+            while (joueurCourant.verifDouble()){
+                
+            }
+        }
+    }
+
+    public void partieDemo() {
+
         while (getGagnant() == null) {
             System.out.println(joueurCourant.getNom() + " à vous de jouer ... ");
             joueurCourant.getPosition().lancerAction(Action.DEPLACER, joueurCourant);
@@ -119,16 +148,17 @@ public class Controleur {
             int de2 = joueurCourant.getDe2();
             int x = de1 + de2;
             System.out.println("1er Dé : " + de1 + "  |  2e Dé : " + de2);
+            System.out.println("1er dé : " + de1 + " ;  2e dé : " + de2);
             System.out.println("Vous vous êtes déplacé de " + x + " cases");
             System.out.print("Vous êtes maintenant sur " + joueurCourant.getPosition().getNom());
             boolean relancer = false;
-            if (joueurCourant.getDe1() == joueurCourant.getDe2()) {
-                System.out.print("\nVous avez effectuer un double, il faudra relancer les dés");
+            if (joueurCourant.verifDouble()) {
+                System.out.print("\nVous avez effectué un double, il faudra relancer les dés");
                 relancer = true;
             }
 
             boolean achatPossible = false;
-
+            System.out.println(joueurCourant.getCagnotte());
             for (Action a : joueurCourant.getPosition().getActionPossible(joueurCourant)) {
                 if (a == Action.PAYER) {
                     joueurCourant.getPosition().lancerAction(Action.PAYER, joueurCourant);
@@ -136,6 +166,7 @@ public class Controleur {
                     System.out.println(joueurCourant.getPosition().getLoyer(joueurCourant) + "€ ont été retirés de votre cagnotte !  Il vous reste " + joueurCourant.getCagnotte() + "€");
                     verifCagnotte();
                 } else if (a == Action.ACHETER) {
+                    System.out.println("Achat possible");
                     achatPossible = true;
                 }
             }
