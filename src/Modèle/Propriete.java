@@ -16,6 +16,7 @@ public abstract class Propriete extends CasePlateau {
     private String nom;
     private int prixDAchat;
     private Joueur proprietaire;
+    private Propriete_enum type;
 
     public Propriete(String nom, int prixDAchat, int numCase) {
         super(numCase);
@@ -23,11 +24,21 @@ public abstract class Propriete extends CasePlateau {
         this.prixDAchat = prixDAchat;
     }
 
-    public Propriete(String nom, int prixDAchat, Joueur proprietaire, int numCase) {
+    public Propriete(String nom, int prixDAchat, Joueur proprietaire, int numCase, Propriete_enum type) {
         super(numCase);
         this.nom = nom;
         this.prixDAchat = prixDAchat;
         this.proprietaire = proprietaire;
+        this.type = type;
+
+    }
+
+    public Propriete_enum getType() {
+        return type;
+    }
+
+    public void setType(Propriete_enum type) {
+        this.type = type;
     }
 
     public int getPrixDAchat() {
@@ -81,7 +92,6 @@ public abstract class Propriete extends CasePlateau {
         }
     }
 
-    
     public ArrayList<Action> getActionPossible(Joueur j) {
         ArrayList<Action> actionsPossibes = new ArrayList<>();
         actionsPossibes.add(Action.DEPLACER);
@@ -91,10 +101,7 @@ public abstract class Propriete extends CasePlateau {
             actionsPossibes.add(Action.ACHETER);
         }
         return actionsPossibes;
-        
-        
+
     }
-    
-     
 
 }

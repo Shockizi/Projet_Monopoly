@@ -12,7 +12,7 @@ package Modèle;
 public enum Chance_enum {
     LibéréDePrison,
     ReculezDeTroisCases,
-    ImpôtsRéparationVoire,
+    ImpôtsRéparationVoirie,
     AmendeExcèsVitesse,
     RéparationsMaisons,
     AmendeIvresse,

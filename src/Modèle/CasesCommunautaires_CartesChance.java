@@ -79,15 +79,58 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
 
     public void effetCarteChance(Chance_enum carteChance, Joueur joueur) {
         if (carteChance == Chance_enum.AllezEnPrison) {
-            this.getProprietaire().setPosition(this);   //à modifier quand classe case_prison sera faite
-        };
+            CasePrison prison = new CasePrison(11);
+            this.getProprietaire().setPosition(prison);
+        } else if (carteChance == Chance_enum.ReculezDeTroisCases) {
+            CasePrison caseJ = new CasePrison(this.getProprietaire().getPosition().getNumCase() - 3);
+            this.getProprietaire().setPosition(caseJ);
+        } else if (carteChance == Chance_enum.ImpôtsRéparationVoirie) {
+            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte());
+        } //à finir quand on poura compter les maisons/hôtels d'un joueur
+        else if (carteChance == Chance_enum.AmendeExcèsVitesse) {
+            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() - 15);
+        } else if (carteChance == Chance_enum.AmendeIvresse) {
+            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() - 20);
+        } else if (carteChance == Chance_enum.AvancezCaseDépart) {
+            CasePrison départ = new CasePrison(1);
+            this.getProprietaire().setPosition(départ);
+        } else if (carteChance == Chance_enum.RdvAveHenriMartin) {
+            CasePrison avenue = new CasePrison(25);
+            if (this.getProprietaire().getPosition().getNumCase() > 25) {
+                this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 200);
+            }
+            this.getProprietaire().setPosition(avenue);
+        } else if (carteChance == Chance_enum.RdvGareLyon) {
+            CasePrison gareLyon = new CasePrison(16);
+            if (this.getProprietaire().getPosition().getNumCase() > 16) {
+                this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 200);
+            }
+            this.getProprietaire().setPosition(gareLyon);
+        } else if (carteChance == Chance_enum.FraisScolarité) {
+            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() - 150);
+        } else if (carteChance == Chance_enum.PrixMotsCroisés) {
+            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 100);
+        } else if (carteChance == Chance_enum.RdvRueDelaPaix) {
+            CasePrison ruePaix = new CasePrison(40);
+            if (this.getProprietaire().getPosition().getNumCase() > 40) {
+                this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 200);
+            }
+            this.getProprietaire().setPosition(ruePaix);
+        } else if (carteChance == Chance_enum.ImmeubleEtPrêtRapportent) {
+            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 150);
+        } else if (carteChance == Chance_enum.RdvBoulevardVillette) {
+            CasePrison boulevard = new CasePrison(12);
+            if (this.getProprietaire().getPosition().getNumCase() > 12) {
+                this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 200);
+            }
+            this.getProprietaire().setPosition(boulevard);
+        }
+
     }
 
     @Override
     public Joueur getProprietaire() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    
 
 }
