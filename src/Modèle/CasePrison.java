@@ -5,13 +5,14 @@
  */
 package Modèle;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author lorauxs
  */
-public class CasePrison extends CasePlateau{
+public class CasePrison extends CasePlateau {
 
-    @Override
     public Joueur getProprietaire() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -19,7 +20,10 @@ public class CasePrison extends CasePlateau{
     public CasePrison(int numCase) {
         super(numCase = 11);
     }
-    
-    
-    
+
+    @Override
+    public ArrayList<Action> getActionPossible(Joueur j) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

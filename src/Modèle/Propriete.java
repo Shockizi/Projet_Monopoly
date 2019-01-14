@@ -16,7 +16,8 @@ public abstract class Propriete extends CasePlateau {
     private String nom;
     private int prixDAchat;
     private Joueur proprietaire;
-    private Propriete_enum type;
+    private int nbMaison;
+    private int nbHotel;
 
     public Propriete(String nom, int prixDAchat, int numCase) {
         super(numCase);
@@ -24,29 +25,20 @@ public abstract class Propriete extends CasePlateau {
         this.prixDAchat = prixDAchat;
     }
 
-    public Propriete(String nom, int prixDAchat, Joueur proprietaire, int numCase, Propriete_enum type) {
+    public Propriete(String nom, int prixDAchat, Joueur proprietaire, int numCase) {
         super(numCase);
         this.nom = nom;
         this.prixDAchat = prixDAchat;
         this.proprietaire = proprietaire;
-        this.type = type;
+        this.nbMaison = 0;
+        this.nbHotel = 0;
 
     }
 
-    public Propriete_enum getType() {
-        return type;
-    }
-
-    public void setType(Propriete_enum type) {
-        this.type = type;
-    }
-
-    @Override
     public int getPrixDAchat() {
         return prixDAchat;
     }
 
-    @Override
     public Joueur getProprietaire() {
         return proprietaire;
     }
@@ -68,11 +60,9 @@ public abstract class Propriete extends CasePlateau {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
-    @Override
+    
     public abstract int getLoyer();
 
-    @Override
     public abstract int getLoyer(Joueur j);
 
     @Override

@@ -30,8 +30,8 @@ public abstract class CasePlateau {
     public void setNumCase(int numCase) {
         this.numCase = numCase;
     }
-
-    public abstract int getPrixDAchat();
+    
+    public abstract ArrayList<Action> getActionPossible(Joueur j);
 
     public void lancerAction(Action action, Joueur j) {
         if (action == Action.DEPLACER) {
@@ -40,12 +40,6 @@ public abstract class CasePlateau {
         }
     }
 
-    public abstract Joueur getProprietaire();
-
-    public abstract ArrayList<Action> getActionPossible(Joueur j);
-
-    public abstract int getLoyer();
-
-    public abstract int getLoyer(Joueur j);
+    
 
 }
