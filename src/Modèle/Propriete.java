@@ -41,6 +41,7 @@ public abstract class Propriete extends CasePlateau {
         this.type = type;
     }
 
+    @Override
     public int getPrixDAchat() {
         return prixDAchat;
     }
@@ -68,8 +69,10 @@ public abstract class Propriete extends CasePlateau {
         this.nom = nom;
     }
 
+    @Override
     public abstract int getLoyer();
 
+    @Override
     public abstract int getLoyer(Joueur j);
 
     @Override

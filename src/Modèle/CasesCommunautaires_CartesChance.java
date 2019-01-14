@@ -5,8 +5,6 @@
  */
 package Modèle;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author lorauxs
