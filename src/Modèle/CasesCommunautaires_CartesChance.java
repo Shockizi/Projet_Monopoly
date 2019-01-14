@@ -80,52 +80,54 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
     public void effetCarteChance(Chance_enum carteChance, Joueur joueur) {
         if (carteChance == Chance_enum.AllezEnPrison) {
             CasePrison prison = new CasePrison(11);
-            this.getProprietaire().setPosition(prison);
+            joueur.setPosition(prison);
         } else if (carteChance == Chance_enum.ReculezDeTroisCases) {
-            CasePrison caseJ = new CasePrison(this.getProprietaire().getPosition().getNumCase() - 3);
-            this.getProprietaire().setPosition(caseJ);
+            CasePrison caseJ = new CasePrison(joueur.getPosition().getNumCase() - 3);
+            joueur.setPosition(caseJ);
         } else if (carteChance == Chance_enum.ImpôtsRéparationVoirie) {
-            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte());
+            joueur.setCagnotte(joueur.getCagnotte());
+        } //à finir quand on poura compter les maisons/hôtels d'un joueur
+        else if (carteChance == Chance_enum.RéparationsMaisons) {
+            joueur.setCagnotte(joueur.getCagnotte());
         } //à finir quand on poura compter les maisons/hôtels d'un joueur
         else if (carteChance == Chance_enum.AmendeExcèsVitesse) {
-            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() - 15);
+            joueur.setCagnotte(joueur.getCagnotte() - 15);
         } else if (carteChance == Chance_enum.AmendeIvresse) {
-            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() - 20);
+            joueur.setCagnotte(joueur.getCagnotte() - 20);
         } else if (carteChance == Chance_enum.AvancezCaseDépart) {
             CasePrison départ = new CasePrison(1);
-            this.getProprietaire().setPosition(départ);
+            joueur.setPosition(départ);
         } else if (carteChance == Chance_enum.RdvAveHenriMartin) {
             CasePrison avenue = new CasePrison(25);
-            if (this.getProprietaire().getPosition().getNumCase() > 25) {
-                this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 200);
+            if (joueur.getPosition().getNumCase() > 25) {
+                joueur.setCagnotte(joueur.getCagnotte() + 200);
             }
-            this.getProprietaire().setPosition(avenue);
+            joueur.setPosition(avenue);
         } else if (carteChance == Chance_enum.RdvGareLyon) {
             CasePrison gareLyon = new CasePrison(16);
-            if (this.getProprietaire().getPosition().getNumCase() > 16) {
-                this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 200);
+            if (joueur.getPosition().getNumCase() > 16) {
+                joueur.setCagnotte(joueur.getCagnotte() + 200);
             }
-            this.getProprietaire().setPosition(gareLyon);
+            joueur.setPosition(gareLyon);
         } else if (carteChance == Chance_enum.FraisScolarité) {
-            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() - 150);
+            joueur.setCagnotte(this.getProprietaire().getCagnotte() - 150);
         } else if (carteChance == Chance_enum.PrixMotsCroisés) {
-            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 100);
+            joueur.setCagnotte(joueur.getCagnotte() + 100);
         } else if (carteChance == Chance_enum.RdvRueDelaPaix) {
             CasePrison ruePaix = new CasePrison(40);
-            if (this.getProprietaire().getPosition().getNumCase() > 40) {
-                this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 200);
+            if (joueur.getPosition().getNumCase() > 40) {
+                joueur.setCagnotte(joueur.getCagnotte() + 200);
             }
-            this.getProprietaire().setPosition(ruePaix);
+            joueur.setPosition(ruePaix);
         } else if (carteChance == Chance_enum.ImmeubleEtPrêtRapportent) {
-            this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 150);
+            joueur.setCagnotte(joueur.getCagnotte() + 150);
         } else if (carteChance == Chance_enum.RdvBoulevardVillette) {
             CasePrison boulevard = new CasePrison(12);
-            if (this.getProprietaire().getPosition().getNumCase() > 12) {
-                this.getProprietaire().setCagnotte(this.getProprietaire().getCagnotte() + 200);
+            if (joueur.getPosition().getNumCase() > 12) {
+                joueur.setCagnotte(joueur.getCagnotte() + 200);
             }
-            this.getProprietaire().setPosition(boulevard);
+            joueur.setPosition(boulevard);
         }
-
     }
 
     public Joueur getProprietaire() {
