@@ -3,8 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modèle;
+package Controleur;
 
+import Modèle.Action;
+import Modèle.CaseNeutre;
+import Modèle.CasePlateau;
+import Modèle.Compagnie;
+import Modèle.Couleur;
+import Modèle.Gare;
+import Modèle.Joueur;
+import Modèle.Propriete;
+import Modèle.Terrain;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;

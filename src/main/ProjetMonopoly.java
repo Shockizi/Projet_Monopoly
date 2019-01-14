@@ -5,7 +5,7 @@
  */
 package main;
 
-import Modèle.Controleur;
+import Controleur.Controleur;
 import Modèle.Joueur;
 import java.util.ArrayList;
 

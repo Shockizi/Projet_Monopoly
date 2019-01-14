@@ -94,12 +94,44 @@ public class IHMNbJoueurs extends Observable {
                 });
             } else if (i == 3) {
                 panelNombre.add(btn3J);
+                btn3J.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setChanged();
+                        notifyObservers();
+                        clearChanged();
+                    }
+                });
             } else if (i == 5) {
                 panelNombre.add(btn4J);
+                btn4J.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setChanged();
+                        notifyObservers();
+                        clearChanged();
+                    }
+                });
             } else if (i == 7) {
                 panelNombre.add(btn5J);
+                btn5J.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setChanged();
+                        notifyObservers();
+                        clearChanged();
+                    }
+                });
             } else if (i == 9) {
                 panelNombre.add(btn6J);
+                btn6J.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setChanged();
+                        notifyObservers();
+                        clearChanged();
+                    }
+                });
             } else {
                 JLabel l = new JLabel("");
                 l.setBackground(new Color(212, 47, 34));
