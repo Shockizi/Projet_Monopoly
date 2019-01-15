@@ -251,4 +251,16 @@ public class Controleur {
         }
         getGagnant();
     }
+
+    public ArrayList<Joueur> getJoueurs() {
+        return joueurs;
+    }
+
+    public void setJoueurs(ArrayList<Joueur> joueurs) {
+        this.joueurs = joueurs;
+    }
+    
+    
+        
+    
 }
