@@ -16,8 +16,6 @@ public abstract class Propriete extends CasePlateau {
     private String nom;
     private int prixDAchat;
     private Joueur proprietaire;
-    private int nbMaison;
-    private int nbHotel;
 
     public Propriete(String nom, int prixDAchat, int numCase) {
         super(numCase);
@@ -30,8 +28,6 @@ public abstract class Propriete extends CasePlateau {
         this.nom = nom;
         this.prixDAchat = prixDAchat;
         this.proprietaire = proprietaire;
-        this.nbMaison = 0;
-        this.nbHotel = 0;
 
     }
 
@@ -95,24 +91,5 @@ public abstract class Propriete extends CasePlateau {
         }
         return actionsPossibes;
 
-    }
-
-    public int getNbMaison() {
-        return nbMaison;
-    }
-
-    public void setNbMaison(int nbMaison) {
-        this.nbMaison = nbMaison;
-    }
-
-    public int getNbHotel() {
-        return nbHotel;
-    }
-
-    public void setNbHotel(int nbHotel) {
-        this.nbHotel = nbHotel;
-    }
-    
-    
-
+    }        
 }

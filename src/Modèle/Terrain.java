@@ -12,12 +12,16 @@ package Modèle;
 public class Terrain extends Propriete {
 
     private Couleur couleur;
-    private int loyerDeBase;
-
+    private int loyerDeBase;   
+    private int nbMaison;
+    private int nbHotel;
+    
     public Terrain(Couleur couleur, int loyer, String nom, int prixDAchat, int numCase) {
         super(nom, prixDAchat, numCase);
         this.couleur = couleur;
         this.loyerDeBase = loyer;
+        this.nbMaison = 0;
+        this.nbHotel = 0;
     }
 
     public Couleur getCouleur() {
@@ -60,6 +64,22 @@ public class Terrain extends Propriete {
     @Override
     public int getLoyer(Joueur j) {
         return getLoyer();
+    }
+
+    public int getNbMaison() {
+        return nbMaison;
+    }
+
+    public void setNbMaison(int nbMaison) {
+        this.nbMaison = nbMaison;
+    }
+
+    public int getNbHotel() {
+        return nbHotel;
+    }
+
+    public void setNbHotel(int nbHotel) {
+        this.nbHotel = nbHotel;
     }
 
 }
