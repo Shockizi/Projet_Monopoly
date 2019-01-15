@@ -39,6 +39,8 @@ public class Inscription {
         mainPanel.setBackground(new Color(255, 191, 128));
         mainPanel.setOpaque(true);
         window.add(mainPanel);
+        
+        
     }
 
 }
