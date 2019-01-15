@@ -97,4 +97,22 @@ public abstract class Propriete extends CasePlateau {
 
     }
 
+    public int getNbMaison() {
+        return nbMaison;
+    }
+
+    public void setNbMaison(int nbMaison) {
+        this.nbMaison = nbMaison;
+    }
+
+    public int getNbHotel() {
+        return nbHotel;
+    }
+
+    public void setNbHotel(int nbHotel) {
+        this.nbHotel = nbHotel;
+    }
+    
+    
+
 }

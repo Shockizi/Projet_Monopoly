@@ -85,12 +85,22 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             CasePrison caseJ = new CasePrison(joueur.getPosition().getNumCase() - 3);
             joueur.setPosition(caseJ);
         } else if (carteChance == Chance_enum.ImpôtsRéparationVoirie) {
-            joueur.setCagnotte(joueur.getCagnotte());
-        } //à finir quand on poura compter les maisons/hôtels d'un joueur
-        else if (carteChance == Chance_enum.RéparationsMaisons) {
-            joueur.setCagnotte(joueur.getCagnotte());
-        } //à finir quand on poura compter les maisons/hôtels d'un joueur
-        else if (carteChance == Chance_enum.AmendeExcèsVitesse) {
+            int nbmaison = 0;
+            int nbhotel = 0;
+            for (int i = 0; i < joueur.getProprietes().size(); i++) {
+                nbmaison = nbmaison + joueur.getProprietes().get(i).getNbMaison();
+                nbhotel = nbhotel + joueur.getProprietes().get(i).getNbHotel();
+            }
+            joueur.setCagnotte(joueur.getCagnotte() - nbmaison * 40 - nbhotel * 115);
+        } else if (carteChance == Chance_enum.RéparationsMaisons) {
+            int nbmaison = 0;
+            int nbhotel = 0;
+            for (int i = 0; i < joueur.getProprietes().size(); i++) {
+                nbmaison = nbmaison + joueur.getProprietes().get(i).getNbMaison();
+                nbhotel = nbhotel + joueur.getProprietes().get(i).getNbHotel();
+            }
+            joueur.setCagnotte(joueur.getCagnotte() - nbmaison * 25 - nbhotel * 100);
+        } else if (carteChance == Chance_enum.AmendeExcèsVitesse) {
             joueur.setCagnotte(joueur.getCagnotte() - 15);
         } else if (carteChance == Chance_enum.AmendeIvresse) {
             joueur.setCagnotte(joueur.getCagnotte() - 20);
@@ -110,9 +120,11 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             }
             joueur.setPosition(gareLyon);
         } else if (carteChance == Chance_enum.FraisScolarité) {
-            joueur.setCagnotte(this.getProprietaire().getCagnotte() - 150);
+            joueur.setCagnotte(joueur.getCagnotte() - 150);
         } else if (carteChance == Chance_enum.PrixMotsCroisés) {
             joueur.setCagnotte(joueur.getCagnotte() + 100);
+        } else if (carteChance == Chance_enum.Dividende) {
+            joueur.setCagnotte(joueur.getCagnotte() + 50);
         } else if (carteChance == Chance_enum.RdvRueDelaPaix) {
             CasePrison ruePaix = new CasePrison(40);
             if (joueur.getPosition().getNumCase() > 40) {
@@ -128,6 +140,50 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             }
             joueur.setPosition(boulevard);
         }
+
+        //LIBERE DE PRISON A FAIRE
+    }
+
+    public void effeCarteCommunauté(Communauté_enum carteCommunauté, Joueur joueur) {
+        if (carteCommunauté == Communauté_enum.AllezEnPrison) {
+            CasePrison prison = new CasePrison(11);
+            joueur.setPosition(prison);
+        } else if (carteCommunauté == Communauté_enum.Amende) {
+            joueur.setCagnotte(joueur.getCagnotte() - 150);
+        } else if (carteCommunauté == Communauté_enum.Anniversaire) {
+            {}//ArrayList de Joueurs, boucle for : pour chaque joueur -10€ sauf pour le joueur qui a tiré la carte qui lui obtient ArrayList<Joueurs>.size() * 10€
+        }
+        else if (carteCommunauté == Communauté_enum.ErreurBanque) {
+            joueur.setCagnotte(joueur.getCagnotte() + 200);
+        } else if (carteCommunauté == Communauté_enum.RdvBelleville) {
+            CasePrison belleville = new CasePrison(2);
+            if (joueur.getPosition().getNumCase() > 2) {
+                joueur.setCagnotte(joueur.getCagnotte() + 200);
+            }
+            joueur.setPosition(belleville);
+        } else if (carteCommunauté == Communauté_enum.NoteMedecin) {
+            joueur.setCagnotte(joueur.getCagnotte() - 50);
+        } else if (carteCommunauté == Communauté_enum.ContributionRemboursent) {
+            joueur.setCagnotte(joueur.getCagnotte() + 20);
+        } else if (carteCommunauté == Communauté_enum.Hôpital) {
+            joueur.setCagnotte(joueur.getCagnotte() - 100);
+        } else if (carteCommunauté == Communauté_enum.Héritage) {
+            joueur.setCagnotte(joueur.getCagnotte() + 100);
+        } else if (carteCommunauté == Communauté_enum.PolicedAssurance) {
+            joueur.setCagnotte(joueur.getCagnotte() - 50);
+        } else if (carteCommunauté == Communauté_enum.VenteStock) {
+            joueur.setCagnotte(joueur.getCagnotte() + 50);
+        } else if (carteCommunauté == Communauté_enum.AvancezCaseDépart) {
+            CasePrison départ = new CasePrison(1);
+            joueur.setPosition(départ);
+        } else if (carteCommunauté == Communauté_enum.IntérêtEmprunt) {
+            joueur.setCagnotte(joueur.getCagnotte() + 25);
+        } else if (carteCommunauté == Communauté_enum.RevenuAnnuel) {
+            joueur.setCagnotte(joueur.getCagnotte() + 100);
+        } else if (carteCommunauté == Communauté_enum.DeuxièmePrixBeauté) {
+            joueur.setCagnotte(joueur.getCagnotte() + 10);
+        }
+
     }
 
     public Joueur getProprietaire() {
