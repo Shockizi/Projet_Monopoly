@@ -8,7 +8,6 @@ package IHM;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -28,20 +27,19 @@ import javax.swing.SwingConstants;
 public class Accueil extends Observable{
     
     private JFrame window;
-    private JPanel mainPanel, panelBoutons, panelImage, panelbas;
+    private JPanel mainPanel, panelBoutons, panelImage;
     private JButton btnJouer, btnRegles, btnQuitter;
-    private Font font;
     
     public Accueil() {
         window = new JFrame();
         window.setTitle("Accueil Jeu : Monopoly ");
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
-        window.setSize(1000, 1050);
+        window.setSize(900, 500);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width / 2 - window.getSize().width / 2, dim.height / 2 - window.getSize().height / 2);
-        window.setBackground(new Color(255, 191, 128));
-        mainPanel = new JPanel(new GridLayout(4, 1));
+
+        mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(new Color(255, 191, 128));
         mainPanel.setOpaque(true);
         window.add(mainPanel);
@@ -50,38 +48,28 @@ public class Accueil extends Observable{
         
         panelImage = new JPanel(new BorderLayout());
         panelImage.setBackground(new Color(255, 191, 128));
-        JLabel image = new JLabel(new ImageIcon(System.getProperty("user.dir") + "/src/image/imageAccueil.jpeg"));
+        JLabel image = new JLabel(new ImageIcon(System.getProperty("user.dir") + "/src/image/logoAccueil.png"));
         panelImage.add(image);
-        mainPanel.add(panelImage, BorderLayout.CENTER);
-        
-        //Boutons
-//        panelbas = new JPanel(new BorderLayout());
-//        mainPanel.add(panelbas);
-//        panelbas.setBackground(new Color(255, 191, 128));
+        mainPanel.add(panelImage, BorderLayout.NORTH);
          
-        font = new Font("Arial",Font.BOLD,20);
-        panelBoutons = new JPanel(new GridLayout(6, 3));
-        mainPanel.add(panelBoutons, BorderLayout.SOUTH);
+        panelBoutons = new JPanel(new GridLayout(7, 3));
+        panelBoutons.setBackground(new Color(255, 191, 128));
+        mainPanel.add(panelBoutons, BorderLayout.CENTER);
         
-        btnJouer = new JButton("JOUER");
-        btnJouer.setFont(font);
-        btnJouer.setForeground(Color.WHITE);
-        btnJouer.setBackground(new Color(147, 34, 25));
-        btnJouer.setBorderPainted(false);
+        ImageIcon imgJouer = new ImageIcon(System.getProperty("user.dir") + "/src/image/btnJouer.png");
+        ImageIcon imgRegles = new ImageIcon(System.getProperty("user.dir") + "/src/image/btnRegles.png");
+        ImageIcon imgQuitter = new ImageIcon(System.getProperty("user.dir") + "/src/image/btnQuitter.png");
         
-        btnRegles = new JButton("RÈGLES");
-        btnRegles.setForeground(Color.WHITE);
-        btnRegles.setBackground(new Color(147, 34, 25));
-        btnRegles.setFont(font);
+        btnJouer = new JButton(imgJouer);
+        btnJouer.setPreferredSize(new Dimension(imgJouer.getIconWidth(), imgJouer.getIconHeight()));
+        
+        btnRegles = new JButton(imgRegles);
         btnRegles.setBorderPainted(false);
         
-        btnQuitter = new JButton("QUITTER");
-        btnQuitter.setFont(font);
-        btnQuitter.setForeground(Color.WHITE);
-        btnQuitter.setBackground(new Color(147, 34, 25));
+        btnQuitter = new JButton(imgQuitter);
         btnQuitter.setBorderPainted(false);
         
-        for (int i = 1; i <= 18; i++) {
+        for (int i = 1; i <= 21; i++) {
             if (i == 5) {
                 panelBoutons.add(btnJouer);
                 btnJouer.addActionListener(new ActionListener() {
