@@ -13,13 +13,13 @@ import java.util.ArrayList;
  * @author lorauxs
  */
 public class CasesCommunautaires_CartesChance extends CasePlateau {
-    
+
     private ArrayList<Chance_enum> deckChance;
     private Chance_enum carteChance;
     private ArrayList<Communauté_enum> deckCommunauté;
     private Communauté_enum carteCommunauté;
     private int aléatoire = 0;
-    
+
     public CasesCommunautaires_CartesChance(int numCase) {
         super(numCase);
         this.deckChance = deckChance;
@@ -27,57 +27,57 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
         this.carteChance = carteChance;
         this.carteCommunauté = carteCommunauté;
     }
-    
+
     public ArrayList<Chance_enum> getDeckChance() {
         return deckChance;
     }
-    
+
     public void setDeckChance(ArrayList<Chance_enum> deckChance) {
         this.deckChance = deckChance;
     }
-    
+
     public ArrayList<Communauté_enum> getDeckCommunauté() {
         return deckCommunauté;
     }
-    
+
     public void setDeckCommunauté(ArrayList<Communauté_enum> deckCommunauté) {
         this.deckCommunauté = deckCommunauté;
     }
-    
+
     public Chance_enum getCarteChance() {
         return carteChance;
     }
-    
+
     public void setCarteChance(Chance_enum carteChance) {
         this.carteChance = carteChance;
     }
-    
+
     public Communauté_enum getCarteCommunauté() {
         return carteCommunauté;
     }
-    
+
     public void setCarteCommunauté(Communauté_enum carteCommunauté) {
         this.carteCommunauté = carteCommunauté;
     }
-    
+
     public int getAléatoire() {
         return aléatoire;
     }
-    
+
     public void setAléatoire(int aléatoire) {
         this.aléatoire = aléatoire;
     }
-    
+
     public Chance_enum tirerCarteChance() {
         this.setAléatoire((int) (Math.random() * (this.getDeckChance().size() - 1)));
         return this.getDeckChance().get(aléatoire);
     }
-    
+
     public Communauté_enum tirerCarteCommunauté() {
         this.setAléatoire((int) (Math.random() * (this.getDeckCommunauté().size() - 1)));
         return this.getDeckCommunauté().get(aléatoire);
     }
-    
+
     public void effetCarteChance(Chance_enum carteChance, Joueur joueur) {
         if (carteChance == Chance_enum.AllezEnPrison) {
             CasePrison prison = new CasePrison(11);
@@ -140,10 +140,12 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
                 joueur.setCagnotte(joueur.getCagnotte() + 200);
             }
             joueur.setPosition(boulevard);
+        } else if (carteChance == Chance_enum.LibéréDePrison) {
+            joueur.setCarteLiberéDePrison(true);
         }
-        //LIBERE DE PRISON A FAIRE
+
     }
-    
+
     public void effeCarteCommunauté(Communauté_enum carteCommunauté, Joueur joueur) {
         if (carteCommunauté == Communauté_enum.AllezEnPrison) {
             CasePrison prison = new CasePrison(11);
@@ -187,17 +189,18 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             joueur.setCagnotte(joueur.getCagnotte() + 100);
         } else if (carteCommunauté == Communauté_enum.DeuxièmePrixBeauté) {
             joueur.setCagnotte(joueur.getCagnotte() + 10);
+        } else if (carteCommunauté == Communauté_enum.LibéréDePrison) {
+            joueur.setCarteLiberéDePrison(true);
         }
-        //LIBEREZ LACRIM
     }
-    
+
     public Joueur getProprietaire() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public ArrayList<Action> getActionPossible(Joueur j) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
