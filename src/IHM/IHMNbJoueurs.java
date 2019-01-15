@@ -5,7 +5,6 @@
  */
 package IHM;
 
-import com.sun.tools.internal.xjc.api.J2SJAXBModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
