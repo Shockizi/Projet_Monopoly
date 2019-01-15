@@ -157,7 +157,7 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
                     c1.getJoueurs().get(i).setCagnotte(c1.getJoueurs().get(i).getCagnotte() - 10);
                 }
                 joueur.setCagnotte(joueur.getCagnotte() + c1.getJoueurs().size() * 10);
-            }//ArrayList de Joueurs, boucle for : pour chaque joueur -10€ sauf pour le joueur qui a tiré la carte qui lui obtient ArrayList<Joueurs>.size() * 10€
+            }//Tous les joueurs : -10€ (y compris celui qui a tiré la carte) et ensuite ce dernier reçois 10€ * nbJoueurs(le comptant)
         } else if (carteCommunauté == Communauté_enum.ErreurBanque) {
             joueur.setCagnotte(joueur.getCagnotte() + 200);
         } else if (carteCommunauté == Communauté_enum.RdvBelleville) {
