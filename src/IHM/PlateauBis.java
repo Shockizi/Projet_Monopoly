@@ -5,10 +5,12 @@
  */
 package IHM;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
@@ -22,7 +24,7 @@ import javax.swing.JPanel;
 public class PlateauBis {
 
     private JFrame window;
-    private JPanel panelGrille;
+    private JPanel mainPanel, panelGrille, panelCommande;
 
     public PlateauBis() {
         window = new JFrame();
@@ -32,12 +34,21 @@ public class PlateauBis {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width / 2 - window.getSize().width / 2, dim.height / 2 - window.getSize().height / 2);
         //window.setResizable(false);
-
+        mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(new Color(255, 191, 128));
+        mainPanel.setOpaque(true);
+        
         panelGrille = new JPanel(new GridBagLayout());
         panelGrille.setBackground(new Color(255, 191, 128));
         panelGrille.setOpaque(true);
-        window.add(panelGrille);
-        panelGrille.setPreferredSize(window.getPreferredSize());
+        
+        panelCommande = new JPanel(new GridBagLayout());
+        panelCommande.setBackground(new Color(255, 191, 128));
+        panelCommande.setOpaque(true);
+        
+        mainPanel.add(panelGrille, BorderLayout.CENTER);
+        mainPanel.add(panelCommande, BorderLayout.EAST);
+        window.add(mainPanel);
 
         // ======= Les Cases du plateau ========
         //Partie Haut :
@@ -181,7 +192,7 @@ public class PlateauBis {
         //ALLEZ EN PRISON
         gbc.gridx = 10;
         gbc.gridy = 0;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         ImagePanel ipAllezEnPrison = new ImagePanel(iAllezEnPrison);
         ipAllezEnPrison.setPreferredSize(new Dimension(iAllezEnPrison.getIconWidth(), iAllezEnPrison.getIconHeight()));
@@ -272,7 +283,7 @@ public class PlateauBis {
         gbc.gridx = 0;
         gbc.gridy = 10;
         gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipVisitePrison = new ImagePanel(iVisitePrison);
         ipVisitePrison.setPreferredSize(new Dimension(iVisitePrison.getIconWidth(), iVisitePrison.getIconHeight()));
         panelGrille.add(ipVisitePrison, gbc);
@@ -281,7 +292,7 @@ public class PlateauBis {
         gbc.gridx = 1;
         gbc.gridy = 10;
         gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipAvenueDeLaRepublique = new ImagePanel(iAvenueDeLaRepublique);
         ipAvenueDeLaRepublique.setPreferredSize(new Dimension(iAvenueDeLaRepublique.getIconWidth(), iAvenueDeLaRepublique.getIconHeight()));
         panelGrille.add(ipAvenueDeLaRepublique, gbc);
@@ -290,7 +301,7 @@ public class PlateauBis {
         gbc.gridx = 2;
         gbc.gridy = 10;
         gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipRueDeCourcelles = new ImagePanel(iRueDeCourcelles);
         ipRueDeCourcelles.setPreferredSize(new Dimension(iRueDeCourcelles.getIconWidth(), iRueDeCourcelles.getIconHeight()));
         panelGrille.add(ipRueDeCourcelles, gbc);
@@ -299,7 +310,7 @@ public class PlateauBis {
         gbc.gridx = 3;
         gbc.gridy = 10;
         gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipChance1 = new ImagePanel(iChance1);
         ipChance1.setPreferredSize(new Dimension(iChance1.getIconWidth(), iChance1.getIconHeight()));
         panelGrille.add(ipChance1, gbc);
@@ -308,7 +319,7 @@ public class PlateauBis {
         gbc.gridx = 4;
         gbc.gridy = 10;
         gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipRueDeVaugirard = new ImagePanel(iRueDeVaugirard);
         ipRueDeVaugirard.setPreferredSize(new Dimension(iRueDeVaugirard.getIconWidth(), iRueDeVaugirard.getIconHeight()));
         panelGrille.add(ipRueDeVaugirard, gbc);
@@ -317,7 +328,7 @@ public class PlateauBis {
         gbc.gridx = 5;
         gbc.gridy = 10;
         gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipGareMontparnasse = new ImagePanel(iGareMontparnasse);
         ipGareMontparnasse.setPreferredSize(new Dimension(iGareMontparnasse.getIconWidth(), iGareMontparnasse.getIconHeight()));
         panelGrille.add(ipGareMontparnasse, gbc);
@@ -326,7 +337,7 @@ public class PlateauBis {
         gbc.gridx = 6;
         gbc.gridy = 10;
         gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipImpotSurLeRevenu = new ImagePanel(iImpotSurLeRevenu);
         ipImpotSurLeRevenu.setPreferredSize(new Dimension(iImpotSurLeRevenu.getIconWidth(), iImpotSurLeRevenu.getIconHeight()));
         panelGrille.add(ipImpotSurLeRevenu, gbc);
@@ -335,7 +346,7 @@ public class PlateauBis {
         gbc.gridx = 7;
         gbc.gridy = 10;
         gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipRueLecourbe = new ImagePanel(iRueLecourbe);
         ipRueLecourbe.setPreferredSize(new Dimension(iRueLecourbe.getIconWidth(), iRueLecourbe.getIconHeight()));
         panelGrille.add(ipRueLecourbe, gbc);
@@ -344,7 +355,7 @@ public class PlateauBis {
         gbc.gridx = 8;
         gbc.gridy = 10;
         gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipCaisseCommu1 = new ImagePanel(iCaisseCommu1);
         ipCaisseCommu1.setPreferredSize(new Dimension(iCaisseCommu1.getIconWidth(), iCaisseCommu1.getIconHeight()));
         panelGrille.add(ipCaisseCommu1, gbc);
@@ -353,7 +364,7 @@ public class PlateauBis {
         gbc.gridx = 9;
         gbc.gridy = 10;
         gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipBoulevardDeBelleville = new ImagePanel(iBoulevardDeBelleville);
         ipBoulevardDeBelleville.setPreferredSize(new Dimension(iBoulevardDeBelleville.getIconWidth(), iBoulevardDeBelleville.getIconHeight()));
         panelGrille.add(ipBoulevardDeBelleville, gbc);
@@ -361,8 +372,8 @@ public class PlateauBis {
         //Case Depart
         gbc.gridx = 10;
         gbc.gridy = 10;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         ImagePanel ipCaseDepart = new ImagePanel(iCaseDepart);
         ipCaseDepart.setPreferredSize(new Dimension(iCaseDepart.getIconWidth(), iCaseDepart.getIconHeight()));
         panelGrille.add(ipCaseDepart, gbc);
@@ -370,7 +381,7 @@ public class PlateauBis {
         //Rue De La Paix
         gbc.gridx = 10;
         gbc.gridy = 9;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         ImagePanel ipRueDeLaPaix = new ImagePanel(iRueDeLaPaix);
         ipRueDeLaPaix.setPreferredSize(new Dimension(iRueDeLaPaix.getIconWidth(), iRueDeLaPaix.getIconHeight()));
@@ -379,7 +390,7 @@ public class PlateauBis {
         //Taxe De Luxe
         gbc.gridx = 10;
         gbc.gridy = 8;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         ImagePanel ipTaxeDeLuxe = new ImagePanel(iTaxeDeLuxe);
         ipTaxeDeLuxe.setPreferredSize(new Dimension(iTaxeDeLuxe.getIconWidth(), iTaxeDeLuxe.getIconHeight()));
@@ -388,7 +399,7 @@ public class PlateauBis {
         //Avenue Des Champs Elysees
         gbc.gridx = 10;
         gbc.gridy = 7;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         ImagePanel ipAvenueDesChampsElysees = new ImagePanel(iAvenueDesChampsElysees);
         ipAvenueDesChampsElysees.setPreferredSize(new Dimension(iAvenueDesChampsElysees.getIconWidth(), iAvenueDesChampsElysees.getIconHeight()));
@@ -397,7 +408,7 @@ public class PlateauBis {
         //Chance 3
         gbc.gridx = 10;
         gbc.gridy = 6;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         ImagePanel ipChance3 = new ImagePanel(iChance3);
         ipChance3.setPreferredSize(new Dimension(iChance3.getIconWidth(), iChance3.getIconHeight()));
@@ -406,7 +417,7 @@ public class PlateauBis {
         //Gare Saint-Lazare
         gbc.gridx = 10;
         gbc.gridy = 5;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         ImagePanel ipGareStLazare = new ImagePanel(iGareStLazare);
         ipGareStLazare.setPreferredSize(new Dimension(iGareStLazare.getIconWidth(), iGareStLazare.getIconHeight()));
@@ -415,7 +426,7 @@ public class PlateauBis {
         //Boulevard Des Capucines
         gbc.gridx = 10;
         gbc.gridy = 4;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         ImagePanel ipBoulevardDesCapucines = new ImagePanel(iBoulevardDesCapucines);
         ipBoulevardDesCapucines.setPreferredSize(new Dimension(iBoulevardDesCapucines.getIconWidth(), iBoulevardDesCapucines.getIconHeight()));
@@ -424,7 +435,7 @@ public class PlateauBis {
         // Caisse de Communauté 3
         gbc.gridx = 10;
         gbc.gridy = 3;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         ImagePanel ipCaisseCommu3 = new ImagePanel(iCaisseCommu3);
         ipCaisseCommu3.setPreferredSize(new Dimension(iCaisseCommu3.getIconWidth(), iCaisseCommu3.getIconHeight()));
@@ -433,7 +444,7 @@ public class PlateauBis {
         //Avenue Foch
         gbc.gridx = 10;
         gbc.gridy = 2;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         ImagePanel ipAvenueFoch = new ImagePanel(iAvenueFoch);
         ipAvenueFoch.setPreferredSize(new Dimension(iAvenueFoch.getIconWidth(), iAvenueFoch.getIconHeight()));
@@ -442,7 +453,7 @@ public class PlateauBis {
         //Avenue De Breteuil
         gbc.gridx = 10;
         gbc.gridy = 1;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         ImagePanel ipAvenueDeBreteuil = new ImagePanel(iAvenueDeBreteuil);
         ipAvenueDeBreteuil.setPreferredSize(new Dimension(iAvenueDeBreteuil.getIconWidth(), iAvenueDeBreteuil.getIconHeight()));
