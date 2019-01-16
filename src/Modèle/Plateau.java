@@ -21,7 +21,7 @@ public class Plateau {
         casesPlat = new ArrayList<>();
     }
 
-    public void resetPlaeau() {
+    public void resetPlateau() {
         CaseDépart caseDépart = new CaseDépart(1);
         Terrain boulevardDeBellevile = new Terrain(Couleur.MARRON, 2, 10, 30, 90, 160, 250, 50, 0, 0, Terrains_enum.BoulevardDeBelleville, 60, 2);
         CasesCommunautaires_CartesChance caisseComm1 = new CasesCommunautaires_CartesChance(3);
