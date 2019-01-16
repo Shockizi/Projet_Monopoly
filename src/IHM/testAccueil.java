@@ -5,6 +5,8 @@
  */
 package IHM;
 
+import Controleur.Controleur;
+
 /**
  *
  * @author milliezm
@@ -16,8 +18,7 @@ public class testAccueil {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Accueil ihm = new Accueil();
-        ihm.afficher();
+        Controleur c = new Controleur();
     }
     
 }

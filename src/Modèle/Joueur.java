@@ -20,23 +20,21 @@ public class Joueur {
     private ArrayList<Propriete> proprietes = new ArrayList<>();
     private ArrayList<CasePlateau> plateau = new ArrayList<>();
     private int de1, de2;
-    private boolean carteLiberéDePrison;
+    private int carteLiberéDePrison;
 
     public Joueur(String nom) {
         this.nom = nom;
-        this.carteLiberéDePrison = false;
+        this.carteLiberéDePrison = 0;
     }
 
-    public boolean isCarteLiberéDePrison() {
+    public int getCarteLiberéDePrison() {
         return carteLiberéDePrison;
     }
 
-    public void setCarteLiberéDePrison(boolean carteLiberéDePrison) {
+    public void setCarteLiberéDePrison(int carteLiberéDePrison) {
         this.carteLiberéDePrison = carteLiberéDePrison;
     }
     
-    
-
     public String getNom() {
         return nom;
     }

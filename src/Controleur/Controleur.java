@@ -5,6 +5,12 @@
  */
 package Controleur;
 
+import IHM.Accueil;
+import IHM.IHMNbJoueurs;
+import IHM.IHMRegles;
+import IHM.Inscription;
+import Message.Message;
+import Message.TypeMessages;
 import Modèle.Action;
 import Modèle.CasePlateau;
 import Modèle.Compagnie;
@@ -14,6 +20,8 @@ import Modèle.Joueur;
 import Modèle.Propriete;
 import Modèle.Terrain;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -21,14 +29,29 @@ import java.util.Scanner;
  *
  * @author elmiry
  */
-public class Controleur {
+public class Controleur implements Observer {
 
     private ArrayList<CasePlateau> plateau = new ArrayList<>();
     private ArrayList<Joueur> joueurs = new ArrayList<>();
     private Joueur joueurCourant;
+    private Accueil ihm;
+    private IHMNbJoueurs ihmnbJoueurs;
+    private IHMRegles ihmregles;
+    private Inscription ihmInsc;
 
     public Controleur() {
+        ihm = new Accueil();
+        ihm.addObserver(this);
+        ihm.afficher();
 
+        ihmnbJoueurs = new IHMNbJoueurs();
+        ihmnbJoueurs.addObserver(this);
+
+        ihmInsc = new Inscription();
+        ihmInsc.addObserver(this);
+
+        ihmInsc = new Inscription();
+        ihmInsc.addObserver(this);
     }
 
     public void inscrireJoueur(Joueur j) {
@@ -105,7 +128,6 @@ public class Controleur {
 //
 //        this.joueurCourant = joueurs.get(0);
 //    }
-
     public Joueur getGagnant() {
         if (joueurs.size() == 1) {
             //System.out.println("Félicitations " + joueurs.get(0).getNom() + ", vous êtes le grand vainqueur de cette partie !!!");
@@ -141,8 +163,8 @@ public class Controleur {
         while (getGagnant() == null) {
             joueurCourant.getPosition().lancerAction(Action.DEPLACER, joueurCourant);
             achatPossible();
-            while (joueurCourant.verifDouble()){
-                
+            while (joueurCourant.verifDouble()) {
+
             }
         }
     }
@@ -170,8 +192,8 @@ public class Controleur {
             for (Action a : joueurCourant.getPosition().getActionPossible(joueurCourant)) {
                 if (a == Action.PAYER) {
                     joueurCourant.getPosition().lancerAction(Action.PAYER, joueurCourant);
-                    System.out.print(", propriété de " + joueurCourant.getPosition().getProprietaire().getNom() + " !");
-                    System.out.println(joueurCourant.getPosition().getLoyer(joueurCourant) + "€ ont été retirés de votre cagnotte !  Il vous reste " + joueurCourant.getCagnotte() + "€");
+                    //System.out.print(", propriété de " + joueurCourant.getPosition().getProprietaire().getNom() + " !");
+                    //System.out.println(joueurCourant.getPosition().getLoyer(joueurCourant) + "€ ont été retirés de votre cagnotte !  Il vous reste " + joueurCourant.getCagnotte() + "€");
                     verifCagnotte();
                 } else if (a == Action.ACHETER) {
                     System.out.println("Achat possible");
@@ -259,8 +281,49 @@ public class Controleur {
     public void setJoueurs(ArrayList<Joueur> joueurs) {
         this.joueurs = joueurs;
     }
-    
-    
-        
-    
+
+    @Override
+    public void update(Observable arg0, Object arg1) {
+        Message m = (Message) arg1;
+
+        if (m.type == TypeMessages.JOUER_PARTIE) {
+            ihm.close();
+            ihmnbJoueurs.afficher();
+
+        } else if (m.type == TypeMessages.REGLES) {
+            ihm.close();
+            ihmregles = new IHMRegles();
+            // ouvrir ihm des règles
+        } else if (m.type == TypeMessages.RETOUR) {
+            ihmInsc.close();
+            ihmnbJoueurs.afficher();
+
+        } else if (m.type == TypeMessages.COMMENCER) {
+            ihmInsc.close();
+
+            //ouvrir ihm de jeu
+        } else if (m.type == TypeMessages.DEUX) {
+
+            ihmInsc.afficher();
+            ihmnbJoueurs.close();
+
+        } else if (m.type == TypeMessages.TROIS) {
+
+            ihmInsc.afficher();
+            ihmnbJoueurs.close();
+        } else if (m.type == TypeMessages.QUATRE) {
+
+            ihmInsc.afficher();
+            ihmnbJoueurs.close();
+        } else if (m.type == TypeMessages.CINQ) {
+
+            ihmInsc.afficher();
+            ihmnbJoueurs.close();
+        } else if (m.type == TypeMessages.SIX) {
+            ihmInsc.afficher();
+            ihmnbJoueurs.close();
+        }
+
+    }
+
 }
