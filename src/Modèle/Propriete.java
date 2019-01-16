@@ -13,22 +13,51 @@ import java.util.ArrayList;
  */
 public abstract class Propriete extends CasePlateau {
 
-    private String nom;
+    private Terrains_enum terrain;
+    private Gares_enum gare;
+    private Compagnie_enum compagnie;
     private int prixDAchat;
     private Joueur proprietaire;
 
-    public Propriete(String nom, int prixDAchat, int numCase) {
+    public Propriete(Terrains_enum terrain, int prixDAchat, int numCase) {
         super(numCase);
-        this.nom = nom;
+        this.terrain = terrain;
         this.prixDAchat = prixDAchat;
     }
 
-    public Propriete(String nom, int prixDAchat, Joueur proprietaire, int numCase) {
+    public Propriete(Gares_enum gare, int prixDAchat, int numCase) {
         super(numCase);
-        this.nom = nom;
+        this.gare = gare;
+        this.prixDAchat = prixDAchat;
+    }
+
+    public Propriete(Terrains_enum terrain, int prixDAchat, Joueur proprietaire, int numCase) {
+        super(numCase);
+        this.terrain = terrain;
         this.prixDAchat = prixDAchat;
         this.proprietaire = proprietaire;
 
+    }
+
+    public Propriete(Gares_enum gare, int prixDAchat, Joueur proprietaire, int numCase) {
+        super(numCase);
+        this.gare = gare;
+        this.prixDAchat = prixDAchat;
+        this.proprietaire = proprietaire;
+
+    }
+
+    public Propriete(Compagnie_enum compagnie, int prixDAchat, int numCase) {
+        super(numCase);
+        this.compagnie = compagnie;
+        this.prixDAchat = prixDAchat;
+    }
+
+    public Propriete(Compagnie_enum compagnie, int prixDAchat, Joueur proprietaire, int numCase) {
+        super(numCase);
+        this.compagnie = compagnie;
+        this.prixDAchat = prixDAchat;
+        this.proprietaire = proprietaire;
     }
 
     public int getPrixDAchat() {
@@ -48,15 +77,22 @@ public abstract class Propriete extends CasePlateau {
         this.proprietaire = null;
     }
 
-    @Override
-    public String getNom() {
-        return nom;
+    public Terrains_enum getTerrain() {
+        return terrain;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setTerrain(Terrains_enum terrain) {
+        this.terrain = terrain;
     }
-    
+
+    public Gares_enum getGare() {
+        return gare;
+    }
+
+    public void setGare(Gares_enum gare) {
+        this.gare = gare;
+    }
+
     public abstract int getLoyer();
 
     public abstract int getLoyer(Joueur j);
@@ -92,7 +128,5 @@ public abstract class Propriete extends CasePlateau {
         return actionsPossibes;
 
     }
-    
-    
-    
+
 }

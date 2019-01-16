@@ -11,12 +11,12 @@ package Modèle;
  */
 public class Gare extends Propriete {
 
-    public Gare(String nom, int prixDAchat, int numCase) {
-        super(nom, prixDAchat, numCase);
+    public Gare(Gares_enum gare, int prixDAchat, int numCase) {
+        super(gare, prixDAchat, numCase);
     }
 
-    public Gare(String nom, int prixDAchat, Joueur proprietaire, int numCase) {
-        super(nom, prixDAchat, proprietaire, numCase);
+    public Gare(Gares_enum gare, int prixDAchat, Joueur proprietaire, int numCase) {
+        super(gare, prixDAchat, proprietaire, numCase);
     }
 
     @Override

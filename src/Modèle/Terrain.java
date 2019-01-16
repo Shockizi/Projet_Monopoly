@@ -12,17 +12,61 @@ package Modèle;
 public class Terrain extends Propriete {
 
     private Couleur couleur;
-    private int loyerDeBase;   
+    private int loyerDeBase;
+    private int loyer1m;
+    private int loyer2m;
+    private int loyer3m;
+    private int loyer4m;
+    private int loyerHotel;
+    private int construMaisonHotel;
     private int nbMaison;
     private int nbHotel;
     
-    public Terrain(Couleur couleur, int loyer, String nom, int prixDAchat, int numCase) {
-        super(nom, prixDAchat, numCase);
+    public Terrain(Couleur couleur, int loyerDeBase, int loyer1m, int loyer2m, int loyer3m, int loyer4m, int loyerHotel, int construMaisonHotel, int nbMaison, int nbHotel, Terrains_enum terrain, int prixDAchat, int numCase) {
+        super(terrain, prixDAchat, numCase);
         this.couleur = couleur;
-        this.loyerDeBase = loyer;
+        this.loyerDeBase = loyerDeBase;
+        this.loyer1m = loyer1m;
+        this.loyer2m = loyer2m;
+        this.loyer3m = loyer3m;
+        this.loyer4m = loyer4m;
+        this.loyerHotel = loyerHotel;
+        this.construMaisonHotel = construMaisonHotel;
         this.nbMaison = 0;
         this.nbHotel = 0;
     }
+
+    public int getLoyerDeBase() {
+        return loyerDeBase;
+    }
+
+    public int getLoyer1m() {
+        return loyer1m;
+    }
+
+    public int getLoyer2m() {
+        return loyer2m;
+    }
+
+    public int getLoyer3m() {
+        return loyer3m;
+    }
+
+    public int getLoyer4m() {
+        return loyer4m;
+    }
+
+    public int getLoyerHotel() {
+        return loyerHotel;
+    }
+
+    public int getConstruMaisonHotel() {
+        return construMaisonHotel;
+    }
+    
+    
+    
+    
 
     public Couleur getCouleur() {
         return couleur;

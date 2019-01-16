@@ -14,11 +14,13 @@ import java.util.ArrayList;
 public abstract class CasePlateau {
 
     private int numCase;
+    
 
     public CasePlateau(int numCase) {
         this.numCase = numCase;
     }
 
+    
     public int getNumCase() {
         return numCase;
     }

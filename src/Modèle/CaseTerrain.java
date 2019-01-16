@@ -22,6 +22,4 @@ public class CaseTerrain extends CasePlateau{
         super(numCase);
     }
     
-    
-    
 }
