@@ -10,19 +10,32 @@ package Message;
  * @author beguind
  */
 public class Message {
-    
+
     public TypeMessages type;
-    
-    public Message(){
-        
+    private int nbJ;
+
+    public Message() {
+
     }
-    
-    public Message(TypeMessages type){
+
+    public Message(TypeMessages type) {
         this.type = type;
     }
-    
-    public TypeMessages getType(){
+
+    public Message(TypeMessages type, int nbJ) {
+        this.type = type;
+        this.nbJ = nbJ;
+    }
+
+    public TypeMessages getType() {
         return type;
     }
     
+    public int getNbJoueurs(){
+        return nbJ;
+    }
+
+    public void setNbJoueurs(int nbj){
+        this.nbJ = nbj;
+    }
 }

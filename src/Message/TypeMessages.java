@@ -14,6 +14,14 @@ public enum TypeMessages {
     JOUER_PARTIE,
     REGLES,
     QUITTER,
+    DEUX,
+    TROIS,
+    QUATRE,
+    CINQ,
+    SIX,
+    RETOUR,
+    COMMENCER,
+
     
     
 }

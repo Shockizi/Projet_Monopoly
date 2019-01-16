@@ -5,6 +5,8 @@
  */
 package IHM;
 
+import Message.Message;
+import Message.TypeMessages;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -87,7 +89,8 @@ public class IHMNbJoueurs extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers();
+                        notifyObservers(new Message(TypeMessages.DEUX, 2));
+                        
                         clearChanged();
                     }
                 });
@@ -97,7 +100,7 @@ public class IHMNbJoueurs extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers();
+                        notifyObservers(new Message(TypeMessages.TROIS, 3));
                         clearChanged();
                     }
                 });
@@ -107,7 +110,7 @@ public class IHMNbJoueurs extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers();
+                        notifyObservers(new Message(TypeMessages.QUATRE, 4));
                         clearChanged();
                     }
                 });
@@ -117,7 +120,7 @@ public class IHMNbJoueurs extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers();
+                        notifyObservers(new Message(TypeMessages.CINQ, 5));
                         clearChanged();
                     }
                 });
@@ -127,7 +130,7 @@ public class IHMNbJoueurs extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers();
+                        notifyObservers(new Message(TypeMessages.SIX, 6));
                         clearChanged();
                     }
                 });

@@ -9,18 +9,20 @@ import Message.Message;
 import Message.TypeMessages;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 import java.util.Observable;
+import java.util.Observer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -68,6 +70,7 @@ public class Accueil extends Observable{
         btnRegles = new JButton(imgRegles);
         //btnRegles.setBorderPainted(false);
         
+        
         btnQuitter = new JButton(imgQuitter);
         //btnQuitter.setBorderPainted(false);
         
@@ -79,6 +82,7 @@ public class Accueil extends Observable{
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
                         notifyObservers(new Message(TypeMessages.JOUER_PARTIE));
+                        System.out.println("Test1");
                         clearChanged();
                     }
                 });
@@ -87,9 +91,7 @@ public class Accueil extends Observable{
                 btnRegles.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        setChanged();
-                        notifyObservers(new Message(TypeMessages.REGLES));
-                        clearChanged();
+//                        Desktop.getDesktop().browse(new URI("https://www.regles-de-jeux.com/regle-du-monopoly/"));
                     }
                 });
             } else if (i == 17) {
@@ -97,9 +99,7 @@ public class Accueil extends Observable{
                 btnQuitter.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        setChanged();
-                        notifyObservers(new Message(TypeMessages.QUITTER));
-                        clearChanged();
+                        window.dispose();
                     }
                 });
             } else {
@@ -109,6 +109,12 @@ public class Accueil extends Observable{
                 panelBoutons.add(l);
             }
         }        
+    }
+    
+    @Override
+    public synchronized void addObserver(Observer o) {
+        System.out.println("IHM.Accueil.addObserver():: ajout d'un observateur");
+        super.addObserver(o); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void afficher() {
