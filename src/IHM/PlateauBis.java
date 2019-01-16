@@ -500,6 +500,36 @@ public class PlateauBis {
         ipAvenueDeBreteuil.setPreferredSize(new Dimension(iAvenueDeBreteuil.getIconWidth(), iAvenueDeBreteuil.getIconHeight()));
         panelGrille.add(ipAvenueDeBreteuil, gbc);
 
+        for (int i = 1; i < 41; i++) {
+            //Case BAS
+            if (i == 2 || i == 4 || i == 7 || i == 9 || i == 10) {
+                casesPlateau.get(i).add();
+            } else if (i == 3 || i == 5 || i == 6 || i == 8) {
+                casesPlateau.get(i);
+                //Case GAUCHE
+            } else if (i == 12 || i == 14 || i == 15 || i == 17 || i == 19 || i == 20) {
+
+            } else if (i == 13 || i == 16 || i == 18) {
+                
+                //Cases HAUT
+            } else if (i == 22 || i == 24 || i == 25 || i == 27 || i == 28 || i == 30) {
+
+            } else if (i == 23 || i == 26 || i == 29){
+               
+                //Cases DROITE
+            } else if (i == 32 || i == 33 || i == 35 || i == 38 || i == 40){
+                
+            } else if (i == 34 || i == 36 || i == 37 || i == 39){
+                
+                //Grosses cases
+            } else if (i == 1 || i == 21 || i == 31 ){
+                
+                //Visite-Prison
+            } else if (i == 11){
+                
+            }
+        }
+
     }
 
     public void afficher() {
