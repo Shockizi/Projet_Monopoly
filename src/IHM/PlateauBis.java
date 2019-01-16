@@ -503,7 +503,7 @@ public class PlateauBis {
         for (int i = 1; i < 41; i++) {
             //Case BAS
             if (i == 2 || i == 4 || i == 7 || i == 9 || i == 10) {
-                casesPlateau.get(i).add();
+                casesPlateau.get(i);
             } else if (i == 3 || i == 5 || i == 6 || i == 8) {
                 casesPlateau.get(i);
                 //Case GAUCHE
