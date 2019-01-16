@@ -12,6 +12,7 @@ package Message;
 public class Message {
     
     public TypeMessages type;
+    private int nbJ;
     
     public Message(){
         
@@ -19,6 +20,11 @@ public class Message {
     
     public Message(TypeMessages type){
         this.type = type;
+    }
+    
+    public Message(TypeMessages type, int nbJ){
+        this.type = type;
+        this.nbJ = nbJ;
     }
     
     
