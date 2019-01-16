@@ -21,5 +21,8 @@ public class Message {
         this.type = type;
     }
     
+    public TypeMessages getType(){
+        return type;
+    }
     
 }

@@ -5,6 +5,8 @@
  */
 package IHM;
 
+import Message.Message;
+import Message.TypeMessages;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -76,7 +78,7 @@ public class Accueil extends Observable{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers();
+                        notifyObservers(new Message(TypeMessages.JOUER_PARTIE));
                         clearChanged();
                     }
                 });
@@ -86,7 +88,7 @@ public class Accueil extends Observable{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers();
+                        notifyObservers(new Message(TypeMessages.REGLES));
                         clearChanged();
                     }
                 });
@@ -96,7 +98,7 @@ public class Accueil extends Observable{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers();
+                        notifyObservers(new Message(TypeMessages.QUITTER));
                         clearChanged();
                     }
                 });
