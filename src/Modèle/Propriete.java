@@ -18,6 +18,10 @@ public abstract class Propriete extends CasePlateau {
     private Compagnie_enum compagnie;
     private int prixDAchat;
     private Joueur proprietaire;
+    
+    public Propriete(int numCase){
+        super(numCase);
+    }
 
     public Propriete(Terrains_enum terrain, int prixDAchat, int numCase) {
         super(numCase);
