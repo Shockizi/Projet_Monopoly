@@ -503,8 +503,9 @@ public class PlateauBis {
 
         
         panelMaisons = new JPanel();
-        for (int i = 1; i < 41; i++) {
-            casesPlateau.get(i).setLayout(new GridBagLayout());
+        for (int i : casesPlateau.keySet()) {
+            ImagePanel ip = casesPlateau.get(i);
+            ip.setLayout(new GridBagLayout());
             //Case BAS
             if (i == 2 || i == 4 || i == 7 || i == 9 || i == 10) {
                 panelPions = new JPanel(new GridLayout(2, 3));
