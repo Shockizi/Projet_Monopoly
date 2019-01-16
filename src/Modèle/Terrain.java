@@ -35,7 +35,12 @@ public class Terrain extends Propriete {
         this.nbMaison = 0;
         this.nbHotel = 0;
     }
+    
+    Terrain(int numCase){
+        super(numCase);
+    }
 
+    
     public int getLoyerDeBase() {
         return loyerDeBase;
     }
@@ -87,9 +92,9 @@ public class Terrain extends Propriete {
             loyer = this.loyerDeBase * 2;
         } else if (this.getCouleur() == Couleur.ORANGE && nbCouleur == 3) {
             loyer = this.loyerDeBase * 2;
-        } else if (this.getCouleur() == Couleur.MAUVE && nbCouleur == 2) {
+        } else if (this.getCouleur() == Couleur.MARRON && nbCouleur == 2) {
             loyer = this.loyerDeBase * 2;
-        } else if (this.getCouleur() == Couleur.VIOLET && nbCouleur == 3) {
+        } else if (this.getCouleur() == Couleur.ROSE && nbCouleur == 3) {
             loyer = this.loyerDeBase * 2;
         } else if (this.getCouleur() == Couleur.BLEU_CIEL && nbCouleur == 3) {
             loyer = this.loyerDeBase * 2;

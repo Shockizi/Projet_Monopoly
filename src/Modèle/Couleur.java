@@ -12,8 +12,8 @@ package Modèle;
 public enum Couleur {
     BLEU_FONCE,
     ORANGE,
-    MAUVE,
-    VIOLET,
+    MARRON,
+    ROSE,
     BLEU_CIEL,
     JAUNE,
     VERT,
