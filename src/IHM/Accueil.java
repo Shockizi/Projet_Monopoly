@@ -66,10 +66,10 @@ public class Accueil extends Observable{
         btnJouer.setPreferredSize(new Dimension(imgJouer.getIconWidth(), imgJouer.getIconHeight()));
         
         btnRegles = new JButton(imgRegles);
-        btnRegles.setBorderPainted(false);
+        //btnRegles.setBorderPainted(false);
         
         btnQuitter = new JButton(imgQuitter);
-        btnQuitter.setBorderPainted(false);
+        //btnQuitter.setBorderPainted(false);
         
         for (int i = 1; i <= 21; i++) {
             if (i == 5) {
