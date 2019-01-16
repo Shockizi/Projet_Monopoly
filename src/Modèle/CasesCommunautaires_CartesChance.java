@@ -148,7 +148,7 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             }
             joueur.setPosition(boulevard);
         } else if (carteChance == Chance_enum.LibéréDePrison) {
-            joueur.setCarteLiberéDePrison(true);
+            joueur.setCarteLiberéDePrison(joueur.getCarteLiberéDePrison() + 1);
         }
 
     }
@@ -197,7 +197,7 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
         } else if (carteCommunauté == Communauté_enum.DeuxièmePrixBeauté) {
             joueur.setCagnotte(joueur.getCagnotte() + 10);
         } else if (carteCommunauté == Communauté_enum.LibéréDePrison) {
-            joueur.setCarteLiberéDePrison(true);
+            joueur.setCarteLiberéDePrison(joueur.getCarteLiberéDePrison() + 1);
         }
     }
 
