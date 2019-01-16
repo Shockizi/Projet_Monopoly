@@ -54,6 +54,10 @@ public class Joueur {
     public CasePlateau getPosition() {
         return position;
     }
+    
+    public int getNumCaseCourante() {
+        return this.position.getNumCase();
+    }
 
     public void setPosition(CasePlateau position) {
         this.position = position;

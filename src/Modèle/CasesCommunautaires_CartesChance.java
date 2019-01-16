@@ -83,7 +83,7 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             CaseAllerEnPrison prison = new CaseAllerEnPrison(11);
             joueur.setPosition(prison);
         } else if (carteChance == Chance_enum.ReculezDeTroisCases) {
-            Terrain caseJ = new Terrain(joueur.getPosition().getNumCase() - 3);
+            Terrain caseJ = new Terrain(joueur.getNumCaseCourante() - 3);
             joueur.setPosition(caseJ);
         } else if (carteChance == Chance_enum.ImpôtsRéparationVoirie) {
             int nbmaison = 0;
@@ -117,13 +117,13 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             joueur.setPosition(départ);
         } else if (carteChance == Chance_enum.RdvAveHenriMartin) {
             Terrain avenue = new Terrain(25);
-            if (joueur.getPosition().getNumCase() > 25) {
+            if (joueur.getNumCaseCourante() > 25) {
                 joueur.setCagnotte(joueur.getCagnotte() + 200);
             }
             joueur.setPosition(avenue);
         } else if (carteChance == Chance_enum.RdvGareLyon) {
             Terrain gareLyon = new Terrain(16);
-            if (joueur.getPosition().getNumCase() > 16) {
+            if (joueur.getNumCaseCourante() > 16) {
                 joueur.setCagnotte(joueur.getCagnotte() + 200);
             }
             joueur.setPosition(gareLyon);
@@ -135,7 +135,7 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             joueur.setCagnotte(joueur.getCagnotte() + 50);
         } else if (carteChance == Chance_enum.RdvRueDelaPaix) {
             Terrain ruePaix = new Terrain(40);
-            if (joueur.getPosition().getNumCase() > 40) {
+            if (joueur.getNumCaseCourante() > 40) {
                 joueur.setCagnotte(joueur.getCagnotte() + 200);
             }
             joueur.setPosition(ruePaix);
@@ -143,7 +143,7 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             joueur.setCagnotte(joueur.getCagnotte() + 150);
         } else if (carteChance == Chance_enum.RdvBoulevardVillette) {
             Terrain boulevard = new Terrain(12);
-            if (joueur.getPosition().getNumCase() > 12) {
+            if (joueur.getNumCaseCourante() > 12) {
                 joueur.setCagnotte(joueur.getCagnotte() + 200);
             }
             joueur.setPosition(boulevard);
@@ -171,7 +171,7 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             joueur.setCagnotte(joueur.getCagnotte() + 200);
         } else if (carteCommunauté == Communauté_enum.RdvBelleville) {
             Terrain belleville = new Terrain(2);
-            if (joueur.getPosition().getNumCase() > 2) {
+            if (joueur.getNumCaseCourante() > 2) {
                 joueur.setCagnotte(joueur.getCagnotte() + 200);
             }
             joueur.setPosition(belleville);
