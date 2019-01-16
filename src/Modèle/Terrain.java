@@ -16,8 +16,8 @@ public class Terrain extends Propriete {
     private int nbMaison;
     private int nbHotel;
     
-    public Terrain(Couleur couleur, int loyer, String nom, int prixDAchat, int numCase) {
-        super(nom, prixDAchat, numCase);
+    public Terrain(Couleur couleur, int loyer, Terrains_enum terrain, int prixDAchat, int numCase) {
+        super(terrain, prixDAchat, numCase);
         this.couleur = couleur;
         this.loyerDeBase = loyer;
         this.nbMaison = 0;
