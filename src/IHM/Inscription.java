@@ -33,15 +33,15 @@ import javax.swing.SwingConstants;
 public class Inscription extends Observable {
 
     private JFrame window;
-    private JPanel mainPanel,panelNord,PanelCentre,PanelWest,PanelEast,PanelSouth, panelJ1,panelJ2,panelJ3,panelJ4,panelJ5,panelJ6,panelCombo1,panelCombo2,panelCombo3,panelCombo4,panelCombo5,panelCombo6;
+    private JPanel mainPanel, panelNord, PanelCentre, PanelWest, PanelEast, PanelSouth, panelJ1, panelJ2, panelJ3, panelJ4, panelJ5, panelJ6, panelCombo1, panelCombo2, panelCombo3, panelCombo4, panelCombo5, panelCombo6;
     private JLabel labelTitre, labelImage;
     private JButton commencer, retour;
     private int nbJoueurs;
     private Message m;
     private JComboBox symbole, symbole2, symbole3, symbole4, symbole5, symbole6;
     private String[] pions = {"Voiture", "Bâteau", "Dé à Coudre", "Chapeau", "Fer à repasser", "Brouette"};
-
-    public Inscription() {
+    public Inscription(int nbJoueur) {
+        this.nbJoueurs = nbJoueur;
         window = new JFrame();
         window.setTitle("Inscription Monopoly");
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -81,7 +81,6 @@ public class Inscription extends Observable {
         ImageIcon imgJouer = new ImageIcon(System.getProperty("user.dir") + "/src/image/MrMonopoly.png");
         labelImage = new JLabel(imgJouer);
         PanelWest.add(labelImage);
-  
 
         //partie Est
         JLabel nj1 = new JLabel("Nom joueur 1 : ", SwingConstants.RIGHT);
@@ -116,99 +115,95 @@ public class Inscription extends Observable {
         symbole5.setSelectedItem("Fer à repasser");
         symbole6 = new JComboBox(pions);
         symbole6.setSelectedItem("Brouette");
-        
+
         //panel joueurs
         panelJ1 = new JPanel();
         panelJ1.setBackground(new Color(255, 191, 128));
-        panelJ1.setLayout(new GridLayout(3,1));
+        panelJ1.setLayout(new GridLayout(3, 1));
         panelJ1.add(new JLabel(" "));
         panelJ1.add(jtf1);
         panelJ1.add(new JLabel(" "));
-        
+
         panelJ2 = new JPanel();
         panelJ2.setBackground(new Color(255, 191, 128));
-        panelJ2.setLayout(new GridLayout(3,1));
+        panelJ2.setLayout(new GridLayout(3, 1));
         panelJ2.add(new JLabel(" "));
         panelJ2.add(jtf2);
         panelJ2.add(new JLabel(" "));
-        
+
         panelJ3 = new JPanel();
         panelJ3.setBackground(new Color(255, 191, 128));
-        panelJ3.setLayout(new GridLayout(3,1));
+        panelJ3.setLayout(new GridLayout(3, 1));
         panelJ3.add(new JLabel(" "));
         panelJ3.add(jtf3);
         panelJ3.add(new JLabel(" "));
-        
+
         panelJ4 = new JPanel();
         panelJ4.setBackground(new Color(255, 191, 128));
-        panelJ4.setLayout(new GridLayout(3,1));
+        panelJ4.setLayout(new GridLayout(3, 1));
         panelJ4.add(new JLabel(" "));
         panelJ4.add(jtf4);
         panelJ4.add(new JLabel(" "));
-        
+
         panelJ5 = new JPanel();
         panelJ5.setBackground(new Color(255, 191, 128));
-        panelJ5.setLayout(new GridLayout(3,1));
+        panelJ5.setLayout(new GridLayout(3, 1));
         panelJ5.add(new JLabel(" "));
         panelJ5.add(jtf5);
         panelJ5.add(new JLabel(" "));
-        
+
         panelJ6 = new JPanel();
         panelJ6.setBackground(new Color(255, 191, 128));
-        panelJ6.setLayout(new GridLayout(3,1));
+        panelJ6.setLayout(new GridLayout(3, 1));
         panelJ6.add(new JLabel(" "));
         panelJ6.add(jtf6);
         panelJ6.add(new JLabel(" "));
-        
+
         // panel combobox
-        
         panelCombo1 = new JPanel();
-        panelCombo1.setLayout(new GridLayout(3,1));
+        panelCombo1.setLayout(new GridLayout(3, 1));
         panelCombo1.setBackground(new Color(255, 191, 128));
         panelCombo1.add(new JLabel(" "));
         panelCombo1.add(symbole);
         panelCombo1.add(new JLabel(" "));
-        
+
         panelCombo2 = new JPanel();
-        panelCombo2.setLayout(new GridLayout(3,1));
+        panelCombo2.setLayout(new GridLayout(3, 1));
         panelCombo2.setBackground(new Color(255, 191, 128));
         panelCombo2.add(new JLabel(" "));
         panelCombo2.add(symbole2);
         panelCombo2.add(new JLabel(" "));
-        
+
         panelCombo3 = new JPanel();
-        panelCombo3.setLayout(new GridLayout(3,1));
+        panelCombo3.setLayout(new GridLayout(3, 1));
         panelCombo3.setBackground(new Color(255, 191, 128));
         panelCombo3.add(new JLabel(" "));
         panelCombo3.add(symbole3);
         panelCombo3.add(new JLabel(" "));
-        
+
         panelCombo4 = new JPanel();
-        panelCombo4.setLayout(new GridLayout(3,1));
+        panelCombo4.setLayout(new GridLayout(3, 1));
         panelCombo4.setBackground(new Color(255, 191, 128));
         panelCombo4.add(new JLabel(" "));
         panelCombo4.add(symbole4);
         panelCombo4.add(new JLabel(" "));
-        
+
         panelCombo5 = new JPanel();
-        panelCombo5.setLayout(new GridLayout(3,1));
+        panelCombo5.setLayout(new GridLayout(3, 1));
         panelCombo5.setBackground(new Color(255, 191, 128));
         panelCombo5.add(new JLabel(" "));
         panelCombo5.add(symbole5);
         panelCombo5.add(new JLabel(" "));
-        
+
         panelCombo6 = new JPanel();
-        panelCombo6.setLayout(new GridLayout(3,1));
+        panelCombo6.setLayout(new GridLayout(3, 1));
         panelCombo6.setBackground(new Color(255, 191, 128));
         panelCombo6.add(new JLabel(" "));
         panelCombo6.add(symbole6);
         panelCombo6.add(new JLabel(" "));
-         
-        
-        
-//        m = new Message(TypeMessages.TROIS, 3);
-//        m.setNbJoueurs(3);
-        if (m.type == TypeMessages.DEUX) {
+
+
+        if (nbJoueur == 2) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -229,7 +224,7 @@ public class Inscription extends Observable {
             PanelEast.add(new JLabel(""));
         }
 
-        if (m.type == TypeMessages.TROIS) {
+        if (nbJoueur == 3) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -251,7 +246,7 @@ public class Inscription extends Observable {
 
         }
 
-        if (m.type == TypeMessages.QUATRE) {
+        if (nbJoueur == 4) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -273,7 +268,7 @@ public class Inscription extends Observable {
 
         }
 
-        if (m.type == TypeMessages.CINQ) {
+        if (nbJoueur == 5) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -295,7 +290,7 @@ public class Inscription extends Observable {
 
         }
 
-        if (m.type == TypeMessages.SIX) {
+        if (nbJoueur == 6) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);

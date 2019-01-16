@@ -47,11 +47,6 @@ public class Controleur implements Observer {
         ihmnbJoueurs = new IHMNbJoueurs();
         ihmnbJoueurs.addObserver(this);
 
-        ihmInsc = new Inscription();
-        ihmInsc.addObserver(this);
-
-        ihmInsc = new Inscription();
-        ihmInsc.addObserver(this);
     }
 
     public void inscrireJoueur(Joueur j) {
@@ -303,23 +298,30 @@ public class Controleur implements Observer {
 
             //ouvrir ihm de jeu
         } else if (m.type == TypeMessages.DEUX) {
-
+            ihmInsc = new Inscription(2);
+            ihmInsc.addObserver(this);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
 
         } else if (m.type == TypeMessages.TROIS) {
-
+            ihmInsc = new Inscription(3);
+            ihmInsc.addObserver(this);
             ihmInsc.afficher();
+            m.getNbJoueurs();
             ihmnbJoueurs.close();
         } else if (m.type == TypeMessages.QUATRE) {
-
+            ihmInsc = new Inscription(4);
+            ihmInsc.addObserver(this);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
         } else if (m.type == TypeMessages.CINQ) {
-
+            ihmInsc = new Inscription(5);
+            ihmInsc.addObserver(this);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
         } else if (m.type == TypeMessages.SIX) {
+            ihmInsc = new Inscription(6);
+            ihmInsc.addObserver(this);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
         }

@@ -11,7 +11,7 @@ import Controleur.Controleur;
  *
  * @author milliezm
  */
-public class testAccueil {
+public class main {
 
     /**
      * @param args the command line arguments
