@@ -5,6 +5,11 @@
  */
 package Controleur;
 
+import IHM.Accueil;
+import IHM.IHMNbJoueurs;
+import IHM.IHMRegles;
+import Message.Message;
+import Message.TypeMessages;
 import Modèle.Action;
 import Modèle.CasePlateau;
 import Modèle.Compagnie;
@@ -14,6 +19,8 @@ import Modèle.Joueur;
 import Modèle.Propriete;
 import Modèle.Terrain;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -21,11 +28,15 @@ import java.util.Scanner;
  *
  * @author elmiry
  */
-public class Controleur {
+public class Controleur implements Observer {
 
     private ArrayList<CasePlateau> plateau = new ArrayList<>();
     private ArrayList<Joueur> joueurs = new ArrayList<>();
     private Joueur joueurCourant;
+    private Accueil ihmaccueil;
+    private IHMNbJoueurs ihmnbJoueurs;
+    private IHMRegles ihmregles;
+    
 
     public Controleur() {
 
@@ -258,6 +269,24 @@ public class Controleur {
 
     public void setJoueurs(ArrayList<Joueur> joueurs) {
         this.joueurs = joueurs;
+    }
+
+    @Override
+    public void update(Observable arg0, Object arg1) {
+        Message m = (Message) arg1;
+        
+        if (m.type == TypeMessages.JOUER_PARTIE){
+            ihmaccueil = new Accueil();
+            ihmaccueil.close();
+            ihmnbJoueurs = new IHMNbJoueurs();
+            ihmnbJoueurs.afficher();
+        } else if ( m.type == TypeMessages.REGLES){
+            ihmaccueil.close();
+            ihmregles = new IHMRegles();
+               
+        } else if ( m.type == TypeMessages.QUITTER){
+            ihmaccueil.close();
+        }
     }
     
     

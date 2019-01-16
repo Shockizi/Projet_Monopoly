@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Message;
+package IHM;
 
 /**
  *
  * @author beguind
  */
-public enum TypeMessages {
-    
-    JOUER_PARTIE,
-    REGLES,
-    QUITTER,
-    
+public class IHMRegles {
     
 }
