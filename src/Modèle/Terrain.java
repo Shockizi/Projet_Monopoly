@@ -81,5 +81,5 @@ public class Terrain extends Propriete {
     public void setNbHotel(int nbHotel) {
         this.nbHotel = nbHotel;
     }
-
+    
 }

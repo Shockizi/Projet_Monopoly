@@ -91,5 +91,8 @@ public abstract class Propriete extends CasePlateau {
         }
         return actionsPossibes;
 
-    }        
+    }
+    
+    
+    
 }

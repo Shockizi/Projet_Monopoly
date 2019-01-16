@@ -89,16 +89,23 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
             int nbmaison = 0;
             int nbhotel = 0;
             for (int i = 0; i < joueur.getProprietes().size(); i++) {
-                nbmaison = nbmaison + joueur.getProprietes().get(i).getNbMaison();
-                nbhotel = nbhotel + joueur.getProprietes().get(i).getNbHotel();
+                for (Propriete p : joueur.getProprietes()) {
+                    if (p instanceof Terrain) {
+                        nbmaison = nbmaison + ((Terrain) p).getNbMaison();
+                        nbhotel = nbhotel + ((Terrain) p).getNbHotel();
+                    }
+                }
             }
             joueur.setCagnotte(joueur.getCagnotte() - nbmaison * 40 - nbhotel * 115);
         } else if (carteChance == Chance_enum.RéparationsMaisons) {
             int nbmaison = 0;
             int nbhotel = 0;
-            for (int i = 0; i < joueur.getProprietes().size(); i++) {
-                nbmaison = nbmaison + joueur.getProprietes().get(i).getNbMaison();
-                nbhotel = nbhotel + joueur.getProprietes().get(i).getNbHotel();
+            for (Propriete p : joueur.getProprietes()) {
+                if (p instanceof Terrain) {
+                    nbmaison = nbmaison + ((Terrain) p).getNbMaison();
+                    nbhotel = nbhotel + ((Terrain) p).getNbHotel();
+                }
+
             }
             joueur.setCagnotte(joueur.getCagnotte() - nbmaison * 25 - nbhotel * 100);
         } else if (carteChance == Chance_enum.AmendeExcèsVitesse) {
