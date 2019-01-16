@@ -80,10 +80,10 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
 
     public void effetCarteChance(Chance_enum carteChance, Joueur joueur) {
         if (carteChance == Chance_enum.AllezEnPrison) {
-            CasePrison prison = new CasePrison(11);
+            CaseAllerEnPrison prison = new CaseAllerEnPrison(11);
             joueur.setPosition(prison);
         } else if (carteChance == Chance_enum.ReculezDeTroisCases) {
-            CasePrison caseJ = new CasePrison(joueur.getPosition().getNumCase() - 3);
+            CaseTerrain caseJ = new CaseTerrain(joueur.getPosition().getNumCase() - 3);
             joueur.setPosition(caseJ);
         } else if (carteChance == Chance_enum.ImpôtsRéparationVoirie) {
             int nbmaison = 0;
@@ -155,7 +155,7 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
 
     public void effeCarteCommunauté(Communauté_enum carteCommunauté, Joueur joueur) {
         if (carteCommunauté == Communauté_enum.AllezEnPrison) {
-            CasePrison prison = new CasePrison(11);
+            CaseAllerEnPrison prison = new CaseAllerEnPrison(11);
             joueur.setPosition(prison);
         } else if (carteCommunauté == Communauté_enum.Amende) {
             joueur.setCagnotte(joueur.getCagnotte() - 150);

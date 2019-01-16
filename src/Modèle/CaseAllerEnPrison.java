@@ -11,14 +11,14 @@ import java.util.ArrayList;
  *
  * @author lorauxs
  */
-public class CasePrison extends CasePlateau {
+public class CaseAllerEnPrison extends CasePlateau {
 
     public Joueur getProprietaire() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public CasePrison(int numCase) {
-        super(numCase = 11);
+    public CaseAllerEnPrison(int numCase) {
+        super(numCase = 31);
     }
 
     @Override
