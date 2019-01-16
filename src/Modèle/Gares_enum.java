@@ -7,15 +7,12 @@ package Modèle;
 
 /**
  *
- * @author elmiry
+ * @author lorauxs
  */
-public enum Couleur {
-    BLEU_FONCE,
-    ORANGE,
-    MARRON,
-    ROSE,
-    BLEU_CIEL,
-    JAUNE,
-    VERT,
-    ROUGE    
+public enum Gares_enum {
+    GareMontparnasse,
+    GareDeLyon,
+    GareDuNord,
+    GareSaintLazare;
+
 }

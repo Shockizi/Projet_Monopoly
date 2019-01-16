@@ -11,8 +11,8 @@ package Modèle;
  */
 public class Compagnie extends Propriete {
 
-    public Compagnie(String nom, int prixDAchat, int numCase) {
-        super(nom, prixDAchat, numCase);
+    public Compagnie(Compagnie_enum compagnie, int prixDAchat, int numCase) {
+        super(compagnie, prixDAchat, numCase);
     }
 
     public int getLoyer(int nbc, int d1, int d2) {
