@@ -16,6 +16,7 @@ import Modèle.Terrain;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -29,6 +30,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -38,7 +40,7 @@ public class PlateauBis extends Observable {
     
     private Plateau plateau;
     private JFrame window;
-    private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons, panelDroite;
+    private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons, panelDroite, panelNord;
     private JLabel labelJoueurCourant = new JLabel(""), labelCagnotte = new JLabel("");
     private JButton btnLancerDès = new JButton("Lancer dès"), btnAcheterTerrain = new JButton("Acheter terrain"), btnConstruire = new JButton("Construire"), btnFinTour = new JButton("Fin de tour"), btnAbandonner = new JButton("Abandonner");
     private HashMap<Integer, ImagePanel> casesPlateau = new HashMap<Integer, ImagePanel>();
@@ -57,6 +59,15 @@ public class PlateauBis extends Observable {
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(new Color(255, 191, 128));
         mainPanel.setOpaque(true);
+        
+        panelNord = new JPanel(new BorderLayout());
+        JLabel labelTitre = new JLabel("MONOPOLY", SwingConstants.CENTER);
+        labelTitre.setFont(new Font("Arial", Font.BOLD, 50));
+        labelTitre.setForeground(Color.BLACK);
+        labelTitre.setBackground(new Color(255, 191, 128));
+        labelTitre.setOpaque(true);
+        panelNord.add(labelTitre);
+        mainPanel.add(panelNord, BorderLayout.NORTH);
         
         panelGrille = new JPanel(new GridBagLayout());
         panelGrille.setBackground(new Color(255, 191, 128));
@@ -78,9 +89,12 @@ public class PlateauBis extends Observable {
         for (int i = 1; i < 48; i++) {
             if (i == 5) {
                 this.setLabelJoueurCourant(joueurCourant.getNom());
+                labelJoueurCourant.setFont(new Font("Arial", Font.BOLD, 20));
                 panelCommande.add(labelJoueurCourant);
+                
             } else if (i == 8) {
                 this.setLabelCagnotte(joueurCourant.getCagnotte());
+                labelCagnotte.setFont(new Font("Arial", Font.BOLD, 20));
                 panelCommande.add(labelCagnotte);
             } else if (i == 14) {
                 panelCommande.add(btnLancerDès);
@@ -621,7 +635,7 @@ public class PlateauBis extends Observable {
     }
     
     public void setLabelJoueurCourant(String text) {
-        this.labelJoueurCourant.setText(text);
+        this.labelJoueurCourant.setText("C'est au tour de : "+text);
     }
     
     public JLabel getLabelCagnotte() {
@@ -630,7 +644,7 @@ public class PlateauBis extends Observable {
     
     public void setLabelCagnotte(int cagnotte) {
         //String sCagnotte = cagnotte.
-        this.labelCagnotte.setText(cagnotte + "");
+        this.labelCagnotte.setText("Vous avez : "+cagnotte + "€");
     }
 
     //public static void main(String[] args) {

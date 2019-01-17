@@ -21,11 +21,13 @@ import Modèle.Joueur;
 import Modèle.Plateau;
 import Modèle.Propriete;
 import Modèle.Terrain;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
+import sun.tools.jstat.Alignment;
 
 /**
  *
@@ -289,6 +291,14 @@ public class Controleur implements Observer {
             p.getJoueurs().add(j);
         }
 
+    }
+    
+    public void coleur(){
+        for(Joueur j : ihmInsc.getJoueurs().keySet()){
+            Color c = ihmInsc.getJoueurs().get(j);
+            System.out.println(c);
+        }
+        
     }
 
 //    public static void main(String[] args) {
