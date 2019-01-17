@@ -13,6 +13,7 @@ public enum TypeMessages {
     
     JOUER_PARTIE,
     REGLES,
+    FERMER_REGLES,
     QUITTER,
     NBJOUEUR,
     RETOUR,

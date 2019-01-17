@@ -40,7 +40,7 @@ public class PlateauBis extends Observable {
     private JFrame window;
     private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons, panelDroite;
     private JLabel labelJoueurCourant = new JLabel(""), labelCagnotte = new JLabel("");
-    private JButton btnLancerDès = new JButton("Lancer dès"), btnAcheterTerrain = new JButton("Acheter terrain"), btnConstruire = new JButton("Construire"), btnFinTour = new JButton("Fin de tour"), btnAbandonner = new JButton("Abandonner");
+    private JButton btnLancerDès = new JButton("Lancer les dés") , btnAcheterTerrain=new JButton("Acheter"), btnConstruire=new JButton("Construire"), btnFinTour=new JButton("Fin de tour"), btnAbandonner = new JButton("Abandonner");
     private HashMap<Integer, ImagePanel> casesPlateau = new HashMap<Integer, ImagePanel>();
     private Joueur joueurCourant;
     
@@ -72,8 +72,9 @@ public class PlateauBis extends Observable {
         
         
         this.joueurCourant = joueur;
-        
 
+        
+        
         // Boutons à droite //
         for (int i = 1; i < 48; i++) {
             if (i == 5) {

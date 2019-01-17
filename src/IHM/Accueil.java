@@ -88,6 +88,9 @@ public class Accueil extends Observable{
                     @Override
                     public void actionPerformed(ActionEvent e) {
 //                        Desktop.getDesktop().browse(new URI("https://www.regles-de-jeux.com/regle-du-monopoly/"));
+                         setChanged();
+                        notifyObservers(new Message(TypeMessages.REGLES));
+                        clearChanged();
                     }
                 });
             } else if (i == 17) {

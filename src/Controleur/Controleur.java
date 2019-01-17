@@ -235,7 +235,11 @@ public class Controleur implements Observer {
         } else if (m.getType() == TypeMessages.REGLES) {
             ihm.close();
             ihmregles = new IHMRegles();
-            // ouvrir ihm des règles
+            ihmregles.addObserver(this);
+            ihmregles.afficher();
+        } else if (m.getType() == TypeMessages.FERMER_REGLES) {
+            ihmregles.close();
+            ihm.afficher();  
         } else if (m.getType() == TypeMessages.RETOUR) {
             ihmInsc.close();
             ihmnbJoueurs.afficher();

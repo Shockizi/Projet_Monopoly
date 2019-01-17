@@ -320,10 +320,12 @@ public class Inscription extends Observable {
         //partie sud
         PanelSouth = new JPanel(new GridLayout(1, 6));
         mainPanel.add(PanelSouth, BorderLayout.SOUTH);
+        
         retour = new JButton("Retour");
         retour.setBackground(new Color(212, 47, 34));
-        commencer = new JButton("Commencer");
+        commencer = new JButton("Commencer");       
         commencer.setBackground(new Color(212, 47, 34));
+        
         for (int i = 1; i <= 6; i++) {
             if (i == 1) {
                 PanelSouth.add(retour);
