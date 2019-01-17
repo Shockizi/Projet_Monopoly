@@ -40,9 +40,11 @@ public class PlateauBis extends Observable {
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
         window.setSize(1100, 700);
+        window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         window.setLocation(dim.width / 2 - window.getSize().width / 2, dim.height / 2 - window.getSize().height / 2);
-        //window.setResizable(false);
+        
+        
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(new Color(255, 191, 128));
         mainPanel.setOpaque(true);

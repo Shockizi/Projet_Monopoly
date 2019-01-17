@@ -44,34 +44,34 @@ public class ImagePanel extends JPanel {
         if (constructible) {
             if (pos == PositionCase_enum.SOUTH) {
 
-                gbc.gridx = gbc.gridy = 0;
-                gbc.gridwidth = 1;
-                gbc.gridheight = 1;
-                
+//                gbc.gridx = gbc.gridy = 0;
+//                gbc.gridwidth = 1;
+//                gbc.gridheight = 1;
+
                 this.add(labelNbMaisonHotel);
 
-                gbc.gridy = 1;
-                gbc.gridwidth = 1;
-                gbc.gridheight = 1;
+//                gbc.gridy = 1;
+//                gbc.gridwidth = 1;
+//                gbc.gridheight = 1;
                 panelPions.setLayout(new GridLayout(3, 2));
                 this.add(panelPions);
 
             } else if (pos == PositionCase_enum.NORTH) {
-                gbc.gridx = gbc.gridy = 0;
-                gbc.gridwidth = 1;
-                gbc.gridheight = 1;
+//                gbc.gridx = gbc.gridy = 0;
+//                gbc.gridwidth = 1;
+//                gbc.gridheight = 1;
                 panelPions.setLayout(new GridLayout(3, 2));
                 this.add(panelPions);
 
-                gbc.gridy = 1;
-                gbc.gridwidth = 1;
-                gbc.gridheight = 1;
+//                gbc.gridy = 1;
+//                gbc.gridwidth = 1;
+//                gbc.gridheight = 1;
                 this.add(labelNbMaisonHotel);
 
             } else if (pos == PositionCase_enum.WEST) {
-                gbc.gridx = gbc.gridy = 0;
-                gbc.gridwidth = 1;
-                gbc.gridheight = 1;
+//                gbc.gridx = gbc.gridy = 0;
+//                gbc.gridwidth = 1;
+//                gbc.gridheight = 1;
                 panelPions.setLayout(new GridLayout(2, 3));
                 this.add(panelPions);
 
@@ -82,14 +82,14 @@ public class ImagePanel extends JPanel {
 
             }
             if (pos == PositionCase_enum.EAST) {
-                gbc.gridx = gbc.gridy = 0;
-                gbc.gridwidth = 1;
-                gbc.gridheight = 1;
+//                gbc.gridx = gbc.gridy = 0;
+//                gbc.gridwidth = 1;
+//                gbc.gridheight = 1;
                 this.add(labelNbMaisonHotel);
 
-                gbc.gridy = 1;
-                gbc.gridwidth = 1;
-                gbc.gridheight = 1;
+//                gbc.gridy = 1;
+//                gbc.gridwidth = 1;
+//                gbc.gridheight = 1;
                 panelPions.setLayout(new GridLayout(2, 3));
                 this.add(panelPions);
 
@@ -105,18 +105,18 @@ public class ImagePanel extends JPanel {
         }
 
     }
-    
-    public void addPion(JLabel pion){
+
+    public void addPion(JLabel pion) {
         panelPions.add(pion);
     }
-    
-    public void setNbMaisonHotel(int nbMH, boolean hotel){
-        if (hotel){
+
+    public void setNbMaisonHotel(int nbMH, boolean hotel) {
+        if (hotel) {
             labelNbMaisonHotel.setText("H");
         } else {
             labelNbMaisonHotel.setText(nbMH + "M");
         }
-        
+
     }
 
     @Override

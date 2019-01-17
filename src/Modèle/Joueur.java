@@ -25,6 +25,7 @@ public class Joueur {
     public Joueur(String nom) {
         this.nom = nom;
         this.carteLiberéDePrison = 0;
+        position = new CasePlateau(1) {};
     }
 
     public int getCarteLiberéDePrison() {
@@ -34,7 +35,7 @@ public class Joueur {
     public void setCarteLiberéDePrison(int carteLiberéDePrison) {
         this.carteLiberéDePrison = carteLiberéDePrison;
     }
-    
+
     public String getNom() {
         return nom;
     }
@@ -54,7 +55,7 @@ public class Joueur {
     public CasePlateau getPosition() {
         return position;
     }
-    
+
     public int getNumCaseCourante() {
         return this.position.getNumCase();
     }
@@ -62,7 +63,7 @@ public class Joueur {
     public void setPosition(CasePlateau position) {
         this.position = position;
     }
-    
+
     public void setNumCaseCourante(int numCase) {
         this.position.setNumCase(numCase);
     }
@@ -90,8 +91,8 @@ public class Joueur {
         this.de1 = d1;
         this.de2 = d2;
     }
-    
-    public boolean verifDouble(){
+
+    public boolean verifDouble() {
         return (this.de1 == this.de2);
     }
 
@@ -151,7 +152,5 @@ public class Joueur {
         }
         return nb;
     }
-    
-    
-}
 
+}

@@ -13,11 +13,6 @@ import java.util.ArrayList;
  */
 public class CaseDépart extends CasePlateau{
 
-    @Override
-    public ArrayList<Action> getActionPossible(Joueur j) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public CaseDépart(int numCase) {
         super(numCase);
     }

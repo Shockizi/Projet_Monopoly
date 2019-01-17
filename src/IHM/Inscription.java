@@ -45,8 +45,8 @@ public class Inscription extends Observable {
     private JComboBox symbole, symbole2, symbole3, symbole4, symbole5, symbole6;
     private String[] pions = {"Voiture", "Bâteau", "Dé à Coudre", "Chapeau", "Fer à repasser", "Brouette"};
     private ArrayList<Joueur> joueurs1 = new ArrayList<>();
-    private HashMap<Joueur,Color > joueurs = new HashMap<Joueur, Color>();
-    
+    private HashMap<Joueur, Color> joueurs = new HashMap<Joueur, Color>();
+
     public Inscription(int nbJoueurs) {
         window = new JFrame();
         window.setTitle("Inscription Monopoly");
@@ -207,7 +207,7 @@ public class Inscription extends Observable {
         panelCombo6.add(new JLabel(" "));
         panelCombo6.add(symbole6);
         panelCombo6.add(new JLabel(" "));
-        
+
 //        System.out.println(getNbJoueurs());
         if (nbJoueurs == 2) {
             PanelEast.add(nj1);
@@ -340,28 +340,29 @@ public class Inscription extends Observable {
                 commencer.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        
-                        Joueur j1 = new Joueur(jtf1.getText());
-                        Joueur j2 = new Joueur(jtf2.getText());
-                        Joueur j3 = new Joueur(jtf3.getText());
-                        Joueur j4 = new Joueur(jtf4.getText());
-                        Joueur j5 = new Joueur(jtf5.getText());
-                        Joueur j6 = new Joueur(jtf6.getText());
-                        
-                        joueurs.put(j1, Color.blue);
-                        joueurs.put(j2, Color.red);
-                        joueurs.put(j3, Color.yellow);
-                        joueurs.put(j4, Color.green);
-                        joueurs.put(j5, Color.PINK);
-                        joueurs.put(j6, Color.ORANGE);
-                        
-                        joueurs1.add(j1);
-                        joueurs1.add(j2);
-                        joueurs1.add(j3);
-                        joueurs1.add(j4);
-                        joueurs1.add(j5);
-                        joueurs1.add(j6);
-                        
+
+                        for (int nbJ = 1; nbJ <= nbJoueurs; nbJ++) {
+                            if (nbJ == 2) {
+                                joueurs.put(new Joueur(jtf1.getText()), Color.BLUE);
+                                joueurs1.add(new Joueur(jtf1.getText()));
+                                joueurs.put(new Joueur(jtf2.getText()), Color.RED);
+                                joueurs1.add(new Joueur(jtf2.getText()));
+                            } else if (nbJ == 3) {
+                                joueurs.put(new Joueur(jtf3.getText()), Color.YELLOW);
+                                joueurs1.add(new Joueur(jtf3.getText()));
+                            } else if (nbJ == 4) {
+                                joueurs.put(new Joueur(jtf4.getText()),Color.GREEN);
+                                joueurs1.add(new Joueur(jtf4.getText()));
+                            } else if (nbJ == 5) {
+                                joueurs.put(new Joueur(jtf5.getText()), Color.PINK);
+                                joueurs1.add(new Joueur(jtf5.getText()));
+                            } else if (nbJ == 6) {
+                                joueurs.put(new Joueur(jtf6.getText()), Color.ORANGE);
+                                joueurs1.add(new Joueur(jtf6.getText()));
+                            }
+
+                        }
+
                         setChanged();
                         notifyObservers(new Message(TypeMessages.COMMENCER));
                         clearChanged();
@@ -383,14 +384,12 @@ public class Inscription extends Observable {
     public void close() {
         this.window.dispose();
     }
-    
-    
+
 //        @Override
 //    public synchronized void addObserver(Observer o) {
 //        System.out.println("IHM.Accueil.addObserver():: ajout d'un observateur");
 //        super.addObserver(o); //To change body of generated methods, choose Tools | Templates.
 //    }
-
     public HashMap<Joueur, Color> getJoueurs() {
         return joueurs;
     }
@@ -398,5 +397,5 @@ public class Inscription extends Observable {
     public ArrayList<Joueur> getJoueurs1() {
         return joueurs1;
     }
-    
+
 }

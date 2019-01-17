@@ -15,11 +15,6 @@ public class ImpotsTaxe extends CasePlateau {
 
     private int montant;
 
-    @Override
-    public ArrayList<Action> getActionPossible(Joueur j) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public ImpotsTaxe(int numCase) {
         super(numCase);
         this.setMontant(montant);
