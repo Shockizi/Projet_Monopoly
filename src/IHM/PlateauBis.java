@@ -27,12 +27,12 @@ import javax.swing.JPanel;
  *
  * @author yamin
  */
-public class PlateauBis extends Observable{
+public class PlateauBis extends Observable {
 
     private JFrame window;
     private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons, panelDroite;
     private JLabel labelJoueurCourant = new JLabel("JOUEUR COURANT"), labelCagnotte = new JLabel("CAGNOTTE");
-    private JButton btnLancerDès = new JButton("Lancer dès"), btnAcheterTerrain = new JButton("Acheter terrain"), btnConstruire = new JButton("Construire"), btnAbandonner = new JButton("Abandonner");
+    private JButton btnLancerDès = new JButton("Lancer dès"), btnAcheterTerrain = new JButton("Acheter terrain"), btnConstruire = new JButton("Construire"), btnFinTour = new JButton("Fin de tour"), btnAbandonner = new JButton("Abandonner");
     private HashMap<Integer, ImagePanel> casesPlateau = new HashMap<Integer, ImagePanel>();
 
     public PlateauBis(Joueur joueurCourant) {
@@ -84,6 +84,13 @@ public class PlateauBis extends Observable{
             } else if (i == 26) {
                 panelCommande.add(btnConstruire);
                 btnConstruire.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    }
+                });
+            } else if (i == 32) {
+                panelCommande.add(btnFinTour);
+                btnFinTour.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                     }
@@ -550,7 +557,6 @@ public class PlateauBis extends Observable{
         ipAvenueDeBreteuil.setPreferredSize(new Dimension(iAvenueDeBreteuil.getIconWidth(), iAvenueDeBreteuil.getIconHeight()));
         panelGrille.add(ipAvenueDeBreteuil, gbc);
 
-
     }
 
     public void afficher() {
@@ -577,12 +583,10 @@ public class PlateauBis extends Observable{
         //String sCagnotte = cagnotte.
         this.labelCagnotte.setText(cagnotte + "");
     }
-    
+
     //public static void main(String[] args) {
-        // TODO code application logic here
+    // TODO code application logic here
     //    PlateauBis p = new PlateauBis();
     //    p.afficher();
     //}
-    
-
 }
