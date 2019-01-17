@@ -14,6 +14,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
  
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
  
 public class ImagePanel extends JPanel {
@@ -25,6 +26,8 @@ public class ImagePanel extends JPanel {
      */
  
     private Image img;
+    private JPanel panelPions, panelMaisons;
+    private JLabel labelNbMaisonHotel;
      
     public ImagePanel(ImageIcon img){
         this.img = img.getImage();

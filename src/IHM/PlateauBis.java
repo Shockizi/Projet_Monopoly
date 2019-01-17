@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 public class PlateauBis {
 
     private JFrame window;
-    private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons;
+    private JPanel mainPanel, panelGrille, panelCommande;
     private HashMap<Integer, ImagePanel> casesPlateau = new HashMap<Integer, ImagePanel>();
 
     public PlateauBis() {
