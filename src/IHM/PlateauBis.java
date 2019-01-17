@@ -5,7 +5,14 @@
  */
 package IHM;
 
+import Message.Message;
+import Message.TypeMessages;
+import static Message.TypeMessages.FINDETOUR;
+import Modèle.CasePlateau;
 import Modèle.Joueur;
+import Modèle.Plateau;
+import Modèle.Propriete;
+import Modèle.Terrain;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,14 +35,16 @@ import javax.swing.JPanel;
  * @author yamin
  */
 public class PlateauBis extends Observable {
-
+    
+    private Plateau plateau;
     private JFrame window;
     private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons, panelDroite;
-    private JLabel labelJoueurCourant = new JLabel("JOUEUR COURANT"), labelCagnotte = new JLabel("CAGNOTTE");
+    private JLabel labelJoueurCourant = new JLabel(""), labelCagnotte = new JLabel("");
     private JButton btnLancerDès = new JButton("Lancer dès"), btnAcheterTerrain = new JButton("Acheter terrain"), btnConstruire = new JButton("Construire"), btnFinTour = new JButton("Fin de tour"), btnAbandonner = new JButton("Abandonner");
     private HashMap<Integer, ImagePanel> casesPlateau = new HashMap<Integer, ImagePanel>();
-
-    public PlateauBis(Joueur joueurCourant) {
+    private Joueur joueurCourant;
+    
+    public PlateauBis(Joueur joueur) {
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
@@ -48,18 +57,22 @@ public class PlateauBis extends Observable {
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(new Color(255, 191, 128));
         mainPanel.setOpaque(true);
-
+        
         panelGrille = new JPanel(new GridBagLayout());
         panelGrille.setBackground(new Color(255, 191, 128));
         panelGrille.setOpaque(true);
-
+        
         panelCommande = new JPanel(new GridLayout(16, 3));
         panelCommande.setBackground(new Color(255, 191, 128));
         panelCommande.setOpaque(true);
-
+        
         mainPanel.add(panelGrille, BorderLayout.CENTER);
         mainPanel.add(panelCommande, BorderLayout.EAST);
         window.add(mainPanel);
+        
+        
+        this.joueurCourant = joueur;
+        
 
         // Boutons à droite //
         for (int i = 1; i < 48; i++) {
@@ -74,6 +87,14 @@ public class PlateauBis extends Observable {
                 btnLancerDès.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        setChanged();
+                        notifyObservers(new Message(TypeMessages.LANCERDES));
+                        clearChanged();
+                        if (joueurCourant.verifDouble()) {
+                            btnLancerDès.setEnabled(true);
+                        } else {
+                            btnLancerDès.setEnabled(false);
+                        }
                     }
                 });
             } else if (i == 20) {
@@ -81,6 +102,15 @@ public class PlateauBis extends Observable {
                 btnAcheterTerrain.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        setChanged();
+                        notifyObservers(new Message(TypeMessages.ACHETER));
+                        clearChanged();
+                        CasePlateau prop = plateau.getCasesPlat().get(joueurCourant.getNumCaseCourante());
+                        if (prop instanceof Propriete) {
+                            if (joueurCourant.getCagnotte() < ((Propriete) prop).getPrixDAchat()) {
+                                btnAcheterTerrain.setEnabled(false);
+                            }
+                        }
                     }
                 });
             } else if (i == 26) {
@@ -88,6 +118,15 @@ public class PlateauBis extends Observable {
                 btnConstruire.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        setChanged();
+                        notifyObservers(new Message(TypeMessages.CONSTRUIRE));
+                        clearChanged();
+                        CasePlateau prop = plateau.getCasesPlat().get(joueurCourant.getNumCaseCourante());
+                        if (prop instanceof Terrain) {
+                            if (joueurCourant.getCagnotte() < ((Terrain) prop).getConstruMaisonHotel() && ((Terrain) prop).getNbHotel() == 1) {
+                                btnConstruire.setEnabled(false);
+                            }
+                        } 
                     }
                 });
             } else if (i == 32) {
@@ -95,6 +134,11 @@ public class PlateauBis extends Observable {
                 btnFinTour.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        setChanged();
+                        notifyObservers(new Message(TypeMessages.FINDETOUR));
+                        clearChanged();
+                        
+                        
                     }
                 });
             } else if (i == 38) {
@@ -102,13 +146,12 @@ public class PlateauBis extends Observable {
                 btnAbandonner.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
                     }
                 });
             } else {
                 panelCommande.add(new JLabel(""));
             }
-
+            
         }
 
         // ======= Les Cases du plateau ========
@@ -156,7 +199,7 @@ public class PlateauBis extends Observable {
         ImageIcon iCaisseCommu3 = new ImageIcon(System.getProperty("user.dir") + "/src/image/CaisseCommu3.png");
         ImageIcon iAvenueFoch = new ImageIcon(System.getProperty("user.dir") + "/src/image/AvenueFoch.png");
         ImageIcon iAvenueDeBreteuil = new ImageIcon(System.getProperty("user.dir") + "/src/image/AvenueDeBreteuil.png");
-
+        
         GridBagConstraints gbc = new GridBagConstraints();
 
         //PARC GRATUIT
@@ -558,29 +601,33 @@ public class PlateauBis extends Observable {
         casesPlateau.put(32, ipAvenueDeBreteuil);
         ipAvenueDeBreteuil.setPreferredSize(new Dimension(iAvenueDeBreteuil.getIconWidth(), iAvenueDeBreteuil.getIconHeight()));
         panelGrille.add(ipAvenueDeBreteuil, gbc);
-
+        
     }
-
+    
     public void afficher() {
         this.window.setVisible(true);
     }
-
+    
     public void close() {
         this.window.dispose();
     }
-
+    
+    public void setJoueurCourant(Joueur joueurCourant) {
+        this.joueurCourant = joueurCourant;
+    }
+    
     public JLabel getLabelJoueurCourant() {
         return labelJoueurCourant;
     }
-
+    
     public void setLabelJoueurCourant(String text) {
         this.labelJoueurCourant.setText(text);
     }
-
+    
     public JLabel getLabelCagnotte() {
         return labelCagnotte;
     }
-
+    
     public void setLabelCagnotte(int cagnotte) {
         //String sCagnotte = cagnotte.
         this.labelCagnotte.setText(cagnotte + "");
@@ -591,4 +638,6 @@ public class PlateauBis extends Observable {
     //    PlateauBis p = new PlateauBis();
     //    p.afficher();
     //}
+    
+    
 }

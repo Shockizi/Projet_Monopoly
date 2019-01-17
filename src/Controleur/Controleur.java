@@ -33,7 +33,7 @@ import java.util.Scanner;
  */
 public class Controleur implements Observer {
 
-    private Plateau p;
+    private Plateau p = new Plateau();
     private Joueur joueurCourant;
     private Accueil ihm;
     private IHMNbJoueurs ihmnbJoueurs;
@@ -113,7 +113,6 @@ public class Controleur implements Observer {
 //            }
 //        }
 //    }
-
 //    public void partieDemo() {
 //
 //        while (getGagnant() == null) {
@@ -218,7 +217,6 @@ public class Controleur implements Observer {
 //        }
 //        getGagnant();
 //    }
-
     public ArrayList<Joueur> getJoueurs() {
         return p.getJoueurs();
     }
@@ -249,7 +247,7 @@ public class Controleur implements Observer {
             ihmplateau.addObserver(this);
             ihmplateau.afficher();
             this.ajout();
-            for (int i = 0; i < p.getJoueurs().size();i++){
+            for (int i = 0; i < p.getJoueurs().size(); i++) {
                 p.getJoueurs().get(i).setNumCaseCourante(1);
             }
 
@@ -260,6 +258,28 @@ public class Controleur implements Observer {
             ihmInsc.afficher();
             ihmnbJoueurs.close();
 
+        } else if (m.getType() == TypeMessages.FINDETOUR) {
+            joueurSuivant();
+            System.out.println(joueurCourant.getNom());
+
+        } else if (m.getType() == TypeMessages.LANCERDES) {
+            joueurCourant.lancerDes();
+            joueurCourant.setNumCaseCourante(joueurCourant.getNumCaseCourante() + joueurCourant.getDe1() + joueurCourant.getDe2());
+
+        } else if (m.getType() == TypeMessages.ACHETER) {
+            CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
+            joueurCourant.addProriete((Propriete) p.getCasesPlat().get(joueurCourant.getNumCaseCourante()));
+            joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Propriete) prop).getPrixDAchat());
+
+        } else if (m.getType() == TypeMessages.CONSTRUIRE) {
+            CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
+            if (((Terrain) prop).getNbMaison() < 4) {
+                ((Terrain) prop).setNbMaison(((Terrain) prop).getNbMaison() + 1);
+                joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
+            } else if (((Terrain) prop).getNbMaison() == 4 && ((Terrain) prop).getNbHotel() == 0) {
+                ((Terrain) prop).setNbHotel(1);
+                joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
+            }
         }
 
     }
