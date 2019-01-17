@@ -40,8 +40,7 @@ public class Inscription extends Observable {
     private Message m;
     private JComboBox symbole, symbole2, symbole3, symbole4, symbole5, symbole6;
     private String[] pions = {"Voiture", "Bâteau", "Dé à Coudre", "Chapeau", "Fer à repasser", "Brouette"};
-    public Inscription(int nbJoueur) {
-        this.nbJoueurs = nbJoueur;
+    public Inscription() {
         window = new JFrame();
         window.setTitle("Inscription Monopoly");
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -203,7 +202,7 @@ public class Inscription extends Observable {
         panelCombo6.add(new JLabel(" "));
 
 
-        if (nbJoueur == 2) {
+        if (getNbJoueurs() == 2) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -224,7 +223,7 @@ public class Inscription extends Observable {
             PanelEast.add(new JLabel(""));
         }
 
-        if (nbJoueur == 3) {
+        if (getNbJoueurs() == 3) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -246,7 +245,7 @@ public class Inscription extends Observable {
 
         }
 
-        if (nbJoueur == 4) {
+        if (getNbJoueurs() == 4) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -268,7 +267,7 @@ public class Inscription extends Observable {
 
         }
 
-        if (nbJoueur == 5) {
+        if (getNbJoueurs() == 5) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -290,7 +289,7 @@ public class Inscription extends Observable {
 
         }
 
-        if (nbJoueur == 6) {
+        if (getNbJoueurs() == 6) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -325,7 +324,7 @@ public class Inscription extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers();
+                        notifyObservers(new Message(TypeMessages.RETOUR));
                         clearChanged();
                     }
                 });
@@ -335,7 +334,7 @@ public class Inscription extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers();
+                        notifyObservers(new Message(TypeMessages.COMMENCER));
                         clearChanged();
                     }
                 });
@@ -356,4 +355,12 @@ public class Inscription extends Observable {
         this.window.dispose();
     }
 
+    public int getNbJoueurs() {
+        return nbJoueurs;
+    }
+
+    public void setNbJoueurs(int nbJoueurs) {
+        this.nbJoueurs = nbJoueurs;
+    }
+    
 }
