@@ -160,7 +160,8 @@ public class Controleur implements Observer {
     }
 
     public boolean verifAction() {
-        joueurCourant.getPosition().
+        return true;
+       // joueurCourant.getPosition().
 
 //        while (getGagnant() == null) {
 //            int de1 = joueurCourant.getDe1();
@@ -261,7 +262,7 @@ public class Controleur implements Observer {
 //            System.out.println("=============================================================\n");
 //        }
 //        getGagnant();
-    }
+   }
 
     public void inscrireJoueur(Joueur j) {
         p.getJoueurs().add(j);
