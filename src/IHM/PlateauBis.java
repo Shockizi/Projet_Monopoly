@@ -114,19 +114,15 @@ public class PlateauBis extends Observable {
                 btnConstruire.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        
+                        setChanged();
+                        notifyObservers(new Message(TypeMessages.CONSTRUIRE));
+                        clearChanged();
                         CasePlateau prop = plateau.getCasesPlat().get(joueurCourant.getNumCaseCourante());
                         if (prop instanceof Terrain) {
                             if (joueurCourant.getCagnotte() < ((Terrain) prop).getConstruMaisonHotel() && ((Terrain) prop).getNbHotel() == 1) {
                                 btnConstruire.setEnabled(false);
                             }
-                        } else if (((Terrain) prop).getNbMaison() < 4) {
-                            ((Terrain) prop).setNbMaison(((Terrain) prop).getNbMaison() + 1);
-                            joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
-                        } else if (((Terrain) prop).getNbMaison() == 4 && ((Terrain) prop).getNbHotel() == 0) {
-                            ((Terrain) prop).setNbHotel(1);
-                            joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
-                        }
+                        } 
                     }
                 });
             } else if (i == 32) {

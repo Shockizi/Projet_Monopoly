@@ -20,6 +20,7 @@ public enum TypeMessages {
     FINDETOUR,
     LANCERDES,
     ACHETER,
+    CONSTRUIRE,
 
     
     
