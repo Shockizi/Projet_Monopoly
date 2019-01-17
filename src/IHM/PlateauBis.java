@@ -50,7 +50,7 @@ public class PlateauBis {
         panelGrille.setBackground(new Color(255, 191, 128));
         panelGrille.setOpaque(true);
 
-        panelCommande = new JPanel(new GridLayout(16, 1));
+        panelCommande = new JPanel(new GridLayout(16, 3));
         panelCommande.setBackground(new Color(255, 191, 128));
         panelCommande.setOpaque(true);
 
@@ -59,33 +59,33 @@ public class PlateauBis {
         window.add(mainPanel);
 
         // Boutons à droite //
-        for (int i = 1; i < 16; i++) {
-            if (i == 2) {
+        for (int i = 1; i < 48; i++) {
+            if (i == 5) {
                 panelCommande.add(labelJoueurCourant);
-            } else if (i == 3) {
+            } else if (i == 8) {
                 panelCommande.add(labelCagnotte);
-            } else if (i == 5) {
+            } else if (i == 14) {
                 panelCommande.add(btnLancerDès);
                 btnLancerDès.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                     }
                 });
-            } else if (i == 7) {
+            } else if (i == 20) {
                 panelCommande.add(btnAcheterTerrain);
                 btnAcheterTerrain.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                     }
                 });
-            } else if (i == 9) {
+            } else if (i == 26) {
                 panelCommande.add(btnConstruire);
                 btnConstruire.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                     }
                 });
-            } else if (i == 15) {
+            } else if (i == 38) {
                 panelCommande.add(btnAbandonner);
                 btnAbandonner.addActionListener(new ActionListener() {
                     @Override
