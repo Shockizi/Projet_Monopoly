@@ -128,6 +128,7 @@ public class Controleur implements Observer {
             ihmplateau.setLabelJoueurCourant(joueurCourant.getNom());
             ihmplateau.setLabelCagnotte(joueurCourant.getCagnotte());
             verifAction();
+            ihmplateau.getBtnLancerDès().setEnabled(true);
             
 
         } else if (m.getType() == TypeMessages.LANCERDES) {
