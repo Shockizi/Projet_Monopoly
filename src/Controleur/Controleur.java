@@ -321,8 +321,8 @@ public class Controleur implements Observer {
         
         else if (m.getType() == TypeMessages.ACHETER) {
             
-            joueurCourant.addProriete((Propriete) plateau.getCasesPlat().get(joueurCourant.getNumCaseCourante()));
-                        joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Propriete) prop).getPrixDAchat());
+           // joueurCourant.addProriete((Propriete) plateau.getCasesPlat().get(joueurCourant.getNumCaseCourante()));
+           //             joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Propriete) prop).getPrixDAchat());
         }
         
         
