@@ -313,7 +313,6 @@ public class Controleur implements Observer {
             Color c = ihmInsc.getJoueurs().get(j);
 
         }
-
     }
 
 }
