@@ -298,6 +298,9 @@ public class Controleur implements Observer {
             ihmplateau = new PlateauBis(ihmInsc.getJoueurs1().get(0));
             ihmplateau.addObserver(this);
             ihmplateau.afficher();
+            for (int i = 0; i < p.getJoueurs().size();i++){
+                p.getJoueurs().get(i).setNumCaseCourante(1);
+            }
 
             //ouvrir ihm de jeu
         } else if (m.getType() == TypeMessages.NBJOUEUR) {
