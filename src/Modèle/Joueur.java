@@ -25,7 +25,12 @@ public class Joueur {
     public Joueur(String nom) {
         this.nom = nom;
         this.carteLiberéDePrison = 0;
-        position = new CasePlateau(1) {};
+        position = new CasePlateau(1) {
+            @Override
+            public ArrayList<Action> getActionPossible(Joueur j) {
+                return null;
+            }
+        };
     }
 
     public int getCarteLiberéDePrison() {

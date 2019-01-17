@@ -33,4 +33,13 @@ public class ImpotsTaxe extends CasePlateau {
         }
     }
 
+    @Override
+    public ArrayList<Action> getActionPossible(Joueur j) {
+        ArrayList<Action> actionsPossibes = new ArrayList<>();
+        actionsPossibes.add(Action.DEPLACER);
+        actionsPossibes.add(Action.PAYER);
+
+        return actionsPossibes;
+    }
+
 }

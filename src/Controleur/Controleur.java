@@ -40,6 +40,7 @@ public class Controleur implements Observer {
     private IHMRegles ihmregles;
     private Inscription ihmInsc;
     private PlateauBis ihmplateau;
+    private boolean relancer;
 
     public Controleur() {
         ihm = new Accueil();
@@ -48,47 +49,6 @@ public class Controleur implements Observer {
 
         ihmnbJoueurs = new IHMNbJoueurs();
         ihmnbJoueurs.addObserver(this);
-    }
-
-    public void inscrireJoueur(Joueur j) {
-        p.getJoueurs().add(j);
-    }
-
-    public Joueur getJoueurCourant() {
-        return this.joueurCourant;
-    }
-
-    public void joueurSuivant() {
-        int i = 0;
-        boolean trouve = false;
-        for (Joueur j : p.getJoueurs()) {
-            i += 1;
-            if (joueurCourant == j && p.getJoueurs().size() == (i) && trouve == false) {
-                joueurCourant = p.getJoueurs().get(0);
-                trouve = true;
-            } else if (joueurCourant == j && trouve == false) {
-                joueurCourant = p.getJoueurs().get(i);
-                trouve = true;
-            }
-        }
-    }
-
-    public Joueur getGagnant() {
-        if (p.getJoueurs().size() == 1) {
-            //System.out.println("Félicitations " + joueurs.get(0).getNom() + ", vous êtes le grand vainqueur de cette partie !!!");
-            return p.getJoueurs().get(0);
-        } else {
-            return null;
-        }
-    }
-
-    public void verifCagnotte() {
-        if (joueurCourant.getCagnotte() < 1) {
-            //System.out.println(joueurCourant.getNom() + ", vous avez fait faillite ! Vous êtes éliminé ! ");
-            joueurCourant.retirerProprietes();
-            p.getJoueurs().remove(joueurCourant);
-            joueurSuivant();
-        }
     }
 
 //    public boolean achatPossible() {
@@ -113,11 +73,96 @@ public class Controleur implements Observer {
 //            }
 //        }
 //    }
-//    public void partieDemo() {
-//
+    public ArrayList<Joueur> getJoueurs() {
+        return p.getJoueurs();
+    }
+
+//    public void setJoueurs(ArrayList<Joueur> joueurs) {
+//        this.joueurs = joueurs;
+//    }
+    @Override
+    public void update(Observable arg0, Object arg1) {
+        Message m = (Message) arg1;
+
+        if (m.getType() == TypeMessages.JOUER_PARTIE) {
+            ihm.close();
+            ihmnbJoueurs.afficher();
+
+        } else if (m.getType() == TypeMessages.REGLES) {
+            ihm.close();
+            ihmregles = new IHMRegles();
+            // ouvrir ihm des règles
+        } else if (m.getType() == TypeMessages.RETOUR) {
+            ihmInsc.close();
+            ihmnbJoueurs.afficher();
+
+        } else if (m.getType() == TypeMessages.COMMENCER) {
+            ihmInsc.close();
+            p = new Plateau();
+            for (Joueur j : ihmInsc.getJoueurs1()) {
+                inscrireJoueur(j);
+            }
+            joueurCourant = p.getJoueurs().get(0);
+            ihmplateau = new PlateauBis(ihmInsc.getJoueurs1().get(0));
+            ihmplateau.addObserver(this);
+            ihmplateau.afficher();
+            for (int i = 0; i < p.getJoueurs().size(); i++) {
+                p.getJoueurs().get(i).setNumCaseCourante(1);
+            }
+
+            //ouvrir ihm de jeu
+        } else if (m.getType() == TypeMessages.NBJOUEUR) {
+            ihmInsc = new Inscription(m.getNbJoueurs());
+            ihmInsc.addObserver(this);
+            ihmInsc.afficher();
+            ihmnbJoueurs.close();
+
+        } else if (m.getType() == TypeMessages.FINDETOUR) {
+            joueurSuivant();
+            System.out.println(joueurCourant.getNom());
+            ihmplateau.setLabelJoueurCourant(joueurCourant.getNom());
+            ihmplateau.setLabelCagnotte(joueurCourant.getCagnotte());
+            System.out.println(joueurCourant.getNumCaseCourante());
+
+        } else if (m.getType() == TypeMessages.LANCERDES) {
+            joueurCourant.lancerDes();
+            joueurCourant.setNumCaseCourante(joueurCourant.getNumCaseCourante() + joueurCourant.getDe1() + joueurCourant.getDe2());
+            System.out.println(joueurCourant.getDe1());
+            System.out.println(joueurCourant.getDe2());
+            
+            if (joueurCourant.verifDouble()) {
+                ihmplateau.getBtnLancerDès().setEnabled(true);
+            } else {
+                ihmplateau.getBtnLancerDès().setEnabled(false);
+            }
+
+        } else if (m.getType() == TypeMessages.ACHETER) {
+            CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
+            joueurCourant.addProriete((Propriete) p.getCasesPlat().get(joueurCourant.getNumCaseCourante()));
+            joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Propriete) prop).getPrixDAchat());
+
+        } else if (m.getType() == TypeMessages.CONSTRUIRE) {
+            CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
+            if (prop instanceof Terrain) {
+                if (joueurCourant.getCagnotte() < ((Terrain) prop).getConstruMaisonHotel() && ((Terrain) prop).getNbHotel() == 1) {
+                    ihmplateau.getBtnConstruire().setEnabled(false);
+                }
+            }
+            if (((Terrain) prop).getNbMaison() < 4) {
+                ((Terrain) prop).setNbMaison(((Terrain) prop).getNbMaison() + 1);
+                joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
+            } else if (((Terrain) prop).getNbMaison() == 4 && ((Terrain) prop).getNbHotel() == 0) {
+                ((Terrain) prop).setNbHotel(1);
+                joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
+            }
+        }
+
+    }
+
+    public boolean verifAction() {
+        joueurCourant.getPosition().
+
 //        while (getGagnant() == null) {
-//            System.out.println(joueurCourant.getNom() + " à vous de jouer ... ");
-//            joueurCourant.getPosition().lancerAction(Action.DEPLACER, joueurCourant);
 //            int de1 = joueurCourant.getDe1();
 //            int de2 = joueurCourant.getDe2();
 //            int x = de1 + de2;
@@ -216,82 +261,47 @@ public class Controleur implements Observer {
 //            System.out.println("=============================================================\n");
 //        }
 //        getGagnant();
-//    }
-    public ArrayList<Joueur> getJoueurs() {
-        return p.getJoueurs();
     }
 
-//    public void setJoueurs(ArrayList<Joueur> joueurs) {
-//        this.joueurs = joueurs;
-//    }
-    @Override
-    public void update(Observable arg0, Object arg1) {
-        Message m = (Message) arg1;
+    public void inscrireJoueur(Joueur j) {
+        p.getJoueurs().add(j);
+    }
 
-        if (m.getType() == TypeMessages.JOUER_PARTIE) {
-            ihm.close();
-            ihmnbJoueurs.afficher();
+    public Joueur getJoueurCourant() {
+        return this.joueurCourant;
+    }
 
-        } else if (m.getType() == TypeMessages.REGLES) {
-            ihm.close();
-            ihmregles = new IHMRegles();
-            // ouvrir ihm des règles
-        } else if (m.getType() == TypeMessages.RETOUR) {
-            ihmInsc.close();
-            ihmnbJoueurs.afficher();
-
-        } else if (m.getType() == TypeMessages.COMMENCER) {
-            ihmInsc.close();
-            p = new Plateau();
-            ihmplateau = new PlateauBis(ihmInsc.getJoueurs1().get(0));
-            ihmplateau.addObserver(this);
-            ihmplateau.afficher();
-            this.ajout();
-            for (int i = 0; i < p.getJoueurs().size(); i++) {
-                p.getJoueurs().get(i).setNumCaseCourante(1);
+    public void joueurSuivant() {
+        int i = 0;
+        boolean trouve = false;
+        for (Joueur j : p.getJoueurs()) {
+            i += 1;
+            if (joueurCourant == j && p.getJoueurs().size() == (i) && trouve == false) {
+                joueurCourant = p.getJoueurs().get(0);
+                trouve = true;
+            } else if (joueurCourant == j && trouve == false) {
+                joueurCourant = p.getJoueurs().get(i);
+                trouve = true;
             }
+        }
+    }
 
-            //ouvrir ihm de jeu
-        } else if (m.getType() == TypeMessages.NBJOUEUR) {
-            ihmInsc = new Inscription(m.getNbJoueurs());
-            ihmInsc.addObserver(this);
-            ihmInsc.afficher();
-            ihmnbJoueurs.close();
+    public Joueur getGagnant() {
+        if (p.getJoueurs().size() == 1) {
+            //System.out.println("Félicitations " + joueurs.get(0).getNom() + ", vous êtes le grand vainqueur de cette partie !!!");
+            return p.getJoueurs().get(0);
+        } else {
+            return null;
+        }
+    }
 
-        } else if (m.getType() == TypeMessages.FINDETOUR) {
+    public void verifCagnotte() {
+        if (joueurCourant.getCagnotte() < 1) {
+            //System.out.println(joueurCourant.getNom() + ", vous avez fait faillite ! Vous êtes éliminé ! ");
+            joueurCourant.retirerProprietes();
+            p.getJoueurs().remove(joueurCourant);
             joueurSuivant();
-            System.out.println(joueurCourant.getNom());
-
-        } else if (m.getType() == TypeMessages.LANCERDES) {
-            joueurCourant.lancerDes();
-            joueurCourant.setNumCaseCourante(joueurCourant.getNumCaseCourante() + joueurCourant.getDe1() + joueurCourant.getDe2());
-
-        } else if (m.getType() == TypeMessages.ACHETER) {
-            CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
-            joueurCourant.addProriete((Propriete) p.getCasesPlat().get(joueurCourant.getNumCaseCourante()));
-            joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Propriete) prop).getPrixDAchat());
-
-        } else if (m.getType() == TypeMessages.CONSTRUIRE) {
-            CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
-            if (((Terrain) prop).getNbMaison() < 4) {
-                ((Terrain) prop).setNbMaison(((Terrain) prop).getNbMaison() + 1);
-                joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
-            } else if (((Terrain) prop).getNbMaison() == 4 && ((Terrain) prop).getNbHotel() == 0) {
-                ((Terrain) prop).setNbHotel(1);
-                joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
-            }
         }
-
     }
 
-    public void ajout() {
-        for (Joueur j : ihmInsc.getJoueurs1()) {
-            p.getJoueurs().add(j);
-        }
-
-    }
-
-//    public static void main(String[] args) {
-//        ihmplateau.afficher();
-//    }
 }

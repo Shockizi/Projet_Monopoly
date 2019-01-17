@@ -32,6 +32,8 @@ public abstract class CasePlateau {
     public void setNumCase(int numCase) {
         this.numCase = numCase;
     }
+    
+    public abstract ArrayList<Action> getActionPossible(Joueur j);
 
     public void lancerAction(Action action, Joueur j) {
         if (action == Action.DEPLACER) {
