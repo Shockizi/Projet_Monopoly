@@ -11,7 +11,7 @@ package Message;
  */
 public class Message {
 
-    public TypeMessages type;
+    private TypeMessages type;
     private int nbJ;
 
     public Message() {
