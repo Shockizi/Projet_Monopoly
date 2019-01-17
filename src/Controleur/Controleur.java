@@ -125,10 +125,10 @@ public class Controleur implements Observer {
 
         } else if (m.getType() == TypeMessages.FINDETOUR) {
             joueurSuivant();
-            System.out.println(joueurCourant.getNom());
             ihmplateau.setLabelJoueurCourant(joueurCourant.getNom());
             ihmplateau.setLabelCagnotte(joueurCourant.getCagnotte());
-            System.out.println(joueurCourant.getNumCaseCourante());
+            verifAction();
+            
 
         } else if (m.getType() == TypeMessages.LANCERDES) {
             joueurCourant.lancerDes();
@@ -153,11 +153,6 @@ public class Controleur implements Observer {
 
         } else if (m.getType() == TypeMessages.CONSTRUIRE) {
             CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
-            if (prop instanceof Terrain) {
-                if (joueurCourant.getCagnotte() < ((Terrain) prop).getConstruMaisonHotel() && ((Terrain) prop).getNbHotel() == 1) {
-                    ihmplateau.getBtnConstruire().setEnabled(false);
-                }
-            }
             if (((Terrain) prop).getNbMaison() < 4) {
                 ((Terrain) prop).setNbMaison(((Terrain) prop).getNbMaison() + 1);
                 joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
@@ -169,8 +164,18 @@ public class Controleur implements Observer {
 
     }
 
-    public boolean verifAction() {
-        return true;
+    public void verifAction() {
+        CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
+        if (prop instanceof Propriete) {
+            if (joueurCourant.getCagnotte() < ((Propriete) prop).getPrixDAchat()) {
+                ihmplateau.getBtnAcheterTerrain().setEnabled(false);
+            }
+        }
+        if (prop instanceof Terrain) {
+            if (joueurCourant.getCagnotte() < ((Terrain) prop).getConstruMaisonHotel() && ((Terrain) prop).getNbHotel() == 1) {
+                ihmplateau.getBtnConstruire().setEnabled(false);
+            }
+        }
         // joueurCourant.getPosition().
 
 //        while (getGagnant() == null) {
