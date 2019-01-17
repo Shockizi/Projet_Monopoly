@@ -18,6 +18,7 @@ import Modèle.Compagnie;
 import Modèle.Couleur;
 import Modèle.Gare;
 import Modèle.Joueur;
+import Modèle.Plateau;
 import Modèle.Propriete;
 import Modèle.Terrain;
 import java.util.ArrayList;
@@ -32,8 +33,7 @@ import java.util.Scanner;
  */
 public class Controleur implements Observer {
 
-    private ArrayList<CasePlateau> plateau = new ArrayList<>();
-    private ArrayList<Joueur> joueurs = new ArrayList<>();
+    private Plateau p;
     private Joueur joueurCourant;
     private Accueil ihm;
     private IHMNbJoueurs ihmnbJoueurs;
@@ -48,13 +48,10 @@ public class Controleur implements Observer {
 
         ihmnbJoueurs = new IHMNbJoueurs();
         ihmnbJoueurs.addObserver(this);
-        
-        ihmplateau = new PlateauBis(joueurCourant);
-        ihmplateau.addObserver(this);
     }
 
     public void inscrireJoueur(Joueur j) {
-        joueurs.add(j);
+        p.getJoueurs().add(j);
     }
 
     public Joueur getJoueurCourant() {
@@ -64,13 +61,13 @@ public class Controleur implements Observer {
     public void joueurSuivant() {
         int i = 0;
         boolean trouve = false;
-        for (Joueur j : joueurs) {
+        for (Joueur j : p.getJoueurs()) {
             i += 1;
-            if (joueurCourant == j && joueurs.size() == (i) && trouve == false) {
-                joueurCourant = joueurs.get(0);
+            if (joueurCourant == j && p.getJoueurs().size() == (i) && trouve == false) {
+                joueurCourant = p.getJoueurs().get(0);
                 trouve = true;
             } else if (joueurCourant == j && trouve == false) {
-                joueurCourant = joueurs.get(i);
+                joueurCourant = p.getJoueurs().get(i);
                 trouve = true;
             }
         }
@@ -128,9 +125,9 @@ public class Controleur implements Observer {
 //        this.joueurCourant = joueurs.get(0);
 //    }
     public Joueur getGagnant() {
-        if (joueurs.size() == 1) {
+        if (p.getJoueurs().size() == 1) {
             //System.out.println("Félicitations " + joueurs.get(0).getNom() + ", vous êtes le grand vainqueur de cette partie !!!");
-            return joueurs.get(0);
+            return p.getJoueurs().get(0);
         } else {
             return null;
         }
@@ -140,7 +137,7 @@ public class Controleur implements Observer {
         if (joueurCourant.getCagnotte() < 1) {
             //System.out.println(joueurCourant.getNom() + ", vous avez fait faillite ! Vous êtes éliminé ! ");
             joueurCourant.retirerProprietes();
-            joueurs.remove(joueurCourant);
+            p.getJoueurs().remove(joueurCourant);
             joueurSuivant();
         }
     }
@@ -274,13 +271,12 @@ public class Controleur implements Observer {
     }
 
     public ArrayList<Joueur> getJoueurs() {
-        return joueurs;
+        return p.getJoueurs();
     }
 
-    public void setJoueurs(ArrayList<Joueur> joueurs) {
-        this.joueurs = joueurs;
-    }
-
+//    public void setJoueurs(ArrayList<Joueur> joueurs) {
+//        this.joueurs = joueurs;
+//    }
     @Override
     public void update(Observable arg0, Object arg1) {
         Message m = (Message) arg1;
@@ -299,6 +295,8 @@ public class Controleur implements Observer {
 
         } else if (m.getType() == TypeMessages.COMMENCER) {
             ihmInsc.close();
+            ihmplateau = new PlateauBis(ihmInsc.getJoueurs1().get(0));
+            ihmplateau.addObserver(this);
             ihmplateau.afficher();
             for (int i = 0; i < joueurs.size();i++){
                 joueurs.get(i).setNumCaseCourante(1);
@@ -310,9 +308,19 @@ public class Controleur implements Observer {
             ihmInsc.addObserver(this);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
-            
+
         }
 
     }
 
+    public void ajout() {
+        for (Joueur j : ihmInsc.getJoueurs1()) {
+            p.getJoueurs().add(j);
+        }
+
+    }
+
+//    public static void main(String[] args) {
+//        ihmplateau.afficher();
+//    }
 }

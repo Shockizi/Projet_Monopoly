@@ -17,6 +17,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -43,7 +44,7 @@ public class Inscription extends Observable {
     private Message m;
     private JComboBox symbole, symbole2, symbole3, symbole4, symbole5, symbole6;
     private String[] pions = {"Voiture", "Bâteau", "Dé à Coudre", "Chapeau", "Fer à repasser", "Brouette"};
-    
+    private ArrayList<Joueur> joueurs1 = new ArrayList<>();
     private HashMap<Joueur,Color > joueurs = new HashMap<Joueur, Color>();
     
     public Inscription(int nbJoueurs) {
@@ -354,6 +355,13 @@ public class Inscription extends Observable {
                         joueurs.put(j5, Color.PINK);
                         joueurs.put(j6, Color.ORANGE);
                         
+                        joueurs1.add(j1);
+                        joueurs1.add(j2);
+                        joueurs1.add(j3);
+                        joueurs1.add(j4);
+                        joueurs1.add(j5);
+                        joueurs1.add(j6);
+                        
                         setChanged();
                         notifyObservers(new Message(TypeMessages.COMMENCER));
                         clearChanged();
@@ -386,4 +394,9 @@ public class Inscription extends Observable {
     public HashMap<Joueur, Color> getJoueurs() {
         return joueurs;
     }
+
+    public ArrayList<Joueur> getJoueurs1() {
+        return joueurs1;
+    }
+    
 }

@@ -15,7 +15,7 @@ import java.util.Random;
 public class Joueur {
 
     private String nom;
-    private int cagnotte;
+    private int cagnotte = 1500;
     private CasePlateau position;
     private ArrayList<Propriete> proprietes = new ArrayList<>();
     private ArrayList<CasePlateau> plateau = new ArrayList<>();

@@ -67,4 +67,22 @@ public class Plateau {
     public void addJoueur(Joueur j) {
         joueurs.add(j);
     }
+
+    public ArrayList<Joueur> getJoueurs() {
+        return joueurs;
+    }
+
+    public void setJoueurs(ArrayList<Joueur> joueurs) {
+        this.joueurs = joueurs;
+    }
+
+    public ArrayList<CasePlateau> getCasesPlat() {
+        return casesPlat;
+    }
+
+    public void setCasesPlat(ArrayList<CasePlateau> casesPlat) {
+        this.casesPlat = casesPlat;
+    }
+    
+    
 }
