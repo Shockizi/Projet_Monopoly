@@ -15,6 +15,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Observable;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,7 +26,7 @@ import javax.swing.JPanel;
  *
  * @author yamin
  */
-public class PlateauBis {
+public class PlateauBis extends Observable{
 
     private JFrame window;
     private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons, panelDroite;

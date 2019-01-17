@@ -9,15 +9,12 @@ import Message.Message;
 import Message.TypeMessages;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URI;
 import java.util.Observable;
-import java.util.Observer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -82,7 +79,6 @@ public class Accueil extends Observable{
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
                         notifyObservers(new Message(TypeMessages.JOUER_PARTIE));
-                        System.out.println("Test1");
                         clearChanged();
                     }
                 });
@@ -111,11 +107,11 @@ public class Accueil extends Observable{
         }        
     }
     
-    @Override
-    public synchronized void addObserver(Observer o) {
-        System.out.println("IHM.Accueil.addObserver():: ajout d'un observateur");
-        super.addObserver(o); //To change body of generated methods, choose Tools | Templates.
-    }
+//    @Override
+//    public synchronized void addObserver(Observer o) {
+//        System.out.println("IHM.Accueil.addObserver():: ajout d'un observateur");
+//        super.addObserver(o); //To change body of generated methods, choose Tools | Templates.
+//    }
     
     public void afficher() {
         this.window.setVisible(true);
