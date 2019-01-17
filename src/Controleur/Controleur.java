@@ -49,7 +49,7 @@ public class Controleur implements Observer {
         ihmnbJoueurs = new IHMNbJoueurs();
         ihmnbJoueurs.addObserver(this);
         
-        ihmplateau = new PlateauBis();
+        ihmplateau = new PlateauBis(joueurCourant);
         ihmplateau.addObserver(this);
     }
 

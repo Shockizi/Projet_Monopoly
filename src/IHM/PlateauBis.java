@@ -5,6 +5,7 @@
  */
 package IHM;
 
+import Modèle.Joueur;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -34,7 +35,7 @@ public class PlateauBis extends Observable{
     private JButton btnLancerDès = new JButton("Lancer dès"), btnAcheterTerrain = new JButton("Acheter terrain"), btnConstruire = new JButton("Construire"), btnAbandonner = new JButton("Abandonner");
     private HashMap<Integer, ImagePanel> casesPlateau = new HashMap<Integer, ImagePanel>();
 
-    public PlateauBis() {
+    public PlateauBis(Joueur joueurCourant) {
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
@@ -61,8 +62,10 @@ public class PlateauBis extends Observable{
         // Boutons à droite //
         for (int i = 1; i < 48; i++) {
             if (i == 5) {
+                this.setLabelJoueurCourant(joueurCourant.getNom());
                 panelCommande.add(labelJoueurCourant);
             } else if (i == 8) {
+                this.setLabelCagnotte(joueurCourant.getCagnotte());
                 panelCommande.add(labelCagnotte);
             } else if (i == 14) {
                 panelCommande.add(btnLancerDès);
@@ -597,5 +600,29 @@ public class PlateauBis extends Observable{
     public void close() {
         this.window.dispose();
     }
+
+    public JLabel getLabelJoueurCourant() {
+        return labelJoueurCourant;
+    }
+
+    public void setLabelJoueurCourant(String text) {
+        this.labelJoueurCourant.setText(text);
+    }
+
+    public JLabel getLabelCagnotte() {
+        return labelCagnotte;
+    }
+
+    public void setLabelCagnotte(int cagnotte) {
+        //String sCagnotte = cagnotte.
+        this.labelCagnotte.setText(cagnotte + "");
+    }
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+        PlateauBis p = new PlateauBis();
+        p.afficher();
+    }
+    
 
 }
