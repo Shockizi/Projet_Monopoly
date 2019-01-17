@@ -97,7 +97,8 @@ public class Controleur implements Observer {
         } else if (m.getType() == TypeMessages.REGLES) {
             ihm.close();
             ihmregles = new IHMRegles();
-            // ouvrir ihm des règles
+            ihmregles.addObserver(this);
+            ihmregles.afficher();
         } else if (m.getType() == TypeMessages.RETOUR) {
             ihmInsc.close();
             ihmnbJoueurs.afficher();
@@ -128,7 +129,6 @@ public class Controleur implements Observer {
             ihmplateau.setLabelJoueurCourant(joueurCourant.getNom());
             ihmplateau.setLabelCagnotte(joueurCourant.getCagnotte());
             verifAction();
-            
 
         } else if (m.getType() == TypeMessages.LANCERDES) {
             joueurCourant.lancerDes();
@@ -159,18 +159,12 @@ public class Controleur implements Observer {
             } else if (((Terrain) prop).getNbMaison() == 4 && ((Terrain) prop).getNbHotel() == 0) {
                 ((Terrain) prop).setNbHotel(1);
                 joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
-            }
-             else if (m.getType() == TypeMessages.REGLES) {
-            ihm.close();
-            ihmregles = new IHMRegles();
-            ihmregles.addObserver(this);
-            ihmregles.afficher();
-        } else if (m.getType() == TypeMessages.FERMER_REGLES) {
-            ihmregles.close();
-            ihm.afficher();  
-        } else if (m.getType() == TypeMessages.RETOUR) {
-            ihmInsc.close();
-            ihmnbJoueurs.afficher();
+            } else if (m.getType() == TypeMessages.FERMER_REGLES) {
+                ihmregles.close();
+                ihm.afficher();
+            } else if (m.getType() == TypeMessages.RETOUR) {
+                ihmInsc.close();
+                ihmnbJoueurs.afficher();
 
             }
         }
@@ -311,7 +305,7 @@ public class Controleur implements Observer {
             } else if (joueurCourant == j && trouve == false) {
                 joueurCourant = p.getJoueurs().get(i);
                 trouve = true;
-        }
+            }
         }
     }
 
@@ -343,14 +337,14 @@ public class Controleur implements Observer {
             pions.put(j, l);
         }
     }
-    
-    public JLabel getPion(Joueur joueur){
+
+    public JLabel getPion(Joueur joueur) {
         JLabel l = new JLabel();
-        for (Joueur j : pions.keySet()){
-            if (joueur == j){
+        for (Joueur j : pions.keySet()) {
+            if (joueur == j) {
                 l = pions.get(j);
             }
-            
+
         }
         return l;
     }
