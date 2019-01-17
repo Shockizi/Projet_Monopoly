@@ -13,10 +13,14 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Observable;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -26,7 +30,9 @@ import javax.swing.JPanel;
 public class PlateauBis extends Observable{
 
     private JFrame window;
-    private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons;
+    private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons, panelDroite;
+    private JLabel labelJoueurCourant = new JLabel("JOUEUR COURANT"), labelCagnotte = new JLabel("CAGNOTTE");
+    private JButton btnLancerDès = new JButton("Lancer dès"), btnAcheterTerrain = new JButton("Acheter terrain"), btnConstruire = new JButton("Construire"), btnAbandonner = new JButton("Abandonner");
     private HashMap<Integer, ImagePanel> casesPlateau = new HashMap<Integer, ImagePanel>();
 
     public PlateauBis() {
@@ -45,13 +51,54 @@ public class PlateauBis extends Observable{
         panelGrille.setBackground(new Color(255, 191, 128));
         panelGrille.setOpaque(true);
 
-        panelCommande = new JPanel(new GridBagLayout());
+        panelCommande = new JPanel(new GridLayout(16, 3));
         panelCommande.setBackground(new Color(255, 191, 128));
         panelCommande.setOpaque(true);
 
         mainPanel.add(panelGrille, BorderLayout.CENTER);
         mainPanel.add(panelCommande, BorderLayout.EAST);
         window.add(mainPanel);
+
+        // Boutons à droite //
+        for (int i = 1; i < 48; i++) {
+            if (i == 5) {
+                panelCommande.add(labelJoueurCourant);
+            } else if (i == 8) {
+                panelCommande.add(labelCagnotte);
+            } else if (i == 14) {
+                panelCommande.add(btnLancerDès);
+                btnLancerDès.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    }
+                });
+            } else if (i == 20) {
+                panelCommande.add(btnAcheterTerrain);
+                btnAcheterTerrain.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    }
+                });
+            } else if (i == 26) {
+                panelCommande.add(btnConstruire);
+                btnConstruire.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    }
+                });
+            } else if (i == 38) {
+                panelCommande.add(btnAbandonner);
+                btnAbandonner.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });
+            } else {
+                panelCommande.add(new JLabel(""));
+            }
+
+        }
 
         // ======= Les Cases du plateau ========
         //Partie Haut :
@@ -502,7 +549,6 @@ public class PlateauBis extends Observable{
         ipAvenueDeBreteuil.setPreferredSize(new Dimension(iAvenueDeBreteuil.getIconWidth(), iAvenueDeBreteuil.getIconHeight()));
         panelGrille.add(ipAvenueDeBreteuil, gbc);
 
-        
         panelMaisons = new JPanel();
         for (int i : casesPlateau.keySet()) {
             ImagePanel ip = casesPlateau.get(i);
@@ -510,11 +556,10 @@ public class PlateauBis extends Observable{
             //Case BAS
             if (i == 2 || i == 4 || i == 7 || i == 9 || i == 10) {
                 panelPions = new JPanel(new GridLayout(2, 3));
-                
 
             } else if (i == 3 || i == 5 || i == 6 || i == 8) {
                 panelPions = new JPanel(new GridLayout(2, 3));
-                
+
                 //Case GAUCHE
             } else if (i == 12 || i == 14 || i == 15 || i == 17 || i == 19 || i == 20) {
                 panelPions = new JPanel(new GridLayout(3, 2));
@@ -529,16 +574,14 @@ public class PlateauBis extends Observable{
             } else if (i == 23 || i == 26 || i == 29) {
                 panelPions = new JPanel(new GridLayout(2, 3));
 
-                
                 //Cases DROITE
             } else if (i == 32 || i == 33 || i == 35 || i == 38 || i == 40) {
                 panelPions = new JPanel(new GridLayout(3, 2));
 
             } else if (i == 34 || i == 36 || i == 37 || i == 39) {
-                
+
                 //Cases COIN
             } else if (i == 1 || i == 21 || i == 31) {
-
 
                 //Visite-Prison
             } else if (i == 11) {
