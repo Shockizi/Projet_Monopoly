@@ -612,6 +612,10 @@ public class PlateauBis extends Observable {
     public void close() {
         this.window.dispose();
     }
+    
+    public ImagePanel getCase(int num){
+        return casesPlateau.get(num);
+    }
 
     public void setJoueurCourant(Joueur joueurCourant) {
         this.joueurCourant = joueurCourant;

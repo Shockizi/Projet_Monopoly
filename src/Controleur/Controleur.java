@@ -23,10 +23,13 @@ import Modèle.Propriete;
 import Modèle.Terrain;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import sun.tools.jstat.Alignment;
 
 /**
@@ -43,6 +46,7 @@ public class Controleur implements Observer {
     private Inscription ihmInsc;
     private PlateauBis ihmplateau;
     private boolean relancer;
+    private HashMap<Joueur, JLabel> pions = new HashMap<Joueur, JLabel>();
 
     public Controleur() {
         ihm = new Accueil();
@@ -137,6 +141,10 @@ public class Controleur implements Observer {
             } else {
                 ihmplateau.getBtnLancerDès().setEnabled(false);
             }
+            JLabel lepion = getPion(joueurCourant);
+            int nc = joueurCourant.getNumCaseCourante();
+            ihmplateau.getCase(nc).addPion(lepion);
+            System.out.println(ihmplateau.getCase(joueurCourant.getNumCaseCourante()));
 
         } else if (m.getType() == TypeMessages.ACHETER) {
             CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
@@ -311,8 +319,23 @@ public class Controleur implements Observer {
     public void couleur() {
         for (Joueur j : ihmInsc.getJoueurs().keySet()) {
             Color c = ihmInsc.getJoueurs().get(j);
-
+            JLabel l = new JLabel(" r ");
+            l.setSize(10, 10);
+            l.setBackground(c);
+            l.setOpaque(true);
+            pions.put(j, l);
         }
+    }
+    
+    public JLabel getPion(Joueur joueur){
+        JLabel l = new JLabel();
+        for (Joueur j : pions.keySet()){
+            if (joueur == j){
+                l = pions.get(j);
+            }
+            
+        }
+        return l;
     }
 
 }
