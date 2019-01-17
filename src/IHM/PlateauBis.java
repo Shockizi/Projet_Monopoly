@@ -618,11 +618,11 @@ public class PlateauBis extends Observable{
         this.labelCagnotte.setText(cagnotte + "");
     }
     
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
         // TODO code application logic here
-        PlateauBis p = new PlateauBis();
-        p.afficher();
-    }
+    //    PlateauBis p = new PlateauBis();
+    //    p.afficher();
+    //}
     
 
 }
