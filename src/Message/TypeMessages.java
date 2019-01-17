@@ -17,6 +17,9 @@ public enum TypeMessages {
     NBJOUEUR,
     RETOUR,
     COMMENCER,
+    FINDETOUR,
+    LANCERDES,
+    ACHETER,
 
     
     
