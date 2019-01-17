@@ -351,7 +351,7 @@ public class Inscription extends Observable {
                                 joueurs.put(new Joueur(jtf3.getText()), Color.YELLOW);
                                 joueurs1.add(new Joueur(jtf3.getText()));
                             } else if (nbJ == 4) {
-                                joueurs.put(new Joueur(jtf4.getText()),Color.GREEN);
+                                joueurs.put(new Joueur(jtf4.getText()), Color.GREEN);
                                 joueurs1.add(new Joueur(jtf4.getText()));
                             } else if (nbJ == 5) {
                                 joueurs.put(new Joueur(jtf5.getText()), Color.PINK);

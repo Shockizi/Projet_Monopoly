@@ -16,6 +16,14 @@ public class CasePrison extends CasePlateau{
     public CasePrison(int numCase) {
         super(numCase);
     }
+
+    @Override
+    public ArrayList<Action> getActionPossible(Joueur j) {
+        ArrayList<Action> actionsPossibes = new ArrayList<>();
+        actionsPossibes.add(Action.DEPLACER);
+
+        return actionsPossibes;
+    }
     
     
     

@@ -16,6 +16,13 @@ public class CaseDépart extends CasePlateau{
     public CaseDépart(int numCase) {
         super(numCase);
     }
+
+    @Override
+    public ArrayList<Action> getActionPossible(Joueur j) {
+        ArrayList<Action> actionsPossibes = new ArrayList<>();
+        actionsPossibes.add(Action.DEPLACER);
+        return actionsPossibes;
+    }
     
     
     

@@ -13,12 +13,15 @@ import java.util.ArrayList;
  */
 public class CaseAllerEnPrison extends CasePlateau {
 
-    public Joueur getProprietaire() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public CaseAllerEnPrison(int numCase) {
         super(numCase = 31);
+    }
+
+    @Override
+    public ArrayList<Action> getActionPossible(Joueur j) {
+       ArrayList<Action> actionsPossibes = new ArrayList<>();
+       actionsPossibes.add(Action.DEPLACER);
+       return actionsPossibes;
     }
 
 }

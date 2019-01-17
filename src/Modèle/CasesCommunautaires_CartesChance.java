@@ -205,4 +205,11 @@ public class CasesCommunautaires_CartesChance extends CasePlateau {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public ArrayList<Action> getActionPossible(Joueur j) {
+        ArrayList<Action> actionsPossibes = new ArrayList<>();
+        actionsPossibes.add(Action.DEPLACER);
+        return actionsPossibes;
+    }
+
 }
