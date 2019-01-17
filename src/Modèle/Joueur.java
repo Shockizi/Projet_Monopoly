@@ -62,6 +62,10 @@ public class Joueur {
     public void setPosition(CasePlateau position) {
         this.position = position;
     }
+    
+    public void setNumCaseCourante(int numCase) {
+        this.position.setNumCase(numCase);
+    }
 
     public void avancer() {
         int dep = de1 + de2;

@@ -300,6 +300,9 @@ public class Controleur implements Observer {
         } else if (m.getType() == TypeMessages.COMMENCER) {
             ihmInsc.close();
             ihmplateau.afficher();
+            for (int i = 0; i < joueurs.size();i++){
+                joueurs.get(i).setNumCaseCourante(1);
+            }
 
             //ouvrir ihm de jeu
         } else if (m.getType() == TypeMessages.NBJOUEUR) {
