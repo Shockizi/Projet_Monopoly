@@ -39,7 +39,7 @@ public class PlateauBis extends Observable {
     private Plateau plateau;
     private JFrame window;
     private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons, panelDroite;
-    private JLabel labelJoueurCourant = new JLabel("JOUEUR COURANT"), labelCagnotte = new JLabel("CAGNOTTE");
+    private JLabel labelJoueurCourant = new JLabel(""), labelCagnotte = new JLabel("");
     private JButton btnLancerDès = new JButton("Lancer dès"), btnAcheterTerrain = new JButton("Acheter terrain"), btnConstruire = new JButton("Construire"), btnFinTour = new JButton("Fin de tour"), btnAbandonner = new JButton("Abandonner");
     private HashMap<Integer, ImagePanel> casesPlateau = new HashMap<Integer, ImagePanel>();
     private Joueur joueurCourant;
@@ -68,7 +68,9 @@ public class PlateauBis extends Observable {
         mainPanel.add(panelCommande, BorderLayout.EAST);
         window.add(mainPanel);
         
+        
         this.joueurCourant = joueur;
+        
 
         // Boutons à droite //
         for (int i = 1; i < 48; i++) {
@@ -133,6 +135,8 @@ public class PlateauBis extends Observable {
                         setChanged();
                         notifyObservers(new Message(TypeMessages.FINDETOUR));
                         clearChanged();
+                        
+                        
                     }
                 });
             } else if (i == 38) {
@@ -632,4 +636,6 @@ public class PlateauBis extends Observable {
     //    PlateauBis p = new PlateauBis();
     //    p.afficher();
     //}
+    
+    
 }

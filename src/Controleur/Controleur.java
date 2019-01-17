@@ -33,7 +33,7 @@ import java.util.Scanner;
  */
 public class Controleur implements Observer {
 
-    private Plateau p;
+    private Plateau p = new Plateau();
     private Joueur joueurCourant;
     private Accueil ihm;
     private IHMNbJoueurs ihmnbJoueurs;
@@ -311,6 +311,7 @@ public class Controleur implements Observer {
 
         } else if (m.getType() == TypeMessages.FINDETOUR) {
             joueurSuivant();
+            System.out.println(joueurCourant.getNom());
             
         } else if (m.getType() == TypeMessages.LANCERDES) {
             joueurCourant.lancerDes();
