@@ -130,7 +130,6 @@ public class Controleur implements Observer {
             ihmplateau.setLabelCagnotte(joueurCourant.getCagnotte());
             verifAction();
             ihmplateau.getBtnLancerDès().setEnabled(true);
-            
 
         } else if (m.getType() == TypeMessages.LANCERDES) {
             joueurCourant.lancerDes();
@@ -161,16 +160,15 @@ public class Controleur implements Observer {
             } else if (((Terrain) prop).getNbMaison() == 4 && ((Terrain) prop).getNbHotel() == 0) {
                 ((Terrain) prop).setNbHotel(1);
                 joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
-            } else if (m.getType() == TypeMessages.FERMER_REGLES) {
-                ihmregles.close();
-                ihm.afficher();
-            } else if (m.getType() == TypeMessages.RETOUR) {
-                ihmInsc.close();
-                ihmnbJoueurs.afficher();
-
             }
-        }
+        } else if (m.getType() == TypeMessages.FERMER_REGLES) {
+            ihmregles.close();
+            ihm.afficher();
+        } else if (m.getType() == TypeMessages.RETOUR) {
+            ihmInsc.close();
+            ihmnbJoueurs.afficher();
 
+        }
     }
 
     public void verifAction() {
