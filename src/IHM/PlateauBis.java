@@ -5,30 +5,37 @@
  */
 package IHM;
 
+import Modèle.Joueur;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Observable;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
  *
  * @author yamin
  */
-public class PlateauBis {
+public class PlateauBis extends Observable{
 
     private JFrame window;
-    private JPanel mainPanel, panelGrille, panelCommande;
+    private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons, panelDroite;
+    private JLabel labelJoueurCourant = new JLabel("JOUEUR COURANT"), labelCagnotte = new JLabel("CAGNOTTE");
+    private JButton btnLancerDès = new JButton("Lancer dès"), btnAcheterTerrain = new JButton("Acheter terrain"), btnConstruire = new JButton("Construire"), btnAbandonner = new JButton("Abandonner");
     private HashMap<Integer, ImagePanel> casesPlateau = new HashMap<Integer, ImagePanel>();
 
-    public PlateauBis() {
+    public PlateauBis(Joueur joueurCourant) {
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
@@ -44,13 +51,56 @@ public class PlateauBis {
         panelGrille.setBackground(new Color(255, 191, 128));
         panelGrille.setOpaque(true);
 
-        panelCommande = new JPanel(new GridBagLayout());
+        panelCommande = new JPanel(new GridLayout(16, 3));
         panelCommande.setBackground(new Color(255, 191, 128));
         panelCommande.setOpaque(true);
 
         mainPanel.add(panelGrille, BorderLayout.CENTER);
         mainPanel.add(panelCommande, BorderLayout.EAST);
         window.add(mainPanel);
+
+        // Boutons à droite //
+        for (int i = 1; i < 48; i++) {
+            if (i == 5) {
+                this.setLabelJoueurCourant(joueurCourant.getNom());
+                panelCommande.add(labelJoueurCourant);
+            } else if (i == 8) {
+                this.setLabelCagnotte(joueurCourant.getCagnotte());
+                panelCommande.add(labelCagnotte);
+            } else if (i == 14) {
+                panelCommande.add(btnLancerDès);
+                btnLancerDès.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    }
+                });
+            } else if (i == 20) {
+                panelCommande.add(btnAcheterTerrain);
+                btnAcheterTerrain.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    }
+                });
+            } else if (i == 26) {
+                panelCommande.add(btnConstruire);
+                btnConstruire.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    }
+                });
+            } else if (i == 38) {
+                panelCommande.add(btnAbandonner);
+                btnAbandonner.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });
+            } else {
+                panelCommande.add(new JLabel(""));
+            }
+
+        }
 
         // ======= Les Cases du plateau ========
         //Partie Haut :
@@ -98,7 +148,6 @@ public class PlateauBis {
         ImageIcon iAvenueFoch = new ImageIcon(System.getProperty("user.dir") + "/src/image/AvenueFoch.png");
         ImageIcon iAvenueDeBreteuil = new ImageIcon(System.getProperty("user.dir") + "/src/image/AvenueDeBreteuil.png");
 
-        // ======= Creation du Plateau =======
         GridBagConstraints gbc = new GridBagConstraints();
 
         //PARC GRATUIT
@@ -511,5 +560,29 @@ public class PlateauBis {
     public void close() {
         this.window.dispose();
     }
+
+    public JLabel getLabelJoueurCourant() {
+        return labelJoueurCourant;
+    }
+
+    public void setLabelJoueurCourant(String text) {
+        this.labelJoueurCourant.setText(text);
+    }
+
+    public JLabel getLabelCagnotte() {
+        return labelCagnotte;
+    }
+
+    public void setLabelCagnotte(int cagnotte) {
+        //String sCagnotte = cagnotte.
+        this.labelCagnotte.setText(cagnotte + "");
+    }
+    
+    //public static void main(String[] args) {
+        // TODO code application logic here
+    //    PlateauBis p = new PlateauBis();
+    //    p.afficher();
+    //}
+    
 
 }

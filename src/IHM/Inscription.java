@@ -7,6 +7,7 @@ package IHM;
 
 import Message.Message;
 import Message.TypeMessages;
+import Modèle.Joueur;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,7 +17,9 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.Observable;
+import java.util.Observer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -40,7 +43,10 @@ public class Inscription extends Observable {
     private Message m;
     private JComboBox symbole, symbole2, symbole3, symbole4, symbole5, symbole6;
     private String[] pions = {"Voiture", "Bâteau", "Dé à Coudre", "Chapeau", "Fer à repasser", "Brouette"};
-    public Inscription() {
+    
+    private HashMap<Joueur,Color > joueurs = new HashMap<Joueur, Color>();
+    
+    public Inscription(int nbJoueurs) {
         window = new JFrame();
         window.setTitle("Inscription Monopoly");
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -200,9 +206,9 @@ public class Inscription extends Observable {
         panelCombo6.add(new JLabel(" "));
         panelCombo6.add(symbole6);
         panelCombo6.add(new JLabel(" "));
-
-
-        if (getNbJoueurs() == 2) {
+        
+//        System.out.println(getNbJoueurs());
+        if (nbJoueurs == 2) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -223,7 +229,7 @@ public class Inscription extends Observable {
             PanelEast.add(new JLabel(""));
         }
 
-        if (getNbJoueurs() == 3) {
+        if (nbJoueurs == 3) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -245,7 +251,7 @@ public class Inscription extends Observable {
 
         }
 
-        if (getNbJoueurs() == 4) {
+        if (nbJoueurs == 4) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -267,7 +273,7 @@ public class Inscription extends Observable {
 
         }
 
-        if (getNbJoueurs() == 5) {
+        if (nbJoueurs == 5) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -289,7 +295,7 @@ public class Inscription extends Observable {
 
         }
 
-        if (getNbJoueurs() == 6) {
+        if (nbJoueurs == 6) {
             PanelEast.add(nj1);
             PanelEast.add(panelJ1);
             PanelEast.add(panelCombo1);
@@ -333,6 +339,21 @@ public class Inscription extends Observable {
                 commencer.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        
+                        Joueur j1 = new Joueur(jtf1.getText());
+                        Joueur j2 = new Joueur(jtf2.getText());
+                        Joueur j3 = new Joueur(jtf3.getText());
+                        Joueur j4 = new Joueur(jtf4.getText());
+                        Joueur j5 = new Joueur(jtf5.getText());
+                        Joueur j6 = new Joueur(jtf6.getText());
+                        
+                        joueurs.put(j1, Color.blue);
+                        joueurs.put(j2, Color.red);
+                        joueurs.put(j3, Color.yellow);
+                        joueurs.put(j4, Color.green);
+                        joueurs.put(j5, Color.PINK);
+                        joueurs.put(j6, Color.ORANGE);
+                        
                         setChanged();
                         notifyObservers(new Message(TypeMessages.COMMENCER));
                         clearChanged();
@@ -354,13 +375,15 @@ public class Inscription extends Observable {
     public void close() {
         this.window.dispose();
     }
-
-    public int getNbJoueurs() {
-        return nbJoueurs;
-    }
-
-    public void setNbJoueurs(int nbJoueurs) {
-        this.nbJoueurs = nbJoueurs;
-    }
     
+    
+//        @Override
+//    public synchronized void addObserver(Observer o) {
+//        System.out.println("IHM.Accueil.addObserver():: ajout d'un observateur");
+//        super.addObserver(o); //To change body of generated methods, choose Tools | Templates.
+//    }
+
+    public HashMap<Joueur, Color> getJoueurs() {
+        return joueurs;
+    }
 }

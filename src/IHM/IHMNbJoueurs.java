@@ -89,7 +89,7 @@ public class IHMNbJoueurs extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers(new Message(TypeMessages.DEUX, 2));
+                        notifyObservers(new Message(TypeMessages.NBJOUEUR, 2));
                         
                         clearChanged();
                     }
@@ -100,7 +100,7 @@ public class IHMNbJoueurs extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers(new Message(TypeMessages.TROIS, 3));
+                        notifyObservers(new Message(TypeMessages.NBJOUEUR, 3));
                         clearChanged();
                     }
                 });
@@ -110,7 +110,7 @@ public class IHMNbJoueurs extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers(new Message(TypeMessages.QUATRE, 4));
+                        notifyObservers(new Message(TypeMessages.NBJOUEUR, 4));
                         clearChanged();
                     }
                 });
@@ -120,7 +120,7 @@ public class IHMNbJoueurs extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers(new Message(TypeMessages.CINQ, 5));
+                        notifyObservers(new Message(TypeMessages.NBJOUEUR,5));
                         clearChanged();
                     }
                 });
@@ -130,7 +130,7 @@ public class IHMNbJoueurs extends Observable {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setChanged();
-                        notifyObservers(new Message(TypeMessages.SIX, 6));
+                        notifyObservers(new Message(TypeMessages.NBJOUEUR, 6));
                         clearChanged();
                     }
                 });
