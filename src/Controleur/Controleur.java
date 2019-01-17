@@ -48,7 +48,7 @@ public class Controleur implements Observer {
 
         ihmnbJoueurs = new IHMNbJoueurs();
         ihmnbJoueurs.addObserver(this);
-        
+
         ihmplateau = new PlateauBis();
         ihmplateau.addObserver(this);
     }
@@ -307,9 +307,20 @@ public class Controleur implements Observer {
             ihmInsc.addObserver(this);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
-            
+
         }
 
     }
 
+    public void ajout() {
+        for (Joueur j : ihmInsc.getJoueurs1()) {
+            joueurs.add(j);
+        }
+        
+    }
+    public void ajoutplateau(){
+        for(Joueur j : joueurs){
+            
+        }
+    }
 }

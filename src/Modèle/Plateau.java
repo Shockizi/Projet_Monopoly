@@ -67,4 +67,5 @@ public class Plateau {
     public void addJoueur(Joueur j) {
         joueurs.add(j);
     }
+    
 }
