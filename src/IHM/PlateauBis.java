@@ -148,14 +148,13 @@ public class PlateauBis extends Observable{
         ImageIcon iAvenueFoch = new ImageIcon(System.getProperty("user.dir") + "/src/image/AvenueFoch.png");
         ImageIcon iAvenueDeBreteuil = new ImageIcon(System.getProperty("user.dir") + "/src/image/AvenueDeBreteuil.png");
 
-        // ======= Creation du Plateau =======
         GridBagConstraints gbc = new GridBagConstraints();
 
         //PARC GRATUIT
         gbc.gridx = gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipParcGratuit = new ImagePanel(iParcGratuit);
+        ImagePanel ipParcGratuit = new ImagePanel(iParcGratuit, PositionCase_enum.NORTH, false);
         ipParcGratuit.setPreferredSize(new Dimension(iParcGratuit.getIconWidth(), iParcGratuit.getIconHeight()));
         casesPlateau.put(21, ipParcGratuit);
         panelGrille.add(ipParcGratuit, gbc);
@@ -165,7 +164,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipAvenueMatigon = new ImagePanel(iAvenueMatignon);
+        ImagePanel ipAvenueMatigon = new ImagePanel(iAvenueMatignon, PositionCase_enum.NORTH, true);
         casesPlateau.put(22, ipAvenueMatigon);
         ipAvenueMatigon.setPreferredSize(new Dimension(iAvenueMatignon.getIconWidth(), iAvenueMatignon.getIconHeight()));
         panelGrille.add(ipAvenueMatigon, gbc);
@@ -175,7 +174,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipChance2 = new ImagePanel(iChance2);
+        ImagePanel ipChance2 = new ImagePanel(iChance2, PositionCase_enum.NORTH, false);
         casesPlateau.put(23, ipChance2);
         ipChance2.setPreferredSize(new Dimension(iChance2.getIconWidth(), iChance2.getIconHeight()));
         panelGrille.add(ipChance2, gbc);
@@ -185,7 +184,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipBoulevardMalherbes = new ImagePanel(iBoulevardMalherbes);
+        ImagePanel ipBoulevardMalherbes = new ImagePanel(iBoulevardMalherbes, PositionCase_enum.NORTH, true);
         casesPlateau.put(24, ipBoulevardMalherbes);
         ipBoulevardMalherbes.setPreferredSize(new Dimension(iBoulevardMalherbes.getIconWidth(), iBoulevardMalherbes.getIconHeight()));
         panelGrille.add(ipBoulevardMalherbes, gbc);
@@ -195,7 +194,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipAvenueHenriMartin = new ImagePanel(iAvenueHenriMartin);
+        ImagePanel ipAvenueHenriMartin = new ImagePanel(iAvenueHenriMartin, PositionCase_enum.NORTH, true);
         casesPlateau.put(25, ipAvenueHenriMartin);
         ipAvenueHenriMartin.setPreferredSize(new Dimension(iAvenueHenriMartin.getIconWidth(), iAvenueHenriMartin.getIconHeight()));
         panelGrille.add(ipAvenueHenriMartin, gbc);
@@ -205,7 +204,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipGareDuNord = new ImagePanel(iGareDuNord);
+        ImagePanel ipGareDuNord = new ImagePanel(iGareDuNord, PositionCase_enum.NORTH, false);
         casesPlateau.put(26, ipGareDuNord);
         ipGareDuNord.setPreferredSize(new Dimension(iGareDuNord.getIconWidth(), iGareDuNord.getIconHeight()));
         panelGrille.add(ipGareDuNord, gbc);
@@ -215,7 +214,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipFaubourgSaintHonore = new ImagePanel(iFaubourgSaintHonore);
+        ImagePanel ipFaubourgSaintHonore = new ImagePanel(iFaubourgSaintHonore, PositionCase_enum.NORTH, true);
         casesPlateau.put(27, ipFaubourgSaintHonore);
         ipFaubourgSaintHonore.setPreferredSize(new Dimension(iFaubourgSaintHonore.getIconWidth(), iFaubourgSaintHonore.getIconHeight()));
         panelGrille.add(ipFaubourgSaintHonore, gbc);
@@ -225,7 +224,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipPlaceDeLaBourse = new ImagePanel(iPlaceDeLaBourse);
+        ImagePanel ipPlaceDeLaBourse = new ImagePanel(iPlaceDeLaBourse, PositionCase_enum.NORTH, true);
         casesPlateau.put(28, ipPlaceDeLaBourse);
         ipPlaceDeLaBourse.setPreferredSize(new Dimension(iPlaceDeLaBourse.getIconWidth(), iPlaceDeLaBourse.getIconHeight()));
         panelGrille.add(ipPlaceDeLaBourse, gbc);
@@ -235,7 +234,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipCompagnieEaux = new ImagePanel(iCompagnieEaux);
+        ImagePanel ipCompagnieEaux = new ImagePanel(iCompagnieEaux, PositionCase_enum.NORTH, false);
         casesPlateau.put(29, ipCompagnieEaux);
         ipCompagnieEaux.setPreferredSize(new Dimension(iCompagnieEaux.getIconWidth(), iCompagnieEaux.getIconHeight()));
         panelGrille.add(ipCompagnieEaux, gbc);
@@ -245,7 +244,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipRueLaFayette = new ImagePanel(iRueLaFayette);
+        ImagePanel ipRueLaFayette = new ImagePanel(iRueLaFayette, PositionCase_enum.NORTH, true);
         casesPlateau.put(30, ipRueLaFayette);
         ipRueLaFayette.setPreferredSize(new Dimension(iRueLaFayette.getIconWidth(), iRueLaFayette.getIconHeight()));
         panelGrille.add(ipRueLaFayette, gbc);
@@ -255,7 +254,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 0;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
-        ImagePanel ipAllezEnPrison = new ImagePanel(iAllezEnPrison);
+        ImagePanel ipAllezEnPrison = new ImagePanel(iAllezEnPrison, PositionCase_enum.NORTH, false);
         casesPlateau.put(31, ipAllezEnPrison);
         ipAllezEnPrison.setPreferredSize(new Dimension(iAllezEnPrison.getIconWidth(), iAllezEnPrison.getIconHeight()));
         panelGrille.add(ipAllezEnPrison, gbc);
@@ -265,7 +264,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipPlacePigalle = new ImagePanel(iPlacePigalle);
+        ImagePanel ipPlacePigalle = new ImagePanel(iPlacePigalle, PositionCase_enum.WEST, true);
         casesPlateau.put(20, ipPlacePigalle);
         ipPlacePigalle.setPreferredSize(new Dimension(iPlacePigalle.getIconWidth(), iPlacePigalle.getIconHeight()));
         panelGrille.add(ipPlacePigalle, gbc);
@@ -275,7 +274,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 2;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipBoulevardStMichel = new ImagePanel(iBoulevardStMichel);
+        ImagePanel ipBoulevardStMichel = new ImagePanel(iBoulevardStMichel, PositionCase_enum.WEST, true);
         casesPlateau.put(19, ipBoulevardStMichel);
         ipBoulevardStMichel.setPreferredSize(new Dimension(iBoulevardStMichel.getIconWidth(), iBoulevardStMichel.getIconHeight()));
         panelGrille.add(ipBoulevardStMichel, gbc);
@@ -285,7 +284,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 3;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipCaisseCommu2 = new ImagePanel(iCaisseCommu2);
+        ImagePanel ipCaisseCommu2 = new ImagePanel(iCaisseCommu2, PositionCase_enum.WEST, false);
         casesPlateau.put(18, ipCaisseCommu2);
         ipCaisseCommu2.setPreferredSize(new Dimension(iCaisseCommu2.getIconWidth(), iCaisseCommu2.getIconHeight()));
         panelGrille.add(ipCaisseCommu2, gbc);
@@ -295,7 +294,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 4;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipAvenueMozart = new ImagePanel(iAvenueMozart);
+        ImagePanel ipAvenueMozart = new ImagePanel(iAvenueMozart, PositionCase_enum.WEST, true);
         casesPlateau.put(17, ipAvenueMozart);
         ipAvenueMozart.setPreferredSize(new Dimension(iAvenueMozart.getIconWidth(), iAvenueMozart.getIconHeight()));
         panelGrille.add(ipAvenueMozart, gbc);
@@ -305,7 +304,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 5;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipGareDeLyon = new ImagePanel(iGareDeLyon);
+        ImagePanel ipGareDeLyon = new ImagePanel(iGareDeLyon, PositionCase_enum.WEST, false);
         casesPlateau.put(16, ipGareDeLyon);
         ipGareDeLyon.setPreferredSize(new Dimension(iGareDeLyon.getIconWidth(), iGareDeLyon.getIconHeight()));
         panelGrille.add(ipGareDeLyon, gbc);
@@ -315,7 +314,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 6;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipRueDeParadis = new ImagePanel(iRueDeParadis);
+        ImagePanel ipRueDeParadis = new ImagePanel(iRueDeParadis, PositionCase_enum.WEST, true);
         casesPlateau.put(15, ipRueDeParadis);
         ipRueDeParadis.setPreferredSize(new Dimension(iRueDeParadis.getIconWidth(), iRueDeParadis.getIconHeight()));
         panelGrille.add(ipRueDeParadis, gbc);
@@ -325,7 +324,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 7;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipAvenueDeNeuilly = new ImagePanel(iAvenueDeNeuilly);
+        ImagePanel ipAvenueDeNeuilly = new ImagePanel(iAvenueDeNeuilly, PositionCase_enum.WEST, true);
         casesPlateau.put(14, ipAvenueDeNeuilly);
         ipAvenueDeNeuilly.setPreferredSize(new Dimension(iAvenueDeNeuilly.getIconWidth(), iAvenueDeNeuilly.getIconHeight()));
         panelGrille.add(ipAvenueDeNeuilly, gbc);
@@ -335,7 +334,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 8;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipCompagnieElec = new ImagePanel(iCompagnieElec);
+        ImagePanel ipCompagnieElec = new ImagePanel(iCompagnieElec, PositionCase_enum.WEST, false);
         casesPlateau.put(13, ipCompagnieElec);
         ipCompagnieElec.setPreferredSize(new Dimension(iCompagnieElec.getIconWidth(), iCompagnieElec.getIconHeight()));
         panelGrille.add(ipCompagnieElec, gbc);
@@ -345,7 +344,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 9;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        ImagePanel ipBoulevardDeLaVillette = new ImagePanel(iBoulevardDeLaVillette);
+        ImagePanel ipBoulevardDeLaVillette = new ImagePanel(iBoulevardDeLaVillette, PositionCase_enum.WEST, true);
         casesPlateau.put(12, ipBoulevardDeLaVillette);
         ipBoulevardDeLaVillette.setPreferredSize(new Dimension(iBoulevardDeLaVillette.getIconWidth(), iBoulevardDeLaVillette.getIconHeight()));
         panelGrille.add(ipBoulevardDeLaVillette, gbc);
@@ -355,7 +354,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = 1;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipVisitePrison = new ImagePanel(iVisitePrison);
+        ImagePanel ipVisitePrison = new ImagePanel(iVisitePrison, PositionCase_enum.WEST, false);
         casesPlateau.put(11, ipVisitePrison);
         ipVisitePrison.setPreferredSize(new Dimension(iVisitePrison.getIconWidth(), iVisitePrison.getIconHeight()));
         panelGrille.add(ipVisitePrison, gbc);
@@ -365,7 +364,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = 1;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipAvenueDeLaRepublique = new ImagePanel(iAvenueDeLaRepublique);
+        ImagePanel ipAvenueDeLaRepublique = new ImagePanel(iAvenueDeLaRepublique, PositionCase_enum.SOUTH, true);
         casesPlateau.put(10, ipAvenueDeLaRepublique);
         ipAvenueDeLaRepublique.setPreferredSize(new Dimension(iAvenueDeLaRepublique.getIconWidth(), iAvenueDeLaRepublique.getIconHeight()));
         panelGrille.add(ipAvenueDeLaRepublique, gbc);
@@ -375,7 +374,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = 1;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipRueDeCourcelles = new ImagePanel(iRueDeCourcelles);
+        ImagePanel ipRueDeCourcelles = new ImagePanel(iRueDeCourcelles, PositionCase_enum.SOUTH, true);
         casesPlateau.put(91, ipRueDeCourcelles);
         ipRueDeCourcelles.setPreferredSize(new Dimension(iRueDeCourcelles.getIconWidth(), iRueDeCourcelles.getIconHeight()));
         panelGrille.add(ipRueDeCourcelles, gbc);
@@ -385,7 +384,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = 1;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipChance1 = new ImagePanel(iChance1);
+        ImagePanel ipChance1 = new ImagePanel(iChance1, PositionCase_enum.SOUTH, false);
         casesPlateau.put(8, ipChance1);
         ipChance1.setPreferredSize(new Dimension(iChance1.getIconWidth(), iChance1.getIconHeight()));
         panelGrille.add(ipChance1, gbc);
@@ -395,7 +394,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = 1;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipRueDeVaugirard = new ImagePanel(iRueDeVaugirard);
+        ImagePanel ipRueDeVaugirard = new ImagePanel(iRueDeVaugirard, PositionCase_enum.SOUTH, true);
         casesPlateau.put(7, ipRueDeVaugirard);
         ipRueDeVaugirard.setPreferredSize(new Dimension(iRueDeVaugirard.getIconWidth(), iRueDeVaugirard.getIconHeight()));
         panelGrille.add(ipRueDeVaugirard, gbc);
@@ -405,7 +404,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = 1;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipGareMontparnasse = new ImagePanel(iGareMontparnasse);
+        ImagePanel ipGareMontparnasse = new ImagePanel(iGareMontparnasse, PositionCase_enum.SOUTH, false);
         casesPlateau.put(6, ipGareMontparnasse);
         ipGareMontparnasse.setPreferredSize(new Dimension(iGareMontparnasse.getIconWidth(), iGareMontparnasse.getIconHeight()));
         panelGrille.add(ipGareMontparnasse, gbc);
@@ -415,7 +414,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = 1;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipImpotSurLeRevenu = new ImagePanel(iImpotSurLeRevenu);
+        ImagePanel ipImpotSurLeRevenu = new ImagePanel(iImpotSurLeRevenu, PositionCase_enum.SOUTH, false);
         casesPlateau.put(5, ipImpotSurLeRevenu);
         ipImpotSurLeRevenu.setPreferredSize(new Dimension(iImpotSurLeRevenu.getIconWidth(), iImpotSurLeRevenu.getIconHeight()));
         panelGrille.add(ipImpotSurLeRevenu, gbc);
@@ -425,7 +424,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = 1;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipRueLecourbe = new ImagePanel(iRueLecourbe);
+        ImagePanel ipRueLecourbe = new ImagePanel(iRueLecourbe, PositionCase_enum.SOUTH, true);
         casesPlateau.put(4, ipRueLecourbe);
         ipRueLecourbe.setPreferredSize(new Dimension(iRueLecourbe.getIconWidth(), iRueLecourbe.getIconHeight()));
         panelGrille.add(ipRueLecourbe, gbc);
@@ -435,7 +434,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = 1;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipCaisseCommu1 = new ImagePanel(iCaisseCommu1);
+        ImagePanel ipCaisseCommu1 = new ImagePanel(iCaisseCommu1, PositionCase_enum.SOUTH, false);
         casesPlateau.put(3, ipCaisseCommu1);
         ipCaisseCommu1.setPreferredSize(new Dimension(iCaisseCommu1.getIconWidth(), iCaisseCommu1.getIconHeight()));
         panelGrille.add(ipCaisseCommu1, gbc);
@@ -445,7 +444,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = 1;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipBoulevardDeBelleville = new ImagePanel(iBoulevardDeBelleville);
+        ImagePanel ipBoulevardDeBelleville = new ImagePanel(iBoulevardDeBelleville, PositionCase_enum.SOUTH, true);
         casesPlateau.put(2, ipBoulevardDeBelleville);
         ipBoulevardDeBelleville.setPreferredSize(new Dimension(iBoulevardDeBelleville.getIconWidth(), iBoulevardDeBelleville.getIconHeight()));
         panelGrille.add(ipBoulevardDeBelleville, gbc);
@@ -455,7 +454,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 10;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = GridBagConstraints.REMAINDER;
-        ImagePanel ipCaseDepart = new ImagePanel(iCaseDepart);
+        ImagePanel ipCaseDepart = new ImagePanel(iCaseDepart, PositionCase_enum.SOUTH, false);
         casesPlateau.put(1, ipCaseDepart);
         ipCaseDepart.setPreferredSize(new Dimension(iCaseDepart.getIconWidth(), iCaseDepart.getIconHeight()));
         panelGrille.add(ipCaseDepart, gbc);
@@ -465,7 +464,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 9;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
-        ImagePanel ipRueDeLaPaix = new ImagePanel(iRueDeLaPaix);
+        ImagePanel ipRueDeLaPaix = new ImagePanel(iRueDeLaPaix, PositionCase_enum.EAST, true);
         casesPlateau.put(40, ipRueDeLaPaix);
         ipRueDeLaPaix.setPreferredSize(new Dimension(iRueDeLaPaix.getIconWidth(), iRueDeLaPaix.getIconHeight()));
         panelGrille.add(ipRueDeLaPaix, gbc);
@@ -475,7 +474,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 8;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
-        ImagePanel ipTaxeDeLuxe = new ImagePanel(iTaxeDeLuxe);
+        ImagePanel ipTaxeDeLuxe = new ImagePanel(iTaxeDeLuxe, PositionCase_enum.EAST, false);
         casesPlateau.put(39, ipTaxeDeLuxe);
         ipTaxeDeLuxe.setPreferredSize(new Dimension(iTaxeDeLuxe.getIconWidth(), iTaxeDeLuxe.getIconHeight()));
         panelGrille.add(ipTaxeDeLuxe, gbc);
@@ -485,7 +484,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 7;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
-        ImagePanel ipAvenueDesChampsElysees = new ImagePanel(iAvenueDesChampsElysees);
+        ImagePanel ipAvenueDesChampsElysees = new ImagePanel(iAvenueDesChampsElysees, PositionCase_enum.EAST, true);
         casesPlateau.put(38, ipAvenueDesChampsElysees);
         ipAvenueDesChampsElysees.setPreferredSize(new Dimension(iAvenueDesChampsElysees.getIconWidth(), iAvenueDesChampsElysees.getIconHeight()));
         panelGrille.add(ipAvenueDesChampsElysees, gbc);
@@ -495,7 +494,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 6;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
-        ImagePanel ipChance3 = new ImagePanel(iChance3);
+        ImagePanel ipChance3 = new ImagePanel(iChance3, PositionCase_enum.EAST, false);
         casesPlateau.put(37, ipChance3);
         ipChance3.setPreferredSize(new Dimension(iChance3.getIconWidth(), iChance3.getIconHeight()));
         panelGrille.add(ipChance3, gbc);
@@ -505,7 +504,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 5;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
-        ImagePanel ipGareStLazare = new ImagePanel(iGareStLazare);
+        ImagePanel ipGareStLazare = new ImagePanel(iGareStLazare, PositionCase_enum.EAST, false);
         casesPlateau.put(36, ipGareStLazare);
         ipGareStLazare.setPreferredSize(new Dimension(iGareStLazare.getIconWidth(), iGareStLazare.getIconHeight()));
         panelGrille.add(ipGareStLazare, gbc);
@@ -515,7 +514,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 4;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
-        ImagePanel ipBoulevardDesCapucines = new ImagePanel(iBoulevardDesCapucines);
+        ImagePanel ipBoulevardDesCapucines = new ImagePanel(iBoulevardDesCapucines, PositionCase_enum.EAST, true);
         casesPlateau.put(35, ipBoulevardDesCapucines);
         ipBoulevardDesCapucines.setPreferredSize(new Dimension(iBoulevardDesCapucines.getIconWidth(), iBoulevardDesCapucines.getIconHeight()));
         panelGrille.add(ipBoulevardDesCapucines, gbc);
@@ -525,7 +524,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 3;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
-        ImagePanel ipCaisseCommu3 = new ImagePanel(iCaisseCommu3);
+        ImagePanel ipCaisseCommu3 = new ImagePanel(iCaisseCommu3, PositionCase_enum.EAST, false);
         casesPlateau.put(34, ipCaisseCommu3);
         ipCaisseCommu3.setPreferredSize(new Dimension(iCaisseCommu3.getIconWidth(), iCaisseCommu3.getIconHeight()));
         panelGrille.add(ipCaisseCommu3, gbc);
@@ -535,7 +534,7 @@ public class PlateauBis extends Observable{
         gbc.gridy = 2;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
-        ImagePanel ipAvenueFoch = new ImagePanel(iAvenueFoch);
+        ImagePanel ipAvenueFoch = new ImagePanel(iAvenueFoch, PositionCase_enum.EAST, true);
         casesPlateau.put(33, ipAvenueFoch);
         ipAvenueFoch.setPreferredSize(new Dimension(iAvenueFoch.getIconWidth(), iAvenueFoch.getIconHeight()));
         panelGrille.add(ipAvenueFoch, gbc);
@@ -545,51 +544,12 @@ public class PlateauBis extends Observable{
         gbc.gridy = 1;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
-        ImagePanel ipAvenueDeBreteuil = new ImagePanel(iAvenueDeBreteuil);
+        ImagePanel ipAvenueDeBreteuil = new ImagePanel(iAvenueDeBreteuil, PositionCase_enum.EAST, true);
         ipAvenueDeBreteuil.setLayout(new GridBagLayout());
         casesPlateau.put(32, ipAvenueDeBreteuil);
         ipAvenueDeBreteuil.setPreferredSize(new Dimension(iAvenueDeBreteuil.getIconWidth(), iAvenueDeBreteuil.getIconHeight()));
         panelGrille.add(ipAvenueDeBreteuil, gbc);
 
-        panelMaisons = new JPanel();
-        for (int i : casesPlateau.keySet()) {
-            ImagePanel ip = casesPlateau.get(i);
-            ip.setLayout(new GridBagLayout());
-            //Case BAS
-            if (i == 2 || i == 4 || i == 7 || i == 9 || i == 10) {
-                panelPions = new JPanel(new GridLayout(2, 3));
-
-            } else if (i == 3 || i == 5 || i == 6 || i == 8) {
-                panelPions = new JPanel(new GridLayout(2, 3));
-
-                //Case GAUCHE
-            } else if (i == 12 || i == 14 || i == 15 || i == 17 || i == 19 || i == 20) {
-                panelPions = new JPanel(new GridLayout(3, 2));
-
-            } else if (i == 13 || i == 16 || i == 18) {
-                panelPions = new JPanel(new GridLayout(3, 2));
-
-                //Cases HAUT
-            } else if (i == 22 || i == 24 || i == 25 || i == 27 || i == 28 || i == 30) {
-                panelPions = new JPanel(new GridLayout(2, 3));
-
-            } else if (i == 23 || i == 26 || i == 29) {
-                panelPions = new JPanel(new GridLayout(2, 3));
-
-                //Cases DROITE
-            } else if (i == 32 || i == 33 || i == 35 || i == 38 || i == 40) {
-                panelPions = new JPanel(new GridLayout(3, 2));
-
-            } else if (i == 34 || i == 36 || i == 37 || i == 39) {
-
-                //Cases COIN
-            } else if (i == 1 || i == 21 || i == 31) {
-
-                //Visite-Prison
-            } else if (i == 11) {
-
-            }
-        }
 
     }
 
