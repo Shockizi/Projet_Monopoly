@@ -9,6 +9,7 @@ import IHM.Accueil;
 import IHM.IHMNbJoueurs;
 import IHM.IHMRegles;
 import IHM.Inscription;
+import IHM.PlateauBis;
 import Message.Message;
 import Message.TypeMessages;
 import Modèle.Action;
@@ -38,6 +39,7 @@ public class Controleur implements Observer {
     private IHMNbJoueurs ihmnbJoueurs;
     private IHMRegles ihmregles;
     private Inscription ihmInsc;
+    private PlateauBis ihmplateau;
 
     public Controleur() {
         ihm = new Accueil();
@@ -46,9 +48,9 @@ public class Controleur implements Observer {
 
         ihmnbJoueurs = new IHMNbJoueurs();
         ihmnbJoueurs.addObserver(this);
-
-        ihmInsc = new Inscription();
-        ihmInsc.addObserver(this);
+        
+        ihmplateau = new PlateauBis();
+        ihmplateau.addObserver(this);
     }
 
     public void inscrireJoueur(Joueur j) {
@@ -297,30 +299,15 @@ public class Controleur implements Observer {
 
         } else if (m.getType() == TypeMessages.COMMENCER) {
             ihmInsc.close();
+            ihmplateau.afficher();
 
             //ouvrir ihm de jeu
-        } else if (m.getType() == TypeMessages.DEUX) {
-            ihmInsc.setNbJoueurs(2);
+        } else if (m.getType() == TypeMessages.NBJOUEUR) {
+            ihmInsc = new Inscription(m.getNbJoueurs());
+            ihmInsc.addObserver(this);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
-
-        } else if (m.getType() == TypeMessages.TROIS) {
-            ihmInsc.setNbJoueurs(3);
-            ihmInsc.afficher();
-            m.getNbJoueurs();
-            ihmnbJoueurs.close();
-        } else if (m.getType() == TypeMessages.QUATRE) {
-            ihmInsc.setNbJoueurs(4);
-            ihmInsc.afficher();
-            ihmnbJoueurs.close();
-        } else if (m.getType() == TypeMessages.CINQ) {
-            ihmInsc.setNbJoueurs(5);
-            ihmInsc.afficher();
-            ihmnbJoueurs.close();
-        } else if (m.getType() == TypeMessages.SIX) {
-            ihmInsc.setNbJoueurs(6);
-            ihmInsc.afficher();
-            ihmnbJoueurs.close();
+            
         }
 
     }

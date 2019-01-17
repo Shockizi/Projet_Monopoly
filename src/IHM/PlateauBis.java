@@ -14,6 +14,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.HashMap;
+import java.util.Observable;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
  *
  * @author yamin
  */
-public class PlateauBis {
+public class PlateauBis extends Observable{
 
     private JFrame window;
     private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons;
