@@ -43,7 +43,7 @@ public class Inscription extends Observable {
     private int nbJoueurs;
     private Message m;
     private JComboBox symbole, symbole2, symbole3, symbole4, symbole5, symbole6;
-    private String[] pions = {"Voiture", "Bâteau", "Dé à Coudre", "Chapeau", "Fer à repasser", "Brouette"};
+    private String[] pions = {"Bleu", "Rouge", "Jaune", "Vert", "Rose", "Orange"};
     private ArrayList<Joueur> joueurs1 = new ArrayList<>();
     private HashMap<Joueur, Color> joueurs = new HashMap<Joueur, Color>();
 
@@ -110,17 +110,17 @@ public class Inscription extends Observable {
         jtf6.setBorder(null);
 
         symbole = new JComboBox(pions);
-        symbole.setSelectedItem("Voiture");
+        symbole.setSelectedItem("Bleu");
         symbole2 = new JComboBox(pions);
-        symbole2.setSelectedItem("Bâteau");
+        symbole2.setSelectedItem("Rouge");
         symbole3 = new JComboBox(pions);
-        symbole3.setSelectedItem("Dé à Coudre");
+        symbole3.setSelectedItem("Jaune");
         symbole4 = new JComboBox(pions);
-        symbole4.setSelectedItem("Chapeau");
+        symbole4.setSelectedItem("Vert");
         symbole5 = new JComboBox(pions);
-        symbole5.setSelectedItem("Fer à repasser");
+        symbole5.setSelectedItem("Rose");
         symbole6 = new JComboBox(pions);
-        symbole6.setSelectedItem("Brouette");
+        symbole6.setSelectedItem("Orange");
 
         //panel joueurs
         panelJ1 = new JPanel();
@@ -353,7 +353,7 @@ public class Inscription extends Observable {
                                 joueurs.put(new Joueur(jtf3.getText()), Color.YELLOW);
                                 joueurs1.add(new Joueur(jtf3.getText()));
                             } else if (nbJ == 4) {
-                                joueurs.put(new Joueur(jtf4.getText()),Color.GREEN);
+                                joueurs.put(new Joueur(jtf4.getText()), Color.GREEN);
                                 joueurs1.add(new Joueur(jtf4.getText()));
                             } else if (nbJ == 5) {
                                 joueurs.put(new Joueur(jtf5.getText()), Color.PINK);
