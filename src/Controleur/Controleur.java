@@ -243,6 +243,7 @@ public class Controleur implements Observer {
             ihmnbJoueurs.afficher();
 
         } else if (m.getType() == TypeMessages.COMMENCER) {
+            couleur();
             ihmInsc.close();
             p = new Plateau();
             ihmplateau = new PlateauBis(ihmInsc.getJoueurs1().get(0));
@@ -293,10 +294,11 @@ public class Controleur implements Observer {
 
     }
     
-    public void coleur(){
+    public void couleur(){
         for(Joueur j : ihmInsc.getJoueurs().keySet()){
             Color c = ihmInsc.getJoueurs().get(j);
-            System.out.println(c);
+            
+            
         }
         
     }
