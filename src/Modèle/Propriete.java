@@ -15,7 +15,7 @@ public abstract class Propriete extends CasePlateau {
 
     private Terrains_enum terrain;
     private Gares_enum gare;
-    private Compagnie_enum compagnie;
+    private Compagnies_enum compagnie;
     private int prixDAchat;
     private Joueur proprietaire;
     
@@ -51,13 +51,13 @@ public abstract class Propriete extends CasePlateau {
 
     }
 
-    public Propriete(Compagnie_enum compagnie, int prixDAchat, int numCase) {
+    public Propriete(Compagnies_enum compagnie, int prixDAchat, int numCase) {
         super(numCase);
         this.compagnie = compagnie;
         this.prixDAchat = prixDAchat;
     }
 
-    public Propriete(Compagnie_enum compagnie, int prixDAchat, Joueur proprietaire, int numCase) {
+    public Propriete(Compagnies_enum compagnie, int prixDAchat, Joueur proprietaire, int numCase) {
         super(numCase);
         this.compagnie = compagnie;
         this.prixDAchat = prixDAchat;
