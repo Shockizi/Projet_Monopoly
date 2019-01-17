@@ -5,19 +5,20 @@
  */
 package IHM;
 
+import Controleur.Controleur;
+
 /**
  *
- * @author elmiry
+ * @author milliezm
  */
-public class TestNbJ {
+public class main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        IHMNbJoueurs ihm = new IHMNbJoueurs();
-        ihm.afficher();
+        Controleur c = new Controleur();
     }
     
 }

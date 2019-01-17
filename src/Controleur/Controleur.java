@@ -49,9 +49,6 @@ public class Controleur implements Observer {
 
         ihmInsc = new Inscription();
         ihmInsc.addObserver(this);
-
-        ihmInsc = new Inscription();
-        ihmInsc.addObserver(this);
     }
 
     public void inscrireJoueur(Joueur j) {
@@ -286,40 +283,42 @@ public class Controleur implements Observer {
     public void update(Observable arg0, Object arg1) {
         Message m = (Message) arg1;
 
-        if (m.type == TypeMessages.JOUER_PARTIE) {
+        if (m.getType() == TypeMessages.JOUER_PARTIE) {
             ihm.close();
             ihmnbJoueurs.afficher();
 
-        } else if (m.type == TypeMessages.REGLES) {
+        } else if (m.getType() == TypeMessages.REGLES) {
             ihm.close();
             ihmregles = new IHMRegles();
             // ouvrir ihm des règles
-        } else if (m.type == TypeMessages.RETOUR) {
+        } else if (m.getType() == TypeMessages.RETOUR) {
             ihmInsc.close();
             ihmnbJoueurs.afficher();
 
-        } else if (m.type == TypeMessages.COMMENCER) {
+        } else if (m.getType() == TypeMessages.COMMENCER) {
             ihmInsc.close();
 
             //ouvrir ihm de jeu
-        } else if (m.type == TypeMessages.DEUX) {
-
+        } else if (m.getType() == TypeMessages.DEUX) {
+            ihmInsc.setNbJoueurs(2);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
 
-        } else if (m.type == TypeMessages.TROIS) {
-
+        } else if (m.getType() == TypeMessages.TROIS) {
+            ihmInsc.setNbJoueurs(3);
+            ihmInsc.afficher();
+            m.getNbJoueurs();
+            ihmnbJoueurs.close();
+        } else if (m.getType() == TypeMessages.QUATRE) {
+            ihmInsc.setNbJoueurs(4);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
-        } else if (m.type == TypeMessages.QUATRE) {
-
+        } else if (m.getType() == TypeMessages.CINQ) {
+            ihmInsc.setNbJoueurs(5);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
-        } else if (m.type == TypeMessages.CINQ) {
-
-            ihmInsc.afficher();
-            ihmnbJoueurs.close();
-        } else if (m.type == TypeMessages.SIX) {
+        } else if (m.getType() == TypeMessages.SIX) {
+            ihmInsc.setNbJoueurs(6);
             ihmInsc.afficher();
             ihmnbJoueurs.close();
         }

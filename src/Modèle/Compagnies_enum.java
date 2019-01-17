@@ -9,7 +9,7 @@ package Modèle;
  *
  * @author lorauxs
  */
-public enum Compagnie_enum {
+public enum Compagnies_enum {
     CompagnieDeDistributionElectricité,
     CompagnieDeDistributionDEau;
     

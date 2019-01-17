@@ -34,7 +34,7 @@ public class Plateau {
         Terrain avenueDeLaRepublique = new Terrain(Couleur.BLEU_CIEL, 8, 40, 100, 300, 450, 600, 50, 0, 0, Terrains_enum.AvenueDeLaRépublique, 120, 10);
         CasePrison prison = new CasePrison(11);
         Terrain boulevardVillette = new Terrain(Couleur.ROSE, 10, 50, 150, 450, 625, 750, 100, 0, 0, Terrains_enum.BoulevardDeLaVillette, 140, 12);
-        Compagnie electricité = new Compagnie(Compagnie_enum.CompagnieDeDistributionElectricité, 150, 13);
+        Compagnie electricité = new Compagnie(Compagnies_enum.CompagnieDeDistributionElectricité, 150, 13);
         Terrain avenueNeuilly = new Terrain(Couleur.ROSE, 10, 50, 150, 450, 625, 750, 100, 0, 0, Terrains_enum.AvenueDeNeuilly, 140, 14);
         Terrain rueParadis = new Terrain(Couleur.ROSE, 12, 60, 180, 500, 700, 900, 100, 0, 0, Terrains_enum.RueDeParadis, 160, 15);
         Gare gareLyon = new Gare(Gares_enum.GareDeLyon, 200, 16);
@@ -50,7 +50,7 @@ public class Plateau {
         Gare gareDuNord = new Gare(Gares_enum.GareDeLyon, 200, 26);
         Terrain faubourgStHonoré = new Terrain(Couleur.JAUNE, 22, 110, 330, 800, 975, 1150, 150, 0, 0, Terrains_enum.FaubourgSaintHonoré, 260, 27);
         Terrain placeDeLaBourse = new Terrain(Couleur.JAUNE, 22, 110, 330, 800, 975, 1150, 150, 0, 0, Terrains_enum.PlaceDeLaBourse, 260, 28);
-        Compagnie eau = new Compagnie(Compagnie_enum.CompagnieDeDistributionDEau, 150, 29);
+        Compagnie eau = new Compagnie(Compagnies_enum.CompagnieDeDistributionDEau, 150, 29);
         Terrain rueLaFayette = new Terrain(Couleur.JAUNE, 24, 120, 360, 850, 1025, 1200, 150, 0, 0, Terrains_enum.RueLaFayette, 280, 30);
         CaseAllerEnPrison allerEnPrison = new CaseAllerEnPrison(31);
         Terrain avenueDeBreteuil = new Terrain(Couleur.VERT, 26, 130, 390, 900, 1100, 1275, 200, 0, 0, Terrains_enum.AvenueDeBreteuil, 300, 32);
