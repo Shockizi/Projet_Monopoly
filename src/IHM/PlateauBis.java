@@ -111,12 +111,6 @@ public class PlateauBis extends Observable {
                         setChanged();
                         notifyObservers(new Message(TypeMessages.ACHETER));
                         clearChanged();
-                        CasePlateau prop = plateau.getCasesPlat().get(joueurCourant.getNumCaseCourante());
-                        if (prop instanceof Propriete) {
-                            if (joueurCourant.getCagnotte() < ((Propriete) prop).getPrixDAchat()) {
-                                btnAcheterTerrain.setEnabled(false);
-                            }
-                        }
                     }
                 });
             } else if (i == 26) {
