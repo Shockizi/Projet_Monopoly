@@ -37,6 +37,7 @@ public class ImagePanel extends JPanel {
         this.setLayout(new GridBagLayout());
         panelPions = new JPanel();
         labelNbMaisonHotel = new JLabel("TEST");
+        labelNbMaisonHotel.setPreferredSize(new Dimension(50, 25));
 
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -46,7 +47,7 @@ public class ImagePanel extends JPanel {
                 gbc.gridx = gbc.gridy = 0;
                 gbc.gridwidth = 1;
                 gbc.gridheight = 1;
-                //labelNbMaisonHotel.setPreferredSize(new Dimension(50,));
+                
                 this.add(labelNbMaisonHotel);
 
                 gbc.gridy = 1;
