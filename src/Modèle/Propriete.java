@@ -13,55 +13,18 @@ import java.util.ArrayList;
  */
 public abstract class Propriete extends CasePlateau {
 
-    private Terrains_enum terrain;
-    private Gares_enum gare;
-    private Compagnies_enum compagnie;
     private int prixDAchat;
     private Joueur proprietaire;
-    
-    public Propriete(int numCase){
+    private String nom;
+
+    public Propriete(int numCase) {
         super(numCase);
     }
 
-    public Propriete(Terrains_enum terrain, int prixDAchat, int numCase) {
+    public Propriete(String nom, int prixDAchat, int numCase) {
         super(numCase);
-        this.terrain = terrain;
+        this.nom = nom;
         this.prixDAchat = prixDAchat;
-    }
-
-    public Propriete(Gares_enum gare, int prixDAchat, int numCase) {
-        super(numCase);
-        this.gare = gare;
-        this.prixDAchat = prixDAchat;
-    }
-
-    public Propriete(Terrains_enum terrain, int prixDAchat, Joueur proprietaire, int numCase) {
-        super(numCase);
-        this.terrain = terrain;
-        this.prixDAchat = prixDAchat;
-        this.proprietaire = proprietaire;
-
-    }
-
-    public Propriete(Gares_enum gare, int prixDAchat, Joueur proprietaire, int numCase) {
-        super(numCase);
-        this.gare = gare;
-        this.prixDAchat = prixDAchat;
-        this.proprietaire = proprietaire;
-
-    }
-
-    public Propriete(Compagnies_enum compagnie, int prixDAchat, int numCase) {
-        super(numCase);
-        this.compagnie = compagnie;
-        this.prixDAchat = prixDAchat;
-    }
-
-    public Propriete(Compagnies_enum compagnie, int prixDAchat, Joueur proprietaire, int numCase) {
-        super(numCase);
-        this.compagnie = compagnie;
-        this.prixDAchat = prixDAchat;
-        this.proprietaire = proprietaire;
     }
 
     public int getPrixDAchat() {
@@ -81,20 +44,9 @@ public abstract class Propriete extends CasePlateau {
         this.proprietaire = null;
     }
 
-    public Terrains_enum getTerrain() {
-        return terrain;
-    }
-
-    public void setTerrain(Terrains_enum terrain) {
-        this.terrain = terrain;
-    }
-
-    public Gares_enum getGare() {
-        return gare;
-    }
-
-    public void setGare(Gares_enum gare) {
-        this.gare = gare;
+    @Override
+    public String getNom() {
+        return nom;
     }
 
     public abstract int getLoyer();
@@ -105,7 +57,6 @@ public abstract class Propriete extends CasePlateau {
     public void lancerAction(Action action, Joueur j) {
         if (action == Action.DEPLACER) {
             j.lancerDes();
-            j.avancer();
 
         } else if (action == Action.PAYER && proprietaire != null && j != proprietaire) {
             if (j.getCagnotte() < getLoyer()) {

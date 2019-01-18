@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author lorauxs
  */
-public class CasePrison extends CasePlateau{
+public class CasePrison extends CasePlateau {
 
     public CasePrison(int numCase) {
         super(numCase);
@@ -24,7 +24,9 @@ public class CasePrison extends CasePlateau{
 
         return actionsPossibes;
     }
-    
-    
-    
+
+    @Override
+    public String getNom() {
+        return "Visite-Prison";
+    }
 }

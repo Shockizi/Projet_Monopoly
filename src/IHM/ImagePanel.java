@@ -9,6 +9,7 @@ package IHM;
  *
  * @author yamin
  */
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -23,91 +24,41 @@ import javax.swing.JPanel;
 
 public class ImagePanel extends JPanel {
 
-    private static final long serialVersionUID = 1L;
-
     /**
      * @param args
      */
     private Image img;
     private JPanel panelPions, panelMaisons;
     private JLabel labelNbMaisonHotel;
+    private PositionCase_enum pos;
 
     public ImagePanel(ImageIcon img, PositionCase_enum pos, boolean constructible) {
         this.img = img.getImage();
-        this.setLayout(new GridBagLayout());
-        panelPions = new JPanel();
-        labelNbMaisonHotel = new JLabel("TEST");
-        labelNbMaisonHotel.setPreferredSize(new Dimension(50, 25));
+        this.pos = pos;
+        panelPions = new JPanel(new GridLayout(2, 3));
 
-        GridBagConstraints gbc = new GridBagConstraints();
+        this.add(panelPions);
+        if (pos == PositionCase_enum.NORTH || pos == PositionCase_enum.SOUTH) {
+            panelPions.setLayout(new GridLayout(2, 3));
+            for (int i = 0; i < 6; i++) {
+                //panelPions.add(new PionPanel(Color.yellow));
+            }
+        } else if (pos == PositionCase_enum.WEST || pos == PositionCase_enum.EAST) {
+            panelPions.setLayout(new GridLayout(3, 2));
+        }
 
         if (constructible) {
-            if (pos == PositionCase_enum.SOUTH) {
 
-//                gbc.gridx = gbc.gridy = 0;
-//                gbc.gridwidth = 1;
-//                gbc.gridheight = 1;
-
-                this.add(labelNbMaisonHotel);
-
-//                gbc.gridy = 1;
-//                gbc.gridwidth = 1;
-//                gbc.gridheight = 1;
-                panelPions.setLayout(new GridLayout(3, 2));
-                this.add(panelPions);
-
-            } else if (pos == PositionCase_enum.NORTH) {
-//                gbc.gridx = gbc.gridy = 0;
-//                gbc.gridwidth = 1;
-//                gbc.gridheight = 1;
-                panelPions.setLayout(new GridLayout(3, 2));
-                this.add(panelPions);
-
-//                gbc.gridy = 1;
-//                gbc.gridwidth = 1;
-//                gbc.gridheight = 1;
-                this.add(labelNbMaisonHotel);
-
-            } else if (pos == PositionCase_enum.WEST) {
-//                gbc.gridx = gbc.gridy = 0;
-//                gbc.gridwidth = 1;
-//                gbc.gridheight = 1;
-                panelPions.setLayout(new GridLayout(2, 3));
-                this.add(panelPions);
-
-                gbc.gridy = 1;
-                gbc.gridwidth = 1;
-                gbc.gridheight = 1;
-                this.add(labelNbMaisonHotel);
-
-            }
-            if (pos == PositionCase_enum.EAST) {
-//                gbc.gridx = gbc.gridy = 0;
-//                gbc.gridwidth = 1;
-//                gbc.gridheight = 1;
-                this.add(labelNbMaisonHotel);
-
-//                gbc.gridy = 1;
-//                gbc.gridwidth = 1;
-//                gbc.gridheight = 1;
-                panelPions.setLayout(new GridLayout(2, 3));
-                this.add(panelPions);
-
-            }
         } else {
-            this.add(panelPions);
-            if (pos == PositionCase_enum.NORTH || pos == PositionCase_enum.SOUTH) {
-                panelPions.setLayout(new GridLayout(2, 3));
 
-            } else if (pos == PositionCase_enum.WEST || pos == PositionCase_enum.EAST) {
-                panelPions.setLayout(new GridLayout(3, 2));
-            }
         }
 
     }
 
-    public void addPion(JLabel pion) {
-        panelPions.add(pion);
+    public void addPion(PionPanel pion) {
+        PionPanel p = new PionPanel(Color.yellow);
+        p = pion;
+        panelPions.add(p);
     }
 
     public void setNbMaisonHotel(int nbMH, boolean hotel) {

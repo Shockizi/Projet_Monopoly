@@ -9,15 +9,22 @@ import IHM.Accueil;
 import IHM.IHMNbJoueurs;
 import IHM.IHMRegles;
 import IHM.Inscription;
+import IHM.PionPanel;
 import IHM.PlateauBis;
 import Message.Message;
 import Message.TypeMessages;
 import Modèle.Action;
+import Modèle.CaseAllerEnPrison;
+import Modèle.CaseDépart;
 import Modèle.CasePlateau;
+import Modèle.CasePrison;
+import Modèle.CasesCommunautaires_CartesChance;
 import Modèle.Compagnie;
 import Modèle.Couleur;
 import Modèle.Gare;
+import Modèle.ImpotsTaxe;
 import Modèle.Joueur;
+import Modèle.ParcGratuit;
 import Modèle.Plateau;
 import Modèle.Propriete;
 import Modèle.Terrain;
@@ -30,7 +37,6 @@ import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import sun.tools.jstat.Alignment;
 
 /**
  *
@@ -46,7 +52,7 @@ public class Controleur implements Observer {
     private Inscription ihmInsc;
     private PlateauBis ihmplateau;
     private boolean relancer;
-    private HashMap<Joueur, JLabel> pions = new HashMap<Joueur, JLabel>();
+    private HashMap<Joueur, PionPanel> pions;
 
     public Controleur() {
         ihm = new Accueil();
@@ -55,6 +61,8 @@ public class Controleur implements Observer {
 
         ihmnbJoueurs = new IHMNbJoueurs();
         ihmnbJoueurs.addObserver(this);
+
+        pions = new HashMap<Joueur, PionPanel>();
     }
 
 //    public boolean achatPossible() {
@@ -114,8 +122,13 @@ public class Controleur implements Observer {
             ihmplateau.addObserver(this);
             ihmplateau.afficher();
             for (int i = 0; i < p.getJoueurs().size(); i++) {
-                p.getJoueurs().get(i).setNumCaseCourante(1);
+                p.getJoueurs().get(i).setPosition(1);
             }
+            assossiationDesPions();
+            ihmplateau.getBtnFinTour().setEnabled(false);
+            ihmplateau.getBtnConstruire().setEnabled(false);
+            ihmplateau.getBtnAcheterTerrain().setEnabled(false);
+            ihmplateau.setLabelPosition(getPosJC());
 
             //ouvrir ihm de jeu
         } else if (m.getType() == TypeMessages.NBJOUEUR) {
@@ -126,25 +139,35 @@ public class Controleur implements Observer {
 
         } else if (m.getType() == TypeMessages.FINDETOUR) {
             joueurSuivant();
+            ihmplateau.setLabelPosition(getPosJC());
             ihmplateau.setLabelJoueurCourant(joueurCourant.getNom());
             ihmplateau.setLabelCagnotte(joueurCourant.getCagnotte());
             verifAction();
             ihmplateau.getBtnLancerDès().setEnabled(true);
+            ihmplateau.getBtnFinTour().setEnabled(false);
 
         } else if (m.getType() == TypeMessages.LANCERDES) {
             joueurCourant.lancerDes();
-            joueurCourant.setNumCaseCourante(joueurCourant.getNumCaseCourante() + joueurCourant.getDe1() + joueurCourant.getDe2());
-            System.out.println(joueurCourant.getDe1());
-            System.out.println(joueurCourant.getDe2());
-
+            ihmplateau.setLabelsDes(joueurCourant.getDe1(), joueurCourant.getDe2());
+            joueurCourant.setPosition(joueurCourant.getNumCaseCourante() + joueurCourant.getDe1() + joueurCourant.getDe2());
             if (joueurCourant.verifDouble()) {
                 ihmplateau.getBtnLancerDès().setEnabled(true);
+                ihmplateau.getBtnFinTour().setEnabled(false);
             } else {
                 ihmplateau.getBtnLancerDès().setEnabled(false);
+                ihmplateau.getBtnFinTour().setEnabled(true);
             }
-            JLabel lepion = getPion(joueurCourant);
-            int nc = joueurCourant.getNumCaseCourante();
-            ihmplateau.getCase(nc).addPion(lepion);
+            //ACHETER ou PAYER
+            if (joueurCourant.getPosition() instanceof Propriete){
+                if (((Propriete)joueurCourant.getPosition()).getProprietaire() != null){
+                    ihmplateau.getBtnAcheterTerrain().setEnabled(true);
+                } else {
+                    joueurCourant.payerJoueur(((Propriete)joueurCourant.getPosition()).getLoyer(), ((Propriete)joueurCourant.getPosition()).getProprietaire());
+                    ihmplateau.setLabelCagnotte(joueurCourant.getCagnotte());
+                }
+            }
+            //bougerPion(joueurCourant);
+            ihmplateau.setLabelPosition(getPosJC());
             System.out.println(ihmplateau.getCase(joueurCourant.getNumCaseCourante()));
 
         } else if (m.getType() == TypeMessages.ACHETER) {
@@ -172,17 +195,17 @@ public class Controleur implements Observer {
     }
 
     public void verifAction() {
-        CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
-        if (prop instanceof Propriete) {
-            if (joueurCourant.getCagnotte() < ((Propriete) prop).getPrixDAchat()) {
-                ihmplateau.getBtnAcheterTerrain().setEnabled(false);
-            }
-        }
-        if (prop instanceof Terrain) {
-            if (joueurCourant.getCagnotte() < ((Terrain) prop).getConstruMaisonHotel() && ((Terrain) prop).getNbHotel() == 1) {
-                ihmplateau.getBtnConstruire().setEnabled(false);
-            }
-        }
+//        CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
+//        if (prop instanceof Propriete) {
+//            if (joueurCourant.getCagnotte() < ((Propriete) prop).getPrixDAchat()) {
+//                ihmplateau.getBtnAcheterTerrain().setEnabled(false);
+//            }
+//        }
+//        if (prop instanceof Terrain) {
+//            if (joueurCourant.getCagnotte() < ((Terrain) prop).getConstruMaisonHotel() && ((Terrain) prop).getNbHotel() == 1) {
+//                ihmplateau.getBtnConstruire().setEnabled(false);
+//            }
+//        }
         // joueurCourant.getPosition().
 
 //        while (getGagnant() == null) {
@@ -327,26 +350,52 @@ public class Controleur implements Observer {
         }
     }
 
-    public void couleur() {
+    public void assossiationDesPions() {
         for (Joueur j : ihmInsc.getJoueurs().keySet()) {
             Color c = ihmInsc.getJoueurs().get(j);
-            JLabel l = new JLabel(" r ");
-            l.setSize(10, 10);
-            l.setBackground(c);
-            l.setOpaque(true);
-            pions.put(j, l);
+            PionPanel pion = new PionPanel(c);
+            pions.put(j, pion);
         }
     }
 
-    public JLabel getPion(Joueur joueur) {
-        JLabel l = new JLabel();
-        for (Joueur j : pions.keySet()) {
-            if (joueur == j) {
-                l = pions.get(j);
-            }
-
-        }
-        return l;
+    public PionPanel getPion(Joueur joueur) {
+        return pions.get(joueur);
     }
 
+    public String getPosJC() {
+        String s = "";
+        if (joueurCourant.getPosition() instanceof Terrain) {
+            s = (joueurCourant.getNom() + " est sur : " + ((Terrain) joueurCourant.getPosition()).getNom());
+        } else if (joueurCourant.getPosition() instanceof Gare) {
+            s = (joueurCourant.getNom() + " est sur : " + ((Gare) joueurCourant.getPosition()).getNom());
+        } else if (joueurCourant.getPosition() instanceof Compagnie) {
+            s = (joueurCourant.getNom() + " est sur : " + ((Compagnie) joueurCourant.getPosition()).getNom());
+        } else if (joueurCourant.getPosition() instanceof CaseDépart) {
+            s = (joueurCourant.getNom() + " est sur : " + ((CaseDépart) joueurCourant.getPosition()).getNom());
+        } else if (joueurCourant.getPosition() instanceof CasePrison) {
+            s = (joueurCourant.getNom() + " est sur : " + ((CasePrison) joueurCourant.getPosition()).getNom());
+        } else if (joueurCourant.getPosition() instanceof CaseAllerEnPrison) {
+            s = (joueurCourant.getNom() + " est sur : " + ((CaseAllerEnPrison) joueurCourant.getPosition()).getNom());
+        } else if (joueurCourant.getPosition() instanceof CasesCommunautaires_CartesChance) {
+            s = (joueurCourant.getNom() + " est sur : " + ((CasesCommunautaires_CartesChance) joueurCourant.getPosition()).getNom());
+        } else if (joueurCourant.getPosition() instanceof ParcGratuit) {
+            s = (joueurCourant.getNom() + " est sur : " + ((ParcGratuit) joueurCourant.getPosition()).getNom());
+        } else if (joueurCourant.getPosition() instanceof ImpotsTaxe) {
+            s = (joueurCourant.getNom() + " est sur : " + ((ImpotsTaxe) joueurCourant.getPosition()).getNom());
+        } else {
+            s = (joueurCourant.getNom() + " est sur : " + joueurCourant.getPosition().getNom());
+        }
+        return s;
+    }
+
+//    public void bougerPion(Joueur j) {
+//        
+//        PionPanel lepion = getPion(joueurCourant);
+//        int nc = joueurCourant.getNumCaseCourante();
+//        System.out.println( joueurCourant.getNom() + "YEP : " + pions.get(joueurCourant));
+//        System.out.println("Test case ihm : " + ihmplateau.getCase(nc).getName());
+//        ihmplateau.getCase(nc).addPion(lepion);
+//        //ihmplateau.verifCases();
+//
+//    }
 }

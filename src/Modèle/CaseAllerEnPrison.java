@@ -19,9 +19,13 @@ public class CaseAllerEnPrison extends CasePlateau {
 
     @Override
     public ArrayList<Action> getActionPossible(Joueur j) {
-       ArrayList<Action> actionsPossibes = new ArrayList<>();
-       actionsPossibes.add(Action.DEPLACER);
-       return actionsPossibes;
+        ArrayList<Action> actionsPossibes = new ArrayList<>();
+        actionsPossibes.add(Action.DEPLACER);
+        return actionsPossibes;
     }
 
+    @Override
+    public String getNom() {
+        return "Aller en Prison";
+    }
 }

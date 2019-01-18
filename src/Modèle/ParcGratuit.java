@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author lorauxs
  */
-public class ParcGratuit extends CasePlateau{
+public class ParcGratuit extends CasePlateau {
 
     public ParcGratuit(int numCase) {
         super(numCase);
@@ -23,7 +23,10 @@ public class ParcGratuit extends CasePlateau{
         actionsPossibes.add(Action.DEPLACER);
         return actionsPossibes;
     }
-    
-    
-    
+
+    @Override
+    public String getNom() {
+        return "ParcGratuit";
+    }
+
 }

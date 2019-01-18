@@ -24,6 +24,9 @@ public class CaseDépart extends CasePlateau{
         return actionsPossibes;
     }
     
-    
+    @Override
+    public String getNom(){
+        return "Case Départ"; 
+    }
     
 }

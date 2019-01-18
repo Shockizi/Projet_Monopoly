@@ -8,8 +8,16 @@ package IHM;
 import Message.Message;
 import Message.TypeMessages;
 import static Message.TypeMessages.FINDETOUR;
+import Modèle.CaseAllerEnPrison;
+import Modèle.CaseDépart;
 import Modèle.CasePlateau;
+import Modèle.CasePrison;
+import Modèle.CasesCommunautaires_CartesChance;
+import Modèle.Compagnie;
+import Modèle.Gare;
+import Modèle.ImpotsTaxe;
 import Modèle.Joueur;
+import Modèle.ParcGratuit;
 import Modèle.Plateau;
 import Modèle.Propriete;
 import Modèle.Terrain;
@@ -41,8 +49,8 @@ public class PlateauBis extends Observable {
     private Plateau plateau;
     private JFrame window;
     private JPanel mainPanel, panelGrille, panelCommande, panelPions, panelMaisons, panelDroite, panelNord;
-    private JLabel labelJoueurCourant = new JLabel(""), labelCagnotte = new JLabel("");
-    private JButton btnLancerDès = new JButton("Lancer les dés") , btnAcheterTerrain=new JButton("Acheter"), btnConstruire=new JButton("Construire"), btnFinTour=new JButton("Fin de tour"), btnAbandonner = new JButton("Abandonner");
+    private JLabel labelJoueurCourant = new JLabel(""), labelCagnotte = new JLabel(""), labelPosition, labelDe1, labelDe2;
+    private JButton btnLancerDès = new JButton("Lancer les dés"), btnAcheterTerrain = new JButton("Acheter"), btnConstruire = new JButton("Construire"), btnFinTour = new JButton("Fin de tour"), btnAbandonner = new JButton("Abandonner");
     private HashMap<Integer, ImagePanel> casesPlateau = new HashMap<Integer, ImagePanel>();
     private Joueur joueurCourant;
 
@@ -58,16 +66,15 @@ public class PlateauBis extends Observable {
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(new Color(255, 191, 128));
         mainPanel.setOpaque(true);
-        
-        panelNord = new JPanel(new BorderLayout());
-        JLabel labelTitre = new JLabel("MONOPOLY", SwingConstants.CENTER);
-        labelTitre.setFont(new Font("Arial", Font.BOLD, 50));
-        labelTitre.setForeground(Color.BLACK);
-        labelTitre.setBackground(new Color(255, 191, 128));
-        labelTitre.setOpaque(true);
-        panelNord.add(labelTitre);
-        mainPanel.add(panelNord, BorderLayout.NORTH);
-        
+
+//        panelNord = new JPanel(new BorderLayout());
+//        JLabel labelTitre = new JLabel("MONOPOLY", SwingConstants.CENTER);
+//        labelTitre.setFont(new Font("Arial", Font.BOLD, 50));
+//        labelTitre.setForeground(Color.BLACK);
+//        labelTitre.setBackground(new Color(255, 191, 128));
+//        labelTitre.setOpaque(true);
+//        panelNord.add(labelTitre);
+//        mainPanel.add(panelNord, BorderLayout.NORTH);
         panelGrille = new JPanel(new GridBagLayout());
         panelGrille.setBackground(new Color(255, 191, 128));
         panelGrille.setOpaque(true);
@@ -82,15 +89,13 @@ public class PlateauBis extends Observable {
 
         this.joueurCourant = joueur;
 
-        
-        
         // Boutons à droite //
         for (int i = 1; i < 48; i++) {
             if (i == 5) {
                 this.setLabelJoueurCourant(joueurCourant.getNom());
                 labelJoueurCourant.setFont(new Font("Arial", Font.BOLD, 20));
                 panelCommande.add(labelJoueurCourant);
-                
+
             } else if (i == 8) {
                 this.setLabelCagnotte(joueurCourant.getCagnotte());
                 labelCagnotte.setFont(new Font("Arial", Font.BOLD, 20));
@@ -123,7 +128,7 @@ public class PlateauBis extends Observable {
                         setChanged();
                         notifyObservers(new Message(TypeMessages.CONSTRUIRE));
                         clearChanged();
-                        
+
                     }
                 });
             } else if (i == 32) {
@@ -135,7 +140,7 @@ public class PlateauBis extends Observable {
                         notifyObservers(new Message(TypeMessages.FINDETOUR));
                         clearChanged();
                         btnLancerDès.setEnabled(true);
-                        
+
                     }
                 });
             } else if (i == 38) {
@@ -598,6 +603,28 @@ public class PlateauBis extends Observable {
         casesPlateau.put(32, ipAvenueDeBreteuil);
         ipAvenueDeBreteuil.setPreferredSize(new Dimension(iAvenueDeBreteuil.getIconWidth(), iAvenueDeBreteuil.getIconHeight()));
         panelGrille.add(ipAvenueDeBreteuil, gbc);
+        
+        
+        gbc.gridx = 3;
+        gbc.gridy = 3;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        labelDe1 = new JLabel("De1");
+        panelGrille.add(labelDe1, gbc);
+        
+        gbc.gridx = 5;
+        gbc.gridy = 3;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        labelDe2 = new JLabel("De2");
+        panelGrille.add(labelDe2, gbc);
+
+        gbc.gridx = 3;
+        gbc.gridy = 5;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 5;
+        labelPosition = new JLabel(" TEST");
+        panelGrille.add(labelPosition, gbc);
 
     }
 
@@ -608,10 +635,51 @@ public class PlateauBis extends Observable {
     public void close() {
         this.window.dispose();
     }
-    
-    public ImagePanel getCase(int num){
+
+    public ImagePanel getCase(int num) {
         return casesPlateau.get(num);
     }
+
+    //verification de toutes les cases du plateau
+    public void verifCases() {
+        for (int i : casesPlateau.keySet()) {
+            System.out.println(i + "e case : " + casesPlateau.get(i));
+        }
+    }
+
+//    public void setLabelPosition(Joueur joueur) {
+//        if (joueur.getPosition() instanceof Terrain) {
+//            this.labelPosition.setText(joueur.getNom() + " est sur : " + ((Terrain) joueur.getPosition()).getNom());
+//        } else if (joueur.getPosition() instanceof Gare) {
+//            this.labelPosition.setText(joueur.getNom() + " est sur : " + ((Gare) joueur.getPosition()).getNom());
+//        } else if (joueur.getPosition() instanceof Compagnie) {
+//            this.labelPosition.setText(joueur.getNom() + " est sur : " + ((Compagnie) joueur.getPosition()).getNom());
+//        } else if (joueur.getPosition() instanceof CaseDépart) {
+//            this.labelPosition.setText(joueur.getNom() + " est sur : " + ((CaseDépart) joueur.getPosition()).getNom());
+//        } else if (joueur.getPosition() instanceof CasePrison) {
+//            this.labelPosition.setText(joueur.getNom() + " est sur : " + ((CasePrison) joueur.getPosition()).getNom());
+//        } else if (joueur.getPosition() instanceof CaseAllerEnPrison) {
+//            this.labelPosition.setText(joueur.getNom() + " est sur : " + ((CaseAllerEnPrison) joueur.getPosition()).getNom());
+//        } else if (joueur.getPosition() instanceof CasesCommunautaires_CartesChance) {
+//            this.labelPosition.setText(joueur.getNom() + " est sur : " + ((CasesCommunautaires_CartesChance) joueur.getPosition()).getNom());
+//        } else if (joueur.getPosition() instanceof ParcGratuit) {
+//            this.labelPosition.setText(joueur.getNom() + " est sur : " + ((ParcGratuit) joueur.getPosition()).getNom());
+//        } else if (joueur.getPosition() instanceof ImpotsTaxe) {
+//            this.labelPosition.setText(joueur.getNom() + " est sur : " + ((ImpotsTaxe) joueur.getPosition()).getNom());
+//        } else {
+//            this.labelPosition.setText(joueur.getNom() + " est sur : " + joueur.getPosition().getNom());
+//        }
+//    }
+    
+    public void setLabelPosition(String s) {
+        this.labelPosition.setText(s);
+    }
+    
+    public void setLabelsDes(int de1, int de2) {
+        this.labelDe1.setText("Dé 1 : " + de1);
+        this.labelDe2.setText("Dé 2 : " + de2);
+    }
+
 
     public void setJoueurCourant(Joueur joueurCourant) {
         this.joueurCourant = joueurCourant;
@@ -622,7 +690,7 @@ public class PlateauBis extends Observable {
     }
 
     public void setLabelJoueurCourant(String text) {
-        this.labelJoueurCourant.setText("C'est au tour de : "+text);
+        this.labelJoueurCourant.setText("Tour de : " + text);
     }
 
     public JLabel getLabelCagnotte() {
@@ -631,14 +699,9 @@ public class PlateauBis extends Observable {
 
     public void setLabelCagnotte(int cagnotte) {
         //String sCagnotte = cagnotte.
-        this.labelCagnotte.setText("          Vous avez : "+cagnotte + "€");
+        this.labelCagnotte.setText("Vous avez : " + cagnotte + "€");
     }
 
-    //public static void main(String[] args) {
-    // TODO code application logic here
-    //    PlateauBis p = new PlateauBis();
-    //    p.afficher();
-    //}
     public JButton getBtnLancerDès() {
         return btnLancerDès;
     }

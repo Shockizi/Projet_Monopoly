@@ -42,4 +42,17 @@ public class ImpotsTaxe extends CasePlateau {
         return actionsPossibes;
     }
 
+    @Override
+    public String getNom() {
+        String s = null;
+
+        if (getNumCase() == 5) {
+            s = "Impôt sur le revenu";
+        } else if (getNumCase() == 39) {
+            s = "Taxe de luxe";
+        }
+
+        return s;
+    }
+
 }

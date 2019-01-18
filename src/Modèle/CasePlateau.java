@@ -14,31 +14,32 @@ import java.util.ArrayList;
 public abstract class CasePlateau {
 
     private int numCase;
-    
 
     public CasePlateau(int numCase) {
         this.numCase = numCase;
     }
 
-    
     public int getNumCase() {
         return numCase;
     }
-
-    public String getNom() {
+    
+    public String getNom(){
         return "Case" + numCase;
     }
 
     public void setNumCase(int numCase) {
         this.numCase = numCase;
     }
-    
-    public abstract ArrayList<Action> getActionPossible(Joueur j);
+
+    public ArrayList<Action> getActionPossible(Joueur j) {
+        ArrayList<Action> actionsPossibes = new ArrayList<>();
+        actionsPossibes.add(Action.DEPLACER);
+        return actionsPossibes;
+    }
 
     public void lancerAction(Action action, Joueur j) {
         if (action == Action.DEPLACER) {
             j.lancerDes();
-            j.avancer();
         }
     }
 

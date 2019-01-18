@@ -18,19 +18,14 @@ public class Joueur {
     private int cagnotte = 1500;
     private CasePlateau position;
     private ArrayList<Propriete> proprietes = new ArrayList<>();
-    private ArrayList<CasePlateau> plateau = new ArrayList<>();
+    private Plateau plateau = new Plateau();
     private int de1, de2;
     private int carteLiberéDePrison;
 
     public Joueur(String nom) {
         this.nom = nom;
         this.carteLiberéDePrison = 0;
-        position = new CasePlateau(1) {
-            @Override
-            public ArrayList<Action> getActionPossible(Joueur j) {
-                return null;
-            }
-        };
+        position = plateau.getCasePlateau(1);
     }
 
     public int getCarteLiberéDePrison() {
@@ -65,28 +60,8 @@ public class Joueur {
         return this.position.getNumCase();
     }
 
-    public void setPosition(CasePlateau position) {
-        this.position = position;
-    }
-
-    public void setNumCaseCourante(int numCase) {
-        this.position.setNumCase(numCase);
-    }
-
-    public void avancer() {
-        int dep = de1 + de2;
-        boolean trouve = false;
-        for (CasePlateau cp : plateau) {
-            if ((this.getPosition().getNumCase() + dep) > plateau.size() && trouve == false) {
-                if (cp.getNumCase() == (dep - (plateau.size() - this.getPosition().getNumCase()))) {
-                    this.setPosition(cp);
-                    trouve = true;
-                }
-            } else if (cp.getNumCase() == (this.getPosition().getNumCase() + dep) && trouve == false) {
-                this.setPosition(cp);
-                trouve = true;
-            }
-        }
+    public void setPosition(int numCase) {
+        this.position = plateau.getCasePlateau(numCase);
     }
 
     public void lancerDes() {
@@ -121,10 +96,6 @@ public class Joueur {
         proprietes.add(p);
     }
 
-    public void setPlateau(ArrayList<CasePlateau> plateau) {
-        this.plateau = plateau;
-    }
-
     public int getNbGare() {
         int nb = 0;
         for (Propriete p : proprietes) {
@@ -156,6 +127,11 @@ public class Joueur {
             }
         }
         return nb;
+    }
+    
+    public void payerJoueur(int montant, Joueur j){
+        this.cagnotte = cagnotte - montant;
+        j.setCagnotte(j.getCagnotte() + montant);
     }
 
 }

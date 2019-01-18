@@ -22,8 +22,8 @@ public class Terrain extends Propriete {
     private int nbMaison;
     private int nbHotel;
     
-    public Terrain(Couleur couleur, int loyerDeBase, int loyer1m, int loyer2m, int loyer3m, int loyer4m, int loyerHotel, int construMaisonHotel, int nbMaison, int nbHotel, Terrains_enum terrain, int prixDAchat, int numCase) {
-        super(terrain, prixDAchat, numCase);
+    public Terrain(Couleur couleur, int loyerDeBase, int loyer1m, int loyer2m, int loyer3m, int loyer4m, int loyerHotel, int construMaisonHotel, int nbMaison, int nbHotel, String nom, int prixDAchat, int numCase) {
+        super(nom, prixDAchat, numCase);
         this.couleur = couleur;
         this.loyerDeBase = loyerDeBase;
         this.loyer1m = loyer1m;
@@ -35,11 +35,13 @@ public class Terrain extends Propriete {
         this.nbMaison = 0;
         this.nbHotel = 0;
     }
+
+    
+    
     
     Terrain(int numCase){
         super(numCase);
     }
-
     
     public int getLoyerDeBase() {
         return loyerDeBase;
@@ -69,10 +71,6 @@ public class Terrain extends Propriete {
         return construMaisonHotel;
     }
     
-    
-    
-    
-
     public Couleur getCouleur() {
         return couleur;
     }
