@@ -128,7 +128,7 @@ public class Controleur implements Observer {
             ihmplateau.getBtnFinTour().setEnabled(false);
             ihmplateau.getBtnConstruire().setEnabled(false);
             ihmplateau.getBtnAcheterTerrain().setEnabled(false);
-            ihmplateau.setLabelPosition(getPosJC());
+            ihmplateau.setLabelPosition(p.getNomCase(joueurCourant.getPosition()));
 
             //ouvrir ihm de jeu
         } else if (m.getType() == TypeMessages.NBJOUEUR) {
@@ -139,17 +139,17 @@ public class Controleur implements Observer {
 
         } else if (m.getType() == TypeMessages.FINDETOUR) {
             joueurSuivant();
-            ihmplateau.setLabelPosition(getPosJC());
+            ihmplateau.setLabelPosition(p.getNomCase(joueurCourant.getPosition()));
+            System.out.println(p.getNomCase(joueurCourant.getPosition()));
             ihmplateau.setLabelJoueurCourant(joueurCourant.getNom());
             ihmplateau.setLabelCagnotte(joueurCourant.getCagnotte());
-            verifAction();
             ihmplateau.getBtnLancerDès().setEnabled(true);
             ihmplateau.getBtnFinTour().setEnabled(false);
 
         } else if (m.getType() == TypeMessages.LANCERDES) {
             joueurCourant.lancerDes();
             ihmplateau.setLabelsDes(joueurCourant.getDe1(), joueurCourant.getDe2());
-            joueurCourant.setPosition(joueurCourant.getNumCaseCourante() + joueurCourant.getDe1() + joueurCourant.getDe2());
+            joueurCourant.setPosition(joueurCourant.getPosition() + joueurCourant.getDe1() + joueurCourant.getDe2());
             if (joueurCourant.verifDouble()) {
                 ihmplateau.getBtnLancerDès().setEnabled(true);
                 ihmplateau.getBtnFinTour().setEnabled(false);
@@ -158,25 +158,32 @@ public class Controleur implements Observer {
                 ihmplateau.getBtnFinTour().setEnabled(true);
             }
             //ACHETER ou PAYER
-            if (joueurCourant.getPosition() instanceof Propriete){
-                if (((Propriete)joueurCourant.getPosition()).getProprietaire() != null){
-                    ihmplateau.getBtnAcheterTerrain().setEnabled(true);
-                } else {
-                    joueurCourant.payerJoueur(((Propriete)joueurCourant.getPosition()).getLoyer(), ((Propriete)joueurCourant.getPosition()).getProprietaire());
-                    ihmplateau.setLabelCagnotte(joueurCourant.getCagnotte());
+            for (CasePlateau cp : p.getCasesPlat()) {
+                if (cp.getNumCase() == joueurCourant.getPosition()) {
+                    if (cp instanceof Propriete) {
+                        if (((Propriete) cp).getProprietaire() != null) {
+                            ihmplateau.getBtnAcheterTerrain().setEnabled(true);
+                        } else {
+                            joueurCourant.payerJoueur(((Propriete) cp).getLoyer(), ((Propriete) cp).getProprietaire());
+                            ihmplateau.setLabelCagnotte(joueurCourant.getCagnotte());
+                        }
+                    }
+
                 }
+
             }
+
             //bougerPion(joueurCourant);
-            ihmplateau.setLabelPosition(getPosJC());
-            System.out.println(ihmplateau.getCase(joueurCourant.getNumCaseCourante()));
+            ihmplateau.setLabelPosition(p.getNomCase(joueurCourant.getPosition()));
+            //System.out.println(ihmplateau.getCase(joueurCourant.getNumCaseCourante()));
 
         } else if (m.getType() == TypeMessages.ACHETER) {
-            CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
-            joueurCourant.addProriete((Propriete) p.getCasesPlat().get(joueurCourant.getNumCaseCourante()));
+            CasePlateau prop = p.getCasesPlat().get(joueurCourant.getPosition());
+            joueurCourant.addProriete((Propriete) p.getCasesPlat().get(joueurCourant.getPosition()));
             joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Propriete) prop).getPrixDAchat());
 
         } else if (m.getType() == TypeMessages.CONSTRUIRE) {
-            CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
+            CasePlateau prop = p.getCasesPlat().get(joueurCourant.getPosition());
             if (((Terrain) prop).getNbMaison() < 4) {
                 ((Terrain) prop).setNbMaison(((Terrain) prop).getNbMaison() + 1);
                 joueurCourant.setCagnotte(joueurCourant.getCagnotte() - ((Terrain) prop).getConstruMaisonHotel());
@@ -194,123 +201,9 @@ public class Controleur implements Observer {
         }
     }
 
-    public void verifAction() {
-//        CasePlateau prop = p.getCasesPlat().get(joueurCourant.getNumCaseCourante());
-//        if (prop instanceof Propriete) {
-//            if (joueurCourant.getCagnotte() < ((Propriete) prop).getPrixDAchat()) {
-//                ihmplateau.getBtnAcheterTerrain().setEnabled(false);
-//            }
-//        }
-//        if (prop instanceof Terrain) {
-//            if (joueurCourant.getCagnotte() < ((Terrain) prop).getConstruMaisonHotel() && ((Terrain) prop).getNbHotel() == 1) {
-//                ihmplateau.getBtnConstruire().setEnabled(false);
-//            }
-//        }
-        // joueurCourant.getPosition().
-
-//        while (getGagnant() == null) {
-//            int de1 = joueurCourant.getDe1();
-//            int de2 = joueurCourant.getDe2();
-//            int x = de1 + de2;
-//            System.out.println("1er Dé : " + de1 + "  |  2e Dé : " + de2);
-//            System.out.println("1er dé : " + de1 + " ;  2e dé : " + de2);
-//            System.out.println("Vous vous êtes déplacé de " + x + " cases");
-//            System.out.print("Vous êtes maintenant sur " + joueurCourant.getPosition().getNom());
-//            boolean relancer = false;
-//            if (joueurCourant.verifDouble()) {
-//                System.out.print("\nVous avez effectué un double, il faudra relancer les dés");
-//                relancer = true;
-//            }
-//
-//            boolean achatPossible = false;
-//            System.out.println(joueurCourant.getCagnotte());
-//            for (Action a : joueurCourant.getPosition().getActionPossible(joueurCourant)) {
-//                if (a == Action.PAYER) {
-//                    joueurCourant.getPosition().lancerAction(Action.PAYER, joueurCourant);
-//                    //System.out.print(", propriété de " + joueurCourant.getPosition().getProprietaire().getNom() + " !");
-//                    //System.out.println(joueurCourant.getPosition().getLoyer(joueurCourant) + "€ ont été retirés de votre cagnotte !  Il vous reste " + joueurCourant.getCagnotte() + "€");
-//                    verifCagnotte();
-//                } else if (a == Action.ACHETER) {
-//                    System.out.println("Achat possible");
-//                    achatPossible = true;
-//                }
-//            }
-//
-//            System.out.println("\nSaisissez le numéro d'action que vous souhaitez effectuer : ");
-//            if (relancer) {
-//                System.out.println("    1. RELANCER");
-//            } else {
-//                System.out.println("    1. FIN DU TOUR");
-//            }
-//            System.out.println("    2. CONSULTER PROPRIETES");
-//            System.out.println("    3. CONSULTER CAGNOTTE");
-//            if (achatPossible) {
-//                System.out.println("    4. ACHETER");
-//            }
-//            int numAct = 0;
-//            while (numAct != 1) {
-//                Scanner sc = new Scanner(System.in);
-//                numAct = sc.nextInt();
-//                if (numAct == 1 && !relancer) {
-//                    joueurSuivant();
-//                } else if (numAct == 1 && relancer) {
-//
-//                } else if (numAct == 2) {
-//                    System.out.println("--------------------------------------------------------");
-//                    System.out.println("Voici les propriétés en votre possession : ");
-//                    for (Propriete p : joueurCourant.getProprietes()) {
-//                        System.out.println("    - " + p.getNom());
-//                    }
-//                    System.out.println("--------------------------------------------------------");
-//                    if (relancer) {
-//                        System.out.println("    1. RELANCER");
-//                    } else {
-//                        System.out.println("    1. FIN DU TOUR");
-//                    }
-//                    System.out.println("    2. CONSULTER PROPRIETES");
-//                    System.out.println("    3. CONSULTER CAGNOTTE");
-//                    if (achatPossible) {
-//                        System.out.println("    4. ACHETER");
-//                    }
-//                } else if (numAct == 3) {
-//                    System.out.println("--------------------------------------------------------");
-//                    System.out.println("Il reste " + joueurCourant.getCagnotte() + "€ sur votre cagnotte");
-//                    System.out.println("--------------------------------------------------------");
-//                    if (relancer) {
-//                        System.out.println("    1. RELANCER");
-//                    } else {
-//                        System.out.println("    1. FIN DU TOUR");
-//                    }
-//                    System.out.println("    2. CONSULTER PROPRIETES");
-//                    System.out.println("    3. CONSULTER CAGNOTTE");
-//                    if (achatPossible) {
-//                        System.out.println("    4. ACHETER");
-//                    }
-//                } else if (numAct == 4 && achatPossible) {
-//                    joueurCourant.getPosition().lancerAction(Action.ACHETER, joueurCourant);
-//                    System.out.println(joueurCourant.getNom() + ", vous possédez désormais " + joueurCourant.getPosition().getNom());
-//                    System.out.println("Il reste " + joueurCourant.getCagnotte() + "€ sur votre cagnotte");
-//                    System.out.println("Saisissez le numéro d'action que vous souhaitez effectuer : ");
-//                    if (relancer) {
-//                        System.out.println("    1. RELANCER");
-//                    } else {
-//                        System.out.println("    1. FIN DU TOUR");
-//                    }
-//                    System.out.println("    2. CONSULTER PROPRIETES");
-//                    System.out.println("    3. CONSULTER CAGNOTTE");
-//                    achatPossible = false;
-//                } else {
-//                    System.out.println("Veuillez re-saisir le numéro d'action souhaité : ");
-//                }
-//            }
-//            System.out.println("\n=============================================================");
-//            System.out.println("=============================================================\n");
-//        }
-//        getGagnant();
-    }
-
     public void inscrireJoueur(Joueur j) {
         p.getJoueurs().add(j);
+        j.setPlateau(p);
     }
 
     public Joueur getJoueurCourant() {
@@ -360,32 +253,6 @@ public class Controleur implements Observer {
 
     public PionPanel getPion(Joueur joueur) {
         return pions.get(joueur);
-    }
-
-    public String getPosJC() {
-        String s = "";
-        if (joueurCourant.getPosition() instanceof Terrain) {
-            s = (joueurCourant.getNom() + " est sur : " + ((Terrain) joueurCourant.getPosition()).getNom());
-        } else if (joueurCourant.getPosition() instanceof Gare) {
-            s = (joueurCourant.getNom() + " est sur : " + ((Gare) joueurCourant.getPosition()).getNom());
-        } else if (joueurCourant.getPosition() instanceof Compagnie) {
-            s = (joueurCourant.getNom() + " est sur : " + ((Compagnie) joueurCourant.getPosition()).getNom());
-        } else if (joueurCourant.getPosition() instanceof CaseDépart) {
-            s = (joueurCourant.getNom() + " est sur : " + ((CaseDépart) joueurCourant.getPosition()).getNom());
-        } else if (joueurCourant.getPosition() instanceof CasePrison) {
-            s = (joueurCourant.getNom() + " est sur : " + ((CasePrison) joueurCourant.getPosition()).getNom());
-        } else if (joueurCourant.getPosition() instanceof CaseAllerEnPrison) {
-            s = (joueurCourant.getNom() + " est sur : " + ((CaseAllerEnPrison) joueurCourant.getPosition()).getNom());
-        } else if (joueurCourant.getPosition() instanceof CasesCommunautaires_CartesChance) {
-            s = (joueurCourant.getNom() + " est sur : " + ((CasesCommunautaires_CartesChance) joueurCourant.getPosition()).getNom());
-        } else if (joueurCourant.getPosition() instanceof ParcGratuit) {
-            s = (joueurCourant.getNom() + " est sur : " + ((ParcGratuit) joueurCourant.getPosition()).getNom());
-        } else if (joueurCourant.getPosition() instanceof ImpotsTaxe) {
-            s = (joueurCourant.getNom() + " est sur : " + ((ImpotsTaxe) joueurCourant.getPosition()).getNom());
-        } else {
-            s = (joueurCourant.getNom() + " est sur : " + joueurCourant.getPosition().getNom());
-        }
-        return s;
     }
 
 //    public void bougerPion(Joueur j) {

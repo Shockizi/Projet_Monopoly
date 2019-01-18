@@ -128,15 +128,14 @@ public class Plateau {
         this.casesPlat = casesPlat;
     }
     
-    public CasePlateau getCasePlateau(int numCase){
-        CasePlateau c = new CasePlateau(0) {
-        };
+    public String getNomCase(int numCase){
+        String nc = "";
         for (CasePlateau cp : casesPlat){
             if (numCase == cp.getNumCase()){
-                c = cp;
+                nc = cp.getNom();
             }
         }
-        return c;
+        return nc;
     }
     
 }

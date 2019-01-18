@@ -16,7 +16,7 @@ public class Joueur {
 
     private String nom;
     private int cagnotte = 1500;
-    private CasePlateau position;
+    private int position;
     private ArrayList<Propriete> proprietes = new ArrayList<>();
     private Plateau plateau = new Plateau();
     private int de1, de2;
@@ -25,7 +25,7 @@ public class Joueur {
     public Joueur(String nom) {
         this.nom = nom;
         this.carteLiberéDePrison = 0;
-        position = plateau.getCasePlateau(1);
+        position = 1;
     }
 
     public int getCarteLiberéDePrison() {
@@ -52,16 +52,12 @@ public class Joueur {
         this.cagnotte = cagnotte;
     }
 
-    public CasePlateau getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public int getNumCaseCourante() {
-        return this.position.getNumCase();
-    }
-
     public void setPosition(int numCase) {
-        this.position = plateau.getCasePlateau(numCase);
+        this.position = numCase;
     }
 
     public void lancerDes() {
@@ -127,6 +123,10 @@ public class Joueur {
             }
         }
         return nb;
+    }
+    
+    public void setPlateau(Plateau p){
+        this.plateau = p;
     }
     
     public void payerJoueur(int montant, Joueur j){
